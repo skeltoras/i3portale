@@ -1,0 +1,159 @@
+<template name="kdSingle">
+<div class="container">
+  <img src="http://placehold.it/1200x300" />
+  <div class="spacer-20"></div>
+  <div class="row">
+    {{#if getFullData}}
+      <div class="col-sm-4">
+          <div class="panel panel-default panel-av-detail">
+            <div class="panel-heading"><h3>{{avName1}} {{#if avName2}}{{else}}{{avLegalForm}}{{/if}}</h3></div>
+            <div class="panel-body">
+              <p>
+                {{avShortinfo}}
+              </p>
+              <h3>Adresse</h3>
+              <p>
+                {{#if avName2}}{{avName2}} {{avLegalForm}}<br>{{/if}}
+                {{#if avStreet}}{{avStreet}}<br>{{/if}}
+                {{#if avPlz}}{{avPlz}} {{avCity}}<br>{{/if}}
+                {{#if country}}{{avCountry}}{{/if}}
+              </p>
+              <h3>Kontakt</h3>
+              <p>
+                {{#if avTelephoneFormal}}<i class="fa fa-phone"></i> {{avTelephoneFormal}}<br>{{/if}}
+                {{#if avTelefax}}<i class="fa fa-fax"></i> {{avTelefax}}<br>{{/if}}
+                {{#if avMailFormal}}<i class="fa fa-envelope"></i> {{avMailFormal}}{{/if}}
+              </p>
+              {{#if avUrl}}
+              <h3>Website</h3>
+              <p>
+                <i class="fa fa-arrow-circle-o-right"></i> {{avUrl}}<br>
+              </p>
+              {{/if}}
+              <h3>Social Media</h3>
+              <p>
+                <span class="socialIcons">
+                    {{#if avFacebookData}}<a href="https://www.facebook.com/{{avFacebookData}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+                    {{#if avGplusData}}<a href="https://plus.google.com/u/0/+{{avGplusData}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+                    {{#if avTwitterData}}<a href="https://twitter.com/{{avTwitterData}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+                    {{#if avYoutubeData}}<a href="https://www.youtube.com/user/{{avYoutubeData}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+                </span> 
+              </p>
+              <h3>Bilder</h3>
+              <p>
+              </p>
+              <h3>Video</h3>
+              <p>
+              </p>             
+              <h3>Bereich(e)</h3>
+              <p>
+              </p>
+              <a class="btn btn-default btn-panel pull-right back"><i class="fa fa-angle-double-left"></i> Zurück</a>          
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-8">
+        <!-- rentingsPackages -->
+        <ul class="nav nav-tabs av" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#a" aria-controls="a" role="tab" data-toggle="tab">Übersicht</a>
+            {{#if rentingsHasPackageS}}<a href="#{{rentingsTabOneS}}" aria-controls="{{rentingsTabOneS}}" role="tab" data-toggle="tab">{{rentingsTabOneS}}</a>{{/if}}
+            {{#if rentingsHasPackageM}}<a href="#{{rentingsTabOneM}}" aria-controls="{{rentingsTabOneM}}" role="tab" data-toggle="tab">{{rentingsTabOneM}}</a>{{/if}}
+            {{#if rentingsHasPackageL}}<a href="#{{rentingsTabOneL}}" aria-controls="{{rentingsTabOneL}}" role="tab" data-toggle="tab">{{rentingsTabOneL}}</a>{{/if}}
+            {{#if rentingsHasPackageXL}}<a href="#{{rentingsTabOneXL}}" aria-controls="{{rentingsTabOneXL}}" role="tab" data-toggle="tab">{{rentingsTabOneXL}}</a>{{/if}}
+          </li>
+          <li role="presentation">
+            <a href="#b" aria-controls="b" role="tab" data-toggle="tab">Tab #2</a>
+          </li>
+          <li role="presentation">
+            <a href="#c" aria-controls="c" role="tab" data-toggle="tab">...</a>          
+          </li>
+          {{#if rentingsHasPackageM}}
+            <li role="presentation"><a href="#{{rentingsTabTwoM}}" aria-controls="{{rentingsTabTwoM}}" role="tab" data-toggle="tab">{{rentingsTabTwoM}}</a></li>
+          {{/if}} 
+          {{#if rentingsHasPackageL}}
+            <li role="presentation"><a href="#{{rentingsTabTwoL}}" aria-controls="{{rentingsTabTwoL}}" role="tab" data-toggle="tab">{{rentingsTabTwoL}}</a></li>
+            <li role="presentation"><a href="#{{rentingsTabThreeL}}" aria-controls="{{rentingsTabThreeL}}" role="tab" data-toggle="tab">{{rentingsTabThreeL}}</a></li>
+          {{/if}}
+          {{#if rentingsHasPackageXL}}
+            <li role="presentation"><a href="#{{rentingsTabTwoXL}}" aria-controls="{{rentingsTabTwoXL}}" role="tab" data-toggle="tab">{{rentingsTabTwoXL}}</a></li>
+            <li role="presentation"><a href="#{{rentingsTabThreeXL}}" aria-controls="{{rentingsTabThreeXL}}" role="tab" data-toggle="tab">{{rentingsTabThreeXL}}</a></li>
+            <li role="presentation"><a href="#{{rentingsTabFourXL}}" aria-controls="{{rentingsTabFourXL}}" role="tab" data-toggle="tab">{{rentingsTabFourXL}}</a></li>
+          {{/if}}
+          {{#if rentingsHasAddTextOne}}
+            <li role="presentation"><a href="#{{rentingsAddTextTabOne}}" aria-controls="{{rentingsAddTextTabOne}}" role="tab" data-toggle="tab">{{rentingsAddTextTabOne}}</a></li>
+          {{/if}}
+          {{#if rentingsHasAddTextTwo}}
+            <li role="presentation"><a href="#{{rentingsAddTextTabTwo}}" aria-controls="{{rentingsAddTextTabTwo}}" role="tab" data-toggle="tab">{{rentingsAddTextTabTwo}}</a></li>
+          {{/if}}
+        </ul>
+        <div class="tab-content">
+          {{#if rentingsHasPackageS}}
+            <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneS}}">{{{rentingsTextOneS}}}</div>
+          {{/if}}
+          {{#if rentingsHasPackageM}}
+            <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneM}}">{{{rentingsTextOneM}}}</div>
+            <div role="tabpanel" class="tab-pane" id="{{rentingsTabTwoM}}">{{{rentingsTextTwoM}}}</div>
+          {{/if}}
+          {{#if rentingsHasPackageL}}
+            <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneL}}">{{{rentingsTextOneL}}}</div>
+            <div role="tabpanel" class="tab-pane" id="{{rentingsTabTwoL}}">{{{rentingsTextTwoL}}}</div>
+            <div role="tabpanel" class="tab-pane" id="{{rentingsTabThreeL}}">{{{rentingsTextThreeL}}}</div>
+          {{/if}}
+          {{#if rentingsHasPackageXL}}
+            <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneXL}}">{{{rentingsTextOneXL}}}</div>
+            <div role="tabpanel" class="tab-pane" id="{{rentingsTabTwoXL}}">{{{rentingsTextTwoXL}}}</div>
+            <div role="tabpanel" class="tab-pane" id="{{rentingsTabThreeXL}}">{{{rentingsTextThreeXL}}}</div>
+            <div role="tabpanel" class="tab-pane" id="{{rentingsTabFourXL}}">{{{rentingsTextFourXL}}}</div>
+          {{/if}}
+          {{#if rentingsHasAddTextOne}}
+            <div role="tabpanel" class="tab-pane" id="{{rentingsAddTextTabOne}}">{{{rentingsAddTextOne}}}</div>
+          {{/if}}
+          {{#if rentingsHasAddTextTwo}}
+            <div role="tabpanel" class="tab-pane" id="{{rentingsAddTextTabTwo}}">{{{rentingsAddTextTwo}}}</div>
+          {{/if}}
+        </div>
+      </div>
+    {{else}}
+      <div class="col-sm-4">
+      </div>
+        <div class="col-sm-4">
+          <div class="panel panel-default panel-av-detail">
+            <div class="panel-heading"><h3>{{avName1}} {{#if avName2}}{{else}}{{avLegalForm}}{{/if}}</h3></div>
+            <div class="panel-body">
+              <p>
+                {{avShortinfo}}
+              </p>
+              <h3>Adresse</h3>
+              <p>
+                {{#if avName2}}{{avName2}} {{avLegalForm}}<br>{{/if}}
+                {{#if avStreet}}{{avStreet}}<br>{{/if}}
+                {{#if avPlz}}{{avPlz}} {{avCity}}<br>{{/if}}
+                {{#if country}}{{avCountry}}{{/if}}
+              </p>
+              <h3>Kontakt</h3>
+              <p>
+                {{#if avTelephoneFormal}}<i class="fa fa-phone"></i> {{avTelephoneFormal}}<br>{{/if}}
+                {{#if avTelefax}}<i class="fa fa-fax"></i> {{avTelefax}}<br>{{/if}}
+                {{#if avMailFormal}}<i class="fa fa-envelope"></i> {{avMailFormal}}{{/if}}
+              </p>
+              {{#if avUrl}}
+              <h3>Website</h3>
+              <p>
+                <i class="fa fa-arrow-circle-o-right"></i> {{avUrl}}<br>
+              </p>
+              {{/if}}
+              <h3>Bereich(e)</h3>
+              <p>
+              </p>
+              <a class="btn btn-default btn-panel pull-right" href="/av/kd/{{customersSiteUrl}}"><i class="fa fa-angle-double-left"></i> Zurück</a>          
+            </div>
+          </div>
+        </div>
+      <div class="col-sm-4">
+      </div>
+    {{/if}}
+    
+  </div>
+</div>
+</template>

@@ -1,0 +1,119 @@
+<template name="acpUploads">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="page-header">Uploads</h1>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload AV-Kunden <small>Datensätze: {{getAvCustomerCount}}</small></h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAvCustomers">
+              <input type="file" id="fileUploadAvCustomers">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Länder <small>Datensätze: {{getCountriesCount}}</small></h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadCountries">
+              <input type="file" id="fileUploadCountries" name="fileUploadCountries">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Adresskapitel <small>Datensätze: {{getAdressChaptersCount}}</small></h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAdressChapters">
+              <input type="file" id="fileUploadAdressChapters" name="fileUploadAdressChapters">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Adressbereiche</h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAdressSections">
+              <input type="file" id="fileUploadAdressSections" name="fileUploadAdressSections">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Zuordnung Adresskapitel</h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAdressChaptersIds">
+              <input type="file" id="fileUploadAdressChaptersIds" name="fileUploadAdressChaptersIds">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Verbände <small>Datensätze: {{getAvAssociationsCount}}</small></h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAvAssociations">
+              <input type="file" id="fileUploadAvAssociations" name="fileUploadAvAssociations">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Zuordnung Verbände</h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAvAssociationsIds">
+              <input type="file" id="fileUploadAvAssociationsIds" name="fileUploadAvAssociationsIds">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Sperren <small>Datensätze: {{getAvBlockIndicatorsCount}}</small></h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAvBlockIndicators">
+              <input type="file" id="fileUploadAvBlockIndicators" name="fileUploadAvBlockIndicators">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3>Upload Zuordnung Sperren</h3></div>
+          <div class="panel-body">
+            <form role="form" id="uploadAvBlockIndicatorsIds">
+              <input type="file" id="fileUploadAvBlockIndicatorsIds" name="fileUploadAvBlockIndicatorsIds">
+              <button type="submit" class="btn btn-default">Hochladen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

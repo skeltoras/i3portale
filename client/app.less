@@ -1,0 +1,27 @@
+@import "/lib/bootstrap/custom.bootstrap.import.less";
+@import "/lib/bootstrap-switch/custom.bootstrap-switch.import.less";
+@import "less/media_all.import.less";
+
+/* Large .visible-lg-* .hidden-xs .hidden-sm .hidden-md */
+@media(min-width:1200px){
+  @import "less/media_large.import.less";
+}
+
+/* Medium .visible-md-* .hidden-xs .hidden-sm .hidden-lg */
+@media(min-width:992px) and (max-width:1199px){
+  @import "less/media_medium.import.less";
+}
+
+/* Small .visible-sm-* .hidden-xs .hidden-md .hidden-lg */
+@media(min-width:768px) and (max-width:991px){
+  @import "less/media_small.import.less";
+}
+
+/* Extra Small .visible-xs-* .hidden-sm .hidden-md .hidden-lg */
+@media(max-width:767px){
+  @import "less/media_extrasmall.import.less";
+}
+
+@media print{
+  @import "less/media_print.import.less";
+}

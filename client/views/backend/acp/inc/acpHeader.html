@@ -1,0 +1,61 @@
+<template name="acpHeader">
+  <!-- header -->
+  <div class="header acp">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="siteLogo"><a href="/acp" alt="Startseite AV-Portal"><h1>Admin Control Panel</h1></a></div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="topnav acp">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <nav class="navbar" role="navigation">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><a href="/acp"><i class="fa fa-home"></i> Startseite</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cubes"></i> Kunden<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="/acp/kdn"><i class="fa fa-home"></i> Kundenliste</a></li>
+                      <li><a href="/acp/kd/new"><i class="fa fa-home"></i> Neuer Kunde</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cubes"></i> Listen<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="/acp/cl"><i class="fa fa-home"></i> Länder</a></li>
+                      <li><a href="/acp/acl"><i class="fa fa-home"></i> Adresskapitel</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="/acp/upload"><i class="fa fa-home"></i> Uploads</a></li> 
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="col-sm-3 pull-right">
+          <form class="form-horizontal" role="form">
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" aria-describedby="search">
+              <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
+            </div>      
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>    
+</template>

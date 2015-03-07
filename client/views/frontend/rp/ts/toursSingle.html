@@ -1,0 +1,863 @@
+<template name="toursSingle">
+<div class="container">
+<!-- Template for XS -->
+  <div class="row hidden-sm hidden-md hidden-lg">
+    <div class="col-xs-12 text-center">
+      {{#if toursDefaultImage}}<img class="headerimg" src="{{toursDefaultImage}}">{{/if}}
+      <h3>{{toursName}}</h3>
+      <p>{{#each toursRegions}}{{name}}{{/each}}<br></p>
+    </div>
+  </div>
+  <div class="row hidden-sm hidden-md hidden-lg">
+    <div class="col-xs-12 text-center">
+      <div class="panel-group" id="xsTabs" role="tablist" aria-multiselectable="true">    
+        <!-- toursHasGalleryS -->
+        {{#if toursHasGalleryS}}
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="toursHeadOne">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#toursCollapseOne" aria-expanded="false" aria-controls="toursCollapseOne">
+                  Bilder
+                </a>
+              </h4>
+            </div> 
+            <div id="toursCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHeadOne">
+              <div class="panel-body">
+                <p>
+                  Galerie (klein) kommt noch... 
+                </p>
+              </div>
+            </div> 
+          </div>
+        {{/if}}
+        <!-- toursHasGalleryM -->
+        {{#if toursHasGalleryM}}
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="toursHeadTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#toursCollapseTwo" aria-expanded="false" aria-controls="toursCollapseTwo">
+                  Bilder
+                </a>
+              </h4>
+            </div> 
+            <div id="toursCollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHeadTwo">
+              <div class="panel-body">
+                <p>
+                  Galerie (groß) kommt noch... 
+                </p>
+              </div>
+            </div> 
+          </div>
+        {{/if}}
+        <!-- toursTextOne -->
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="toursHeadThree">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#toursCollapseThree" aria-expanded="false" aria-controls="toursCollapseThree">
+                {{#if toursTabOneS}}{{toursTabOneS}}{{/if}}
+                {{#if toursTabOneM}}{{toursTabOneM}}{{/if}}
+                {{#if toursTabOneL}}{{toursTabOneL}}{{/if}}
+                {{#if toursTabOneXL}}{{toursTabOneXL}}{{/if}}
+              </a>
+            </h4>
+          </div> 
+          <div id="toursCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHeadThree">
+            <div class="panel-body text-left">
+              {{#if toursTextOneS}}{{{toursTextOneS}}}{{/if}}
+              {{#if toursTextOneM}}{{{toursTextOneM}}}{{/if}}
+              {{#if toursTextOneL}}{{{toursTextOneL}}}{{/if}}
+              {{#if toursTextOneXL}}{{{toursTextOneXL}}}{{/if}}
+            </div>
+          </div> 
+        </div>
+        <!-- toursObjectData -->
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="toursHeadFour">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#toursCollapseFour" aria-expanded="false" aria-controls="toursCollapseFour">
+                Reisedaten & Kontakt
+              </a>
+            </h4>
+          </div> 
+          <div id="toursCollapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHeadFour">
+            <div class="panel-body">
+              <p>
+                Von {{formatDate toursBegin}} bis {{formatDate toursEnd}}
+                {{#if toursUrl}}<br><br><i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{toursUrl}}" target="_blank">{{toursUrl}}</a>{{/if}}
+              </p>
+              <p>
+                {{#with getCustomer}}
+                  {{customerName}}<br>
+                  {{#if telephone}}<i class="fa fa-phone"></i> <a href="tel:{{telephone}}">{{telephone}}</a><br>{{/if}}
+                  {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
+                {{/with}}
+              </p>
+            </div>
+          </div> 
+        </div>
+        <!-- toursHasSocialMedia -->
+        {{#if toursHasSocialMedia}}
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="toursHeadFive">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#toursCollapseFive" aria-expanded="false" aria-controls="toursCollapseFive">
+                Social Media
+              </a>
+            </h4>
+          </div> 
+          <div id="toursCollapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHeadFive">
+            <div class="panel-body">
+              <p>
+                <span class="socialIcons">
+                  {{#with getCustomer}}
+                    {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+                    {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+                    {{#if socialTwitter}}<a href="https://twitter.com/{{socialTwitter}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+                    {{#if socialYoutube}}<a href="https://www.youtube.com/user/{{socialYoutube}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+                  {{/with}}
+                </span> 
+              </p>
+              {{#if toursHasVideo}}
+                <p>
+                  Video kommt noch... 
+                </p>
+              {{/if}}
+            </div>
+          </div> 
+        </div>
+        {{/if}}
+        <!-- toursOtherTexts -->
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="toursHeadSix">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#toursCollapseSix" aria-expanded="false" aria-controls="toursCollapseSix">
+                Weitere Infos
+              </a>
+            </h4>
+          </div> 
+          <div id="toursCollapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHeadSix">
+            <div class="panel-body">
+              <div class="panel-group" id="xsTabsSub" role="tablist" aria-multiselectable="true">
+                <!-- packageM -->
+                {{#if toursHasPackageM}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursTabTwoM}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursTabTwoM}}" aria-expanded="false" aria-controls="{{toursTabTwoM}}">
+                          {{toursTabTwoM}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursTabTwoM}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursTabTwoM}}">
+                      <div class="panel-body text-left">
+                        {{{toursTextTwoM}}}  
+                      </div>
+                    </div> 
+                  </div>
+                {{/if}}
+                <!-- packageL -->
+                {{#if toursHasPackageL}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursTabTwoL}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursTabTwoL}}" aria-expanded="false" aria-controls="{{toursTabTwoL}}">
+                          {{toursTabTwoL}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursTabTwoL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursTabTwoL}}">
+                      <div class="panel-body text-left">
+                        {{{toursTextTwoL}}}  
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursTabThreeL}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursTabThreeL}}" aria-expanded="false" aria-controls="{{toursTabThreeL}}">
+                          {{toursTabThreeL}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursTabThreeL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursTabThreeL}}">
+                      <div class="panel-body text-left">
+                        {{{toursTextThreeL}}}  
+                      </div>
+                    </div> 
+                  </div>
+                {{/if}}
+                <!-- packageXL -->
+                {{#if toursHasPackageXL}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursTabTwoXL}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursTabTwoXL}}" aria-expanded="false" aria-controls="{{toursTabTwoXL}}">
+                          {{toursTabTwoXL}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursTabTwoXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursTabTwoXL}}">
+                      <div class="panel-body text-left">
+                        {{{toursTextTwoXL}}}  
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursTabThreeXL}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursTabThreeXL}}" aria-expanded="false" aria-controls="{{toursTabThreeXL}}">
+                          {{toursTabThreeXL}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursTabThreeXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursTabThreeXL}}">
+                      <div class="panel-body text-left">
+                        {{{toursTextThreeXL}}}  
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursTabFourXL}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursTabFourXL}}" aria-expanded="false" aria-controls="{{toursTabFourXL}}">
+                          {{toursTabFourXL}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursTabFourXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursTabFourXL}}">
+                      <div class="panel-body text-left">
+                        {{{toursTextFourXL}}}  
+                      </div>
+                    </div> 
+                  </div>
+                {{/if}}
+                <!-- toursHasAddTextOne -->
+                {{#if toursHasAddTextOne}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursAddTextTabOne}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursAddTextTabOne}}" aria-expanded="false" aria-controls="{{toursAddTextTabOne}}">
+                          {{toursAddTextTabOne}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursAddTextTabOne}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursAddTextTabOne}}">
+                      <div class="panel-body text-left">
+                        {{{toursAddTextOne}}}  
+                      </div>
+                    </div> 
+                  </div>
+                {{/if}}
+                <!-- toursHasAddTextTwo -->
+                {{#if toursHasAddTextTwo}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="toursHead_{{toursAddTextTabTwo}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{toursAddTextTabTwo}}" aria-expanded="false" aria-controls="{{toursAddTextTabTwo}}">
+                          {{toursAddTextTabTwo}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{toursAddTextTabTwo}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="toursHead_{{toursAddTextTabTwo}}">
+                      <div class="panel-body text-left">
+                        {{{toursAddTextTwo}}}  
+                      </div>
+                    </div> 
+                  </div>
+                {{/if}}
+              </div>           
+            </div>
+          </div> 
+        </div>  
+      </div>
+    </div>
+  </div>
+<!-- END Template for XS -->
+
+<!-- Template for SM MD LG -->   
+  <!-- Header Img / header Slider -->
+  {{#if toursHasHeaderSlider}}
+    <div class="row hidden-xs">
+      <div class="col-sm-12">
+        <!-- placeholder -->
+      </div>
+    </div>
+  {{else}}
+    {{#if toursHasHeaderImg}}
+      <div class="row hidden-xs">
+        <div class="col-sm-12">
+          <img class="headerimg" src="{{toursHeaderImg}}" alt="headerImg" />
+        </div>
+      </div>
+    {{else}}
+      <div class="row hidden-xs">
+        <div class="col-sm-12">
+          <img class="headerimg" src="http://placehold.it/1200x300" alt="headerImg" />
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
+  <div class="spacer-20 hidden-xs"></div>  
+<!-- sidebar SM -->
+  <div class="row hidden-xs hidden-md hidden-lg">
+    <div class="col-sm-4">
+      <h3>{{toursName}}</h3>
+      <p>
+        Bereich: <a href="/rp">Reise</a><br>
+        Land: {{#each toursCountries}}<a href="/rp">{{name}}</a> {{/each}}<br>
+        Region: {{#each toursRegions}}{{name}} {{/each}}
+      </p>
+    </div>
+    <div class="col-sm-4 text-center">
+      <h3>Termin</h3>
+      <p>
+        {{formatDate toursBegin}} bis {{formatDate toursEnd}}
+      </p>
+    </div>
+    <div class="col-sm-4 text-right">
+      <h3>Kontakt Veranstalter</h3>
+      <p>
+        {{#with getCustomer}}
+          {{customerName}}<br>
+          {{#if telephone}}<i class="fa fa-phone"></i> {{telephone}}<br>{{/if}}
+          {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
+        {{/with}}
+      </p>
+    </div>
+  </div>
+  <div class="spacer-20 hidden-md hidden-lg hidden-xs"></div>
+<!-- END sidebar SM -->  
+  <div class="row">
+    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+      <h3>{{toursName}}</h3>
+      <p>
+        Bereich: <a href="/rp">Reise</a><br>
+        Land: {{#each toursCountries}}<a href="/rp">{{name}}</a> {{/each}}<br>
+        Region: {{#each toursRegions}}{{name}} {{/each}}
+      </p>
+      <h3>Termin</h3>
+      <p>
+        {{formatDate toursBegin}} bis {{formatDate toursEnd}}
+      </p>
+      <h3>Kontakt Veranstalter</h3>
+      <p>
+        {{#with getCustomer}}
+          {{customerName}}<br>
+          {{street}}<br>
+          {{#if additional}}{{additional}}<br>{{/if}}
+          {{plz}} {{city}}<br>
+          {{country}}<br>
+          {{#if telephone}}<i class="fa fa-phone"></i> {{telephone}}<br>{{/if}}
+          {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
+        {{/with}}
+      </p>
+      {{#if toursUrl}}
+        <h3>Website</h3>
+        <p>
+          <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{toursUrl}}" target="_blank">{{toursUrl}}</a>
+        </p>
+      {{/if}}
+      {{#if toursHasSocialMedia}}
+        <h3>Social Media</h3>
+        <p>
+          <span class="socialIcons">
+            {{#with getCustomer}}
+              {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+              {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+              {{#if socialTwitter}}<a href="https://twitter.com/{{socialTwitter}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+              {{#if socialYoutube}}<a href="https://www.youtube.com/user/{{socialYoutube}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+            {{/with}}
+          </span> 
+        </p>
+      {{/if}}
+      {{#if toursHasGalleryS}}
+        <h3>Galerie</h3>
+        Galerie (klein) kommt noch...
+      {{/if}}
+      {{#if toursHasGalleryM}}
+        <h3>Galerie</h3>
+        Galerie (groß) kommt noch...
+      {{/if}}
+      {{#if toursHasVideo}}
+        <h3>Video</h3>
+        <p>
+          kommt noch...
+        </p>
+      {{/if}}
+    </div>  
+    <div class="col-sm-12 col-md-9 col-lg-9 hidden-xs">
+      <!-- toursPackages -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          {{#if toursHasPackageS}}<a href="#{{toursTabOneS}}" aria-controls="{{toursTabOneS}}" role="tab" data-toggle="tab">{{toursTabOneS}}</a>{{/if}}
+          {{#if toursHasPackageM}}<a href="#{{toursTabOneM}}" aria-controls="{{toursTabOneM}}" role="tab" data-toggle="tab">{{toursTabOneM}}</a>{{/if}}
+          {{#if toursHasPackageL}}<a href="#{{toursTabOneL}}" aria-controls="{{toursTabOneL}}" role="tab" data-toggle="tab">{{toursTabOneL}}</a>{{/if}}
+          {{#if toursHasPackageXL}}<a href="#{{toursTabOneXL}}" aria-controls="{{toursTabOneXL}}" role="tab" data-toggle="tab">{{toursTabOneXL}}</a>{{/if}}
+        </li>
+        {{#if toursHasPackageM}}
+          <li role="presentation"><a href="#{{toursTabTwoM}}" aria-controls="{{toursTabTwoM}}" role="tab" data-toggle="tab">{{toursTabTwoM}}</a></li>
+        {{/if}} 
+        {{#if toursHasPackageL}}
+          <li role="presentation"><a href="#{{toursTabTwoL}}" aria-controls="{{toursTabTwoL}}" role="tab" data-toggle="tab">{{toursTabTwoL}}</a></li>
+          <li role="presentation"><a href="#{{toursTabThreeL}}" aria-controls="{{toursTabThreeL}}" role="tab" data-toggle="tab">{{toursTabThreeL}}</a></li>
+        {{/if}}
+        {{#if toursHasPackageXL}}
+          <li role="presentation"><a href="#{{toursTabTwoXL}}" aria-controls="{{toursTabTwoXL}}" role="tab" data-toggle="tab">{{toursTabTwoXL}}</a></li>
+          <li role="presentation"><a href="#{{toursTabThreeXL}}" aria-controls="{{toursTabThreeXL}}" role="tab" data-toggle="tab">{{toursTabThreeXL}}</a></li>
+          <li role="presentation"><a href="#{{toursTabFourXL}}" aria-controls="{{toursTabFourXL}}" role="tab" data-toggle="tab">{{toursTabFourXL}}</a></li>
+        {{/if}}
+        {{#if toursHasAddTextOne}}
+          <li role="presentation"><a href="#{{toursAddTextTabOne}}" aria-controls="{{toursAddTextTabOne}}" role="tab" data-toggle="tab">{{toursAddTextTabOne}}</a></li>
+        {{/if}}
+        {{#if toursHasAddTextTwo}}
+          <li role="presentation"><a href="#{{toursAddTextTabTwo}}" aria-controls="{{toursAddTextTabTwo}}" role="tab" data-toggle="tab">{{toursAddTextTabTwo}}</a></li>
+        {{/if}}
+      </ul>
+      <div class="tab-content">
+        {{#if toursHasPackageS}}
+          <div role="tabpanel" class="tab-pane active" id="{{toursTabOneS}}">{{{toursTextOneS}}}</div>
+        {{/if}}
+        {{#if toursHasPackageM}}
+          <div role="tabpanel" class="tab-pane active" id="{{toursTabOneM}}">{{{toursTextOneM}}}</div>
+          <div role="tabpanel" class="tab-pane" id="{{toursTabTwoM}}">{{{toursTextTwoM}}}</div>
+        {{/if}}
+        {{#if toursHasPackageL}}
+          <div role="tabpanel" class="tab-pane active" id="{{toursTabOneL}}">{{{toursTextOneL}}}</div>
+          <div role="tabpanel" class="tab-pane" id="{{toursTabTwoL}}">{{{toursTextTwoL}}}</div>
+          <div role="tabpanel" class="tab-pane" id="{{toursTabThreeL}}">{{{toursTextThreeL}}}</div>
+        {{/if}}
+        {{#if toursHasPackageXL}}
+          <div role="tabpanel" class="tab-pane active" id="{{toursTabOneXL}}">{{{toursTextOneXL}}}</div>
+          <div role="tabpanel" class="tab-pane" id="{{toursTabTwoXL}}">{{{toursTextTwoXL}}}</div>
+          <div role="tabpanel" class="tab-pane" id="{{toursTabThreeXL}}">{{{toursTextThreeXL}}}</div>
+          <div role="tabpanel" class="tab-pane" id="{{toursTabFourXL}}">{{{toursTextFourXL}}}</div>
+        {{/if}}
+        {{#if toursHasAddTextOne}}
+          <div role="tabpanel" class="tab-pane" id="{{toursAddTextTabOne}}">{{{toursAddTextOne}}}</div>
+        {{/if}}
+        {{#if toursHasAddTextTwo}}
+          <div role="tabpanel" class="tab-pane" id="{{toursAddTextTabTwo}}">{{{toursAddTextTwo}}}</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>  
+<!-- footer SM -->  
+  <div class="spacer-20 hiden-xs hidden-md hidden-lg"></div>
+  <div class="row hidden-xs hidden-md hidden-lg">
+    <div class="col-sm-3">
+      {{#if toursUrl}}
+        <h3>Website</h3>
+        <p>
+          <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{toursUrl}}" target="_blank">{{toursUrl}}</a>
+        </p>
+      {{/if}}
+    </div>
+    <div class="col-sm-3 text-center">
+      {{#if toursHasSocialMedia}}
+        <h3>Social Media</h3>
+        <p>
+          <span class="socialIcons">
+            {{#with getCustomer}}
+              {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+              {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+              {{#if socialTwitter}}<a href="https://twitter.com/{{socialTwitter}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+              {{#if socialYoutube}}<a href="https://www.youtube.com/user/{{socialYoutube}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+            {{/with}}
+          </span> 
+        </p>
+      {{/if}}    
+    </div>
+    <div class="col-sm-3 text-center">
+      {{#if toursHasGalleryM}}
+        <h3>Galerie</h3>
+        Galerie (klein) kommt noch...
+      {{/if}}
+      {{#if toursHasGalleryM}}
+        <h3>Galerie</h3>
+        Galerie (groß) kommt noch...
+      {{/if}}
+    </div>
+    <div class="col-sm-3 text-right">
+      {{#if toursHasVideo}}
+        <h3>Video</h3>
+        <p>
+          kommt noch...
+        </p>
+      {{/if}}
+    </div>
+  </div>
+<!-- END footer SM -->
+<!-- END Template for SM MD LG -->
+</div>
+</template>
+
+<template name="toursSingleOld">
+<div class="row hidden-xs">
+  <div class="col-sm-12">
+    {{#if hasHeaderSlider}}<img class="headerimg" src="/img/oberstdorf2.jpg">{{else}}Bild{{/if}}
+  </div>
+</div>
+<div class="spacer-20 hidden-xs"></div>
+<div class="row hidden-sm hidden-md hidden-lg">
+  <div class="col-xs-12 text-center">
+    <img class="headerimg" src="/img/oberstdorf2.jpg">
+    <h3>{{toursName}}</h3>
+    <p>
+      <a href="">{{toursRegion}}</a><br>
+    </p>
+  </div>
+</div>
+<div class="row hidden-sm hidden-md hidden-lg">
+  <div class="col-xs-12 text-center">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      
+      {{#if hasGalleryM}}
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFour">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Bilder
+            </a>
+          </h4>
+        </div> 
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            <p>
+              kommt noch... 
+            </p>
+          </div>
+        </div> 
+      </div>
+      {{/if}}
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Übersicht
+            </a>
+          </h4>
+        </div> 
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body text-left">
+            {{{textOneXL}}}
+          </div>
+        </div> 
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Reisedaten & Kontakt
+            </a>
+          </h4>
+        </div> 
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <p>
+              {{toursStreet}}<br>
+              {{#if toursAdditional}}{{toursAdditional}}<br>{{/if}}
+              {{plz}} {{city}}
+              {{#if toursUrl}}<br><br><i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{toursUrl}}" target="_blank">{{toursUrl}}</a>{{/if}}
+            </p>
+            <p>
+              {{#with getCustomer}}
+                {{customerName}}<br>
+                {{#if telephone}}<i class="fa fa-phone"></i> <a href="tel:{{telephone}}">{{telephone}}</a><br>{{/if}}
+                {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
+              {{/with}}
+            </p>
+          </div>
+        </div> 
+      </div>
+      
+      {{#if socialMedia}}
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Social Media
+            </a>
+          </h4>
+        </div> 
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <p>
+              <span class="socialIcons">
+                {{#with getCustomer}}
+                  {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+                  {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+                  {{#if socialTwitter}}<a href="https://twitter.com/{{socialTwitter}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+                  {{#if socialYoutube}}<a href="https://www.youtube.com/user/{{socialYoutube}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+                {{/with}}
+              </span> 
+            </p>
+            <p>
+              Video kommt noch... 
+            </p>
+          </div>
+        </div> 
+      </div>
+      {{/if}}
+      
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFive">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Weitere Infos
+            </a>
+          </h4>
+        </div> 
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+          <div class="panel-body">
+            <!-- subgroup -->
+            <div class="panel-group" id="accordionSub" role="tablist" aria-multiselectable="true">
+              {{#if hasPackageXL}}
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{tabTwoXL}}">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionSub" href="#{{tabTwoXL}}" aria-expanded="false" aria-controls="{{tabTwoXL}}">
+                      {{tabTwoXL}}
+                    </a>
+                  </h4>
+                </div> 
+                <div id="{{tabTwoXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{tabTwoXL}}">
+                  <div class="panel-body text-left">
+                    {{{textTwoXL}}}  
+                  </div>
+                </div> 
+              </div>
+              
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{tabThreeXL}}">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionSub" href="#{{tabThreeXL}}" aria-expanded="false" aria-controls="{{tabThreeXL}}">
+                      {{tabThreeXL}}
+                    </a>
+                  </h4>
+                </div> 
+                <div id="{{tabThreeXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{tabThreeXL}}">
+                  <div class="panel-body text-left">
+                    {{{textThreeXL}}}  
+                  </div>
+                </div> 
+              </div>
+              
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{tabFourXL}}">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionSub" href="#{{tabFourXL}}" aria-expanded="false" aria-controls="{{tabFourXL}}">
+                      {{tabFourXL}}
+                    </a>
+                  </h4>
+                </div> 
+                <div id="{{tabFourXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{tabFourXL}}">
+                  <div class="panel-body text-left">
+                    {{{textFourXL}}}  
+                  </div>
+                </div> 
+              </div>
+              {{/if}}
+              {{#if hasAddTextOne}}
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{addTextTabOne}}">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionSub" href="#{{addTextTabOne}}" aria-expanded="false" aria-controls="{{addTextTabOne}}">
+                      {{addTextTabOne}}
+                    </a>
+                  </h4>
+                </div> 
+                <div id="{{addTextTabOne}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{addTextTabOne}}">
+                  <div class="panel-body text-left">
+                    {{{addTextOne}}}  
+                  </div>
+                </div> 
+              </div>
+              {{/if}}
+              {{#if hasAddTextTwo}}
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{addTextTabTwo}}">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionSub" href="#{{addTextTabTwo}}" aria-expanded="false" aria-controls="{{addTextTabTwo}}">
+                      {{addTextTabTwo}}
+                    </a>
+                  </h4>
+                </div> 
+                <div id="{{addTextTabTwo}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{addTextTabTwo}}">
+                  <div class="panel-body text-left">
+                    {{{addTextTwo}}}  
+                  </div>
+                </div> 
+              </div>
+              {{/if}}
+            </div>
+            <!-- subgroup END-->           
+          </div>
+        </div> 
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="row hidden-xs">
+  <div class="col-sm-4 hidden-md hidden-lg hidden-xs">
+    <h3>{{toursName}}</h3>
+    <p>
+      Bereich: <a href="">Reisen</a><br>
+      Land: <a href="">{{toursCountry}}</a><br>
+      Region: <a href="">{{toursRegion}}</a>
+    </p>
+  </div>
+  <div class="col-sm-4 hidden-md hidden-lg text-center">
+    <h3>Objektadresse</h3>
+    <p>
+      {{toursStreet}}<br>
+      {{#if toursAdditional}}{{toursAdditional}}<br>{{/if}}
+      {{plz}} {{city}}<br>
+    </p>
+    
+  </div>
+  <div class="col-sm-4 hidden-md hidden-lg text-right">
+    <h3>Kontakt Vermieter</h3>
+    <p>
+      {{#with getCustomer}}
+        {{customerName}}<br>
+        {{#if telephone}}<i class="fa fa-phone"></i> {{telephone}}<br>{{/if}}
+        {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
+      {{/with}}
+    </p>
+  </div>
+</div>
+<div class="spacer-20 hidden-md hidden-lg"></div>
+<!-- large -->
+<div class="row">
+  <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+    <h3>{{toursName}}</h3>
+    <p>
+      Bereich: <a href="">Reisen</a><br>
+      Land: <a href="">{{toursCountry}}</a><br>
+      Region: <a href="">{{toursRegion}}</a>
+    </p>
+    <h3>Termin</h3>
+    <p>
+      {{formatDate toursBegin}} bis {{formatDate toursEnd}}
+    </p>
+    <h3>Kontakt Veranstalter</h3>
+    <p>
+      {{#with getCustomer}}
+        {{customerName}}<br>
+        {{street}}<br>
+        {{#if additional}}{{additional}}<br>{{/if}}
+        {{plz}} {{city}}<br>
+        {{country}}<br>
+        {{#if telephone}}<i class="fa fa-phone"></i> {{telephone}}<br>{{/if}}
+        {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
+      {{/with}}
+    </p>
+    {{#if toursUrl}}
+      <h3>Website</h3>
+      <p>
+        <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{toursUrl}}" target="_blank">{{toursUrl}}</a>
+      </p>
+    {{/if}}
+    {{#if socialMedia}}
+      <h3>Social Media</h3>
+      <p>
+        <span class="socialIcons">
+          {{#with getCustomer}}
+            {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+            {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+            {{#if socialTwitter}}<a href="https://twitter.com/{{socialTwitter}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+            {{#if socialYoutube}}<a href="https://www.youtube.com/user/{{socialYoutube}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+          {{/with}}
+        </span> 
+      </p>
+    {{/if}}
+    {{#if hasGalleryM}}
+      <h3>Galerie</h3>
+      kommt noch...
+    {{/if}}
+    {{#if hasVideo}}
+      <h3>Video</h3>
+      <p>
+        kommt noch...
+      </p>
+    {{/if}}
+  </div>  
+  <div class="col-sm-12 col-md-9 col-lg-9 hidden-xs">
+    {{#if hasPackageXL}}
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#{{tabOneXL}}" aria-controls="home" role="tab" data-toggle="tab">{{tabOneXL}}</a></li>
+        <li role="presentation"><a href="#{{tabTwoXL}}" aria-controls="profile" role="tab" data-toggle="tab">{{tabTwoXL}}</a></li>
+        <li role="presentation"><a href="#{{tabThreeXL}}" aria-controls="messages" role="tab" data-toggle="tab">{{tabThreeXL}}</a></li>
+        <li role="presentation"><a href="#{{tabFourXL}}" aria-controls="settings" role="tab" data-toggle="tab">{{tabFourXL}}</a></li>
+        {{#if hasAddTextOne}}
+          <li role="presentation"><a href="#{{addTextTabOne}}" aria-controls="settings" role="tab" data-toggle="tab">{{addTextTabOne}}</a></li>
+        {{/if}}
+        {{#if hasAddTextTwo}}
+          <li role="presentation"><a href="#{{addTextTabTwo}}" aria-controls="settings" role="tab" data-toggle="tab">{{addTextTabTwo}}</a></li>
+        {{/if}}
+      </ul>
+  
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="{{tabOneXL}}">{{{textOneXL}}}</div>
+        <div role="tabpanel" class="tab-pane" id="{{tabTwoXL}}">{{{textTwoXL}}}</div>
+        <div role="tabpanel" class="tab-pane" id="{{tabThreeXL}}">{{{textThreeXL}}}</div>
+        <div role="tabpanel" class="tab-pane" id="{{tabFourXL}}">{{{textFourXL}}}</div>
+        {{#if hasAddTextOne}}
+          <li role="presentation"><a href="#{{addTextTabOne}}" aria-controls="settings" role="tab" data-toggle="tab">{{addTextOne}}</a></li>
+        {{/if}}
+        {{#if hasAddTextTwo}}
+          <li role="presentation"><a href="#{{addTextTabTwo}}" aria-controls="settings" role="tab" data-toggle="tab">{{addTextTwo}}</a></li>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<div class="spacer-20 hidden-md hidden-lg"></div>
+<div class="row hidden-xs">
+  <div class="col-sm-3 hidden-md hidden-lg">
+    {{#if toursUrl}}
+      <h3>Website</h3>
+      <p>
+        <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{toursUrl}}" target="_blank">{{toursUrl}}</a>
+      </p>
+    {{/if}}
+  </div>
+  <div class="col-sm-3 hidden-md hidden-lg text-center">
+    {{#if socialMedia}}
+      <h3>Social Media</h3>
+      <p>
+        <span class="socialIcons">
+          {{#with getCustomer}}
+            {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
+            {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
+            {{#if socialTwitter}}<a href="https://twitter.com/{{socialTwitter}}" target="_blank"><i class="fa fa-twitter-square"></i></a>{{/if}}                                                              
+            {{#if socialYoutube}}<a href="https://www.youtube.com/user/{{socialYoutube}}" target="_blank"><i class="fa fa-youtube-square"></i></a>{{/if}}
+          {{/with}}
+        </span> 
+      </p>
+    {{/if}}    
+  </div>
+  <div class="col-sm-3 hidden-md hidden-lg text-center">
+    {{#if hasGalleryM}}
+      <h3>Galerie</h3>
+      kommt noch...
+    {{/if}}
+  </div>
+  <div class="col-sm-3 hidden-md hidden-lg text-right">
+    {{#if hasVideo}}
+      <h3>Video</h3>
+      <p>
+        kommt noch...
+      </p>
+    {{/if}}
+  </div>
+</div>
+</template>

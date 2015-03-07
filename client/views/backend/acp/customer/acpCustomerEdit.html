@@ -1,0 +1,391 @@
+<template name="acpCustomerEdit">
+  <div class="container acp">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>// - {{avIdOld}}</h2>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <button class="btn btn-danger" type="button" value="changeEditMode" id="changeEditMode">Editiermodus ist aus</button>
+      </div>
+      <div class="col-sm-8"></div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-8 acpBox {{#if avIsApproved}}green{{else}}red{{/if}}">
+        <div class="row">
+          {{#if editMode}}
+            {{> acpCustomerEditEdit}}
+          {{else}}
+            {{> acpCustomerEditInfo}}
+          {{/if}}
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <h3 class="text-center">Einstellungen</h3>
+        <form class="form form-horizontal" id="editCustomerData" role="form">
+          <fieldset>
+            <!-- avIsApproved -->
+            <div class="form-group">                   
+              <label for="avIsApproved" class="col-sm-6 control-label">Ist freigegeben</label>
+              <div class="col-sm-6">
+                {{#if avIsApproved}}
+                  <input type="checkbox" class="checkbox acp" id="avIsApproved" name="avIsApproved" checked="checked">
+                {{else}}
+                  <input type="checkbox" class="checkbox acp" id="avIsApproved" name="avIsApproved">
+                {{/if}}
+              </div>                                                
+            </div>
+            <!-- avIsFeatured -->
+            <div class="form-group">                   
+              <label for="avIsFeatured" class="col-sm-6 control-label">Ist Feature</label>
+              <div class="col-sm-6">
+                {{#if avIsFeatured}}
+                  <input type="checkbox" class="checkbox acp" id="avIsFeatured" name="avIsFeatured" checked="checked">
+                {{else}}
+                  <input type="checkbox" class="checkbox acp" id="avIsFeatured" name="avIsFeatured">
+                {{/if}}
+              </div>                             
+            </div>
+          </fieldset>
+        </form>
+        <div class="spacer-20"></div>
+        <h3 class="text-center">Portalverwaltung</h3>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="acpCustomerEditInfo">
+  <div class="col-sm-6">
+    <h3>{{avCustomerName}} {{#if avIsFeatured}}<span class="pull-right"><i class="fa fa-star featured"></i></span>{{/if}}</h3>
+    <p>
+      {{#if avDepartment}}{{avDepartment}}<br>{{/if}}
+      {{#if avPostAddition}}{{avPostAddition}}<br>{{/if}}
+      {{#if avStreet}}{{avStreet}}<br>{{/if}}
+      {{#if avPlz}}{{avPlz}}<br>{{/if}}
+      {{#if avCity}}{{avCity}}<br>{{/if}}
+      {{#if avCountry}}{{avCountry}}{{/if}}          
+    </p>
+    <p>
+      {{#if avTelephoneFormal}}{{avTelephoneFormal}}<br>{{/if}}
+      {{#if avTelefax}}{{avTelefax}}<br>{{/if}}
+      {{#if avMailFormal}}{{avMailFormal}}<br>{{/if}}
+      {{#if avUrl}}<br><a href="http://{{avUrl}}" target="_blank">{{avUrl}}</a>{{/if}}
+    </p>
+    <p>
+      {{#if avFacebookData}}<a href="https://www.facebook.com/{{avFacebookData}}" target="_blank">{{avFacebookData}}</a><br>{{/if}}
+      {{#if avTwitterData}}<a href="https://twitter.com/{{avTwitterData}}" target="_blank">{{avTwitterData}}</a><br>{{/if}}
+      {{#if avGplusData}}<a href="https://plus.google.com/+{{avGplusData}}/posts" target="_blank">{{avGplusData}}</a><br>{{/if}}
+      {{#if avYoutubeData}}<a href="https://www.youtube.com/user/{{avYoutubeData}}" target="_blank">{{avYoutubeData}}</a>{{/if}}          
+    </p>
+    <p>
+      {{#if avShortinfo}}{{avShortinfo}}{{/if}}
+    </p>
+    <p>
+      Adresskapitel: {{#each avAddressChapters}}{{#if isPrimary}}<strong>{{short}}</strong>, {{else}}{{short}}, {{/if}}{{/each}}
+    </p>
+    <p>
+      Verbände: {{#each avAssociations}}{{short}}, {{/each}}
+    </p>
+    <p>
+      Sperren: {{#each avBlockIndicators}}{{short}}, {{/each}}
+    </p>
+  </div>
+  <div class="col-sm-6">
+  </div>
+</template>
+                                                 
+<template name="acpCustomerEditEdit">
+  <div class="col-sm-12">    
+    <form class="form form-horizontal" id="editCustomerData" role="form">    
+      
+      <div class="spacer-20"></div>
+      
+      <div class="row">    
+        <div class="col-sm-12">
+          <fieldset>
+            <div class="control-group">            
+              <div class="controls">              
+                <input type="submit" class="btn btn-default pull-right" value="Änderung speichern"/>              
+              </div>          
+            </div>
+          </fieldset>          
+        </div>
+      </div>
+      
+      <div class="spacer-20"></div>
+      
+      <div class="row">
+        <div class="col-sm-6">
+          <fieldset>
+            <legend>Öffentliche Daten</legend>
+            <!-- avCustomerName -->                
+            <div class="form-group is-public">                   
+              <label for="avCustomerName" class="col-sm-4 control-label">avCustomerName</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avCustomerName" name="avCustomerName" value="{{avCustomerName}}">                   
+              </div>               
+            </div>
+            <!-- avDepartment -->                
+            <div class="form-group is-public">                   
+              <label for="avDepartment" class="col-sm-4 control-label">avDepartment</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avDepartment" name="avDepartment" value="{{avDepartment}}">                   
+              </div>               
+            </div>           
+            <!-- avPostAddition -->                
+            <div class="form-group is-public">                   
+              <label for="avPostAddition" class="col-sm-4 control-label">avPostAddition</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avPostAddition" name="avPostAddition" value="{{avPostAddition}}">                   
+              </div>               
+            </div>
+            <!-- avStreet -->                
+            <div class="form-group is-public">                   
+              <label for="avStreet" class="col-sm-4 control-label">avStreet</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avStreet" name="avStreet" value="{{avStreet}}">                   
+              </div>               
+            </div>              
+            <!-- avPostBox -->                
+            <div class="form-group">                   
+              <label for="avPostBox" class="col-sm-4 control-label">avPostBox</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avPostBox" name="avPostBox" value="{{avPostBox}}">                   
+              </div>               
+            </div>
+            <!-- avPlz -->                
+            <div class="form-group is-public">                   
+              <label for="avPlz" class="col-sm-4 control-label">avPlz</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avPlz" name="avPlz" value="{{avPlz}}">                   
+              </div>               
+            </div>                           
+            <!-- avCity -->                
+            <div class="form-group is-public">                   
+              <label for="avCity" class="col-sm-4 control-label">avCity</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avCity" name="avCity" value="{{avCity}}">                   
+              </div>               
+            </div>
+            <!-- avCountry -->                
+            <div class="form-group is-public">                   
+              <label for="avCountry" class="col-sm-4 control-label">avCountry</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avCountry" name="avCountry" value="{{avCountry}}">                   
+              </div>               
+            </div>
+            <!-- avTelephoneFormal -->                
+            <div class="form-group is-public">                   
+              <label for="avTelephoneFormal" class="col-sm-4 control-label">avTelephoneFormal</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avTelephoneFormal" name="avTelephoneFormal" value="{{avTelephoneFormal}}">                   
+              </div>               
+            </div>
+            <!-- avTelefax -->                
+            <div class="form-group is-public">                   
+              <label for="avTelefax" class="col-sm-4 control-label">avTelefax</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avTelefax" name="avTelefax" value="{{avTelefax}}">                   
+              </div>                                                    
+            </div>
+            <!-- avMailFormal -->                
+            <div class="form-group is-public">                   
+              <label for="avMailFormal" class="col-sm-4 control-label">avMailFormal</label>                   
+              <div class="col-sm-8">                       
+                <input type="email" class="form-control" id="avMailFormal" name="avMailFormal" value="{{avMailFormal}}">                   
+              </div>               
+            </div>                     
+            <!-- avUrl -->                
+            <div class="form-group is-public">                   
+              <label for="avUrl" class="col-sm-4 control-label">avUrl</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avUrl" name="avUrl" value="{{avUrl}}">                   
+              </div>                                                    
+            </div>
+            <!-- avShortinfo -->                
+            <div class="form-group is-public">                   
+              <label for="avShortinfo" class="col-sm-4 control-label">avShortinfo</label>                   
+              <div class="col-sm-8">                       
+                <textarea class="form-control" id="avShortinfo" name="avShortinfo">{{avShortinfo}}</textarea>                   
+              </div>                                                    
+            </div>
+            <!-- avFacebookData -->                
+            <div class="form-group is-public">                   
+              <label for="avFacebookData" class="col-sm-4 control-label">avFacebookData</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avFacebookData" name="avFacebookData" value="{{avFacebookData}}">                   
+              </div>                                                    
+            </div>
+            <!-- avTwitterData -->                
+            <div class="form-group is-public">                   
+              <label for="avTwitterData" class="col-sm-4 control-label">avTwitterData</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avTwitterData" name="avTwitterData" value="{{avTwitterData}}">                   
+              </div>                                                    
+            </div>
+            <!-- avGplusData -->                
+            <div class="form-group is-public">                   
+              <label for="avGplusData" class="col-sm-4 control-label">avGplusData</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avGplusData" name="avGplusData" value="{{avGplusData}}">                   
+              </div>                                                    
+            </div>
+            <!-- avYoutubeData -->                
+            <div class="form-group is-public">                   
+              <label for="avYoutubeData" class="col-sm-4 control-label">avYoutubeData</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avYoutubeData" name="avYoutubeData" value="{{avYoutubeData}}">                   
+              </div>                                                    
+            </div>
+          </fieldset>
+        </div>
+    <!-- internal data -->
+        <div class="col-sm-6">
+          <fieldset>
+            <legend>Interne Daten</legend>      
+            <!-- avIdOld -->                
+            <div class="form-group">                   
+              <label for="avIdOld" class="col-sm-4 control-label">avIdOld</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avIdOld" name="avIdOld" value="{{avIdOld}}" disabled>                   
+              </div>               
+            </div>
+            <!-- avKDNr -->                
+            <div class="form-group">                   
+              <label for="avKDNr" class="col-sm-4 control-label">avKDNr</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avKDNr" name="avKDNr" value="{{avKDNr}}">                   
+              </div>               
+            </div>
+            <!-- avSiteUrl -->                                   
+            <div class="form-group">                   
+              <label for="avContactPerson" class="col-sm-4 control-label">avSiteUrl</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avSiteUrl" name="avSiteUrl" value="{{avSiteUrl}}">                   
+              </div>               
+            </div>                         
+            <!-- avName1Old -->                
+            <div class="form-group">                   
+              <label for="avName1Old" class="col-sm-4 control-label">avName1Old</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avName1Old" name="avName1Old" value="{{avName1Old}}">                   
+              </div>               
+            </div>
+            <!-- avName2Old -->                
+            <div class="form-group">                   
+              <label for="avName2Old" class="col-sm-4 control-label">avName2Old</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avName2Old" name="avName2Old" value="{{avName2Old}}">                   
+              </div>                     
+            </div>
+            <!-- avLegalForm -->                
+            <div class="form-group">                   
+              <label for="avLegalForm" class="col-sm-4 control-label">avLegalForm</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avLegalForm" name="avLegalForm" value="{{avLegalForm}}">                   
+              </div>
+            </div>          
+            <!-- avRegion -->                
+            <div class="form-group">                   
+              <label for="avRegion" class="col-sm-4 control-label">avRegion</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avRegion" name="avRegion" value="{{avRegion}}">                   
+              </div>               
+            </div>
+            <!-- avTelephoneInternal -->                                   
+            <div class="form-group">                   
+              <label for="avTelephoneInternal" class="col-sm-4 control-label">avTelephoneInternal</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avTelephoneInternal" name="avTelephoneInternal" value="{{avTelephoneInternal}}">                   
+              </div>               
+            </div>                          
+            <!-- avMobil -->                                   
+            <div class="form-group">                   
+              <label for="avMobil" class="col-sm-4 control-label">avMobil</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avMobil" name="avMobil" value="{{avMobil}}">                   
+              </div>               
+            </div>
+            <!-- avContactPerson -->                                   
+            <div class="form-group">                   
+              <label for="avContactPerson" class="col-sm-4 control-label">avContactPerson</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avContactPerson" name="avContactPerson" value="{{avContactPerson}}">                   
+              </div>               
+            </div>
+            <!-- avMailInternal -->                                   
+            <div class="form-group">                   
+              <label for="avMailInternal" class="col-sm-4 control-label">avMailInternal</label>                   
+              <div class="col-sm-8">                       
+                <input type="email" class="form-control" id="avMailInternal" name="avMailInternal" value="{{avMailInternal}}">                   
+              </div>               
+            </div>
+            <!-- avMailNewsletter -->                                   
+            <div class="form-group">                   
+              <label for="avMailNewsletter" class="col-sm-4 control-label">avMailNewsletter</label>                   
+              <div class="col-sm-8">                       
+                <input type="email" class="form-control" id="avMailNewsletter" name="avMailNewsletter" value="{{avMailNewsletter}}">                   
+              </div>               
+            </div>       
+            <!-- avMailContact -->                                   
+            <div class="form-group">                   
+              <label for="avMailContact" class="col-sm-4 control-label">avMailContact</label>                   
+              <div class="col-sm-8">                       
+                <input type="email" class="form-control" id="avMailContact" name="avMailContact" value="{{avMailContact}}">                   
+              </div>               
+            </div>
+            <!-- avCountEmployees -->                                   
+            <div class="form-group">                   
+              <label for="avCountEmployees" class="col-sm-4 control-label">avCountEmployees</label>                   
+              <div class="col-sm-8">                       
+                <input type="text" class="form-control" id="avCountEmployees" name="avCountEmployees" value="{{avCountEmployees}}">                   
+              </div>               
+            </div>
+            <!-- avShortinfo2 -->                
+            <div class="form-group">                   
+              <label for="avShortinfo2" class="col-sm-4 control-label">avShortinfo2</label>                   
+              <div class="col-sm-8">                       
+                <textarea class="form-control" id="avShortinfo2" name="avShortinfo2">{{avShortinfo2}}</textarea>                   
+              </div>                                                    
+            </div>
+            <!-- avSelfinfoOld -->                
+            <div class="form-group">                   
+              <label for="avSelfinfoOld" class="col-sm-4 control-label">avSelfinfoOld</label>                   
+              <div class="col-sm-8">                       
+                <textarea class="form-control" rows="5" id="avSelfinfoOld" name="avSelfinfoOld">{{avSelfinfoOld}}</textarea>                   
+              </div>                                                    
+            </div>
+            <!-- avNotes -->                
+            <div class="form-group">                   
+              <label for="avNotes" class="col-sm-4 control-label">avNotes</label>                   
+              <div class="col-sm-8">                       
+                <textarea class="form-control" rows="5" id="avNotes" name="avNotes">{{avNotes}}</textarea>                   
+              </div>                                                    
+            </div>    
+          </fieldset>
+        </div>
+      </div>
+      
+      <div class="spacer-20"></div>
+      
+      <div class="row">    
+        <div class="col-sm-12">
+          <fieldset>
+            <div class="control-group">            
+              <div class="controls">              
+                <input type="submit" class="btn btn-default pull-right" value="Änderung speichern"/>              
+              </div>          
+            </div>
+          </fieldset>          
+        </div>
+      </div>
+      
+      <div class="spacer-20"></div>
+               
+    </form>
+  </div>
+</template>
