@@ -1,0 +1,26 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+underscore
+coffeescript
+sacha:spin
+less
+nemo64:bootstrap
+aldeed:simple-schema
+dburles:collection-helpers
+service-configuration
+natestrauser:select2
+zimme:select2-bootstrap3-css
+matteodem:easy-search
+anti:fake
+meteorhacks:aggregate
+reactive-var
+fortawesome:fontawesome
+froala:editor
+iron:router
+mrt:jquery-csv
+chrismbeckett:toastr
