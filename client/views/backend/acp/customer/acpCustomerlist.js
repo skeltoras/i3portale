@@ -2,6 +2,7 @@
 
 //-- template created functions
 Template.acpCustomerlist.created = function(){
+  return Meteor.subscribe('getAllAvCustomers');
 };
 
 //-- template destroyed functions
@@ -22,7 +23,6 @@ Template.acpCustomerlist.events({
 
 //-- template helpers
 Template.avCustomersAllList.helpers({
-  // list of all books sorted by submit-date @since 0.1.0
   avCustomers: function() {
     //return AvCustomers.find({}, {sort: { avIdOld: 1}, limit: 15});
   }

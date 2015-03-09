@@ -17,7 +17,7 @@ Template.avFooter.helpers({
 });
 
 //-- template events
-Template.rpFooter.events({
+Template.avFooter.events({
   'click .scroll-top': function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");  
   } 

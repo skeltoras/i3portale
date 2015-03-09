@@ -14,37 +14,50 @@ Template.acpUploads.rendered = function(){
 
 //-- template helpers                            
 Template.acpUploads.helpers({
-  getAvCustomerCount: function() {
+  uplAvCustomersCount: function() {
+    Meteor.subscribe('uplAvCustomersCount');
     return AvCustomers.find().count();
   },
-  getCountriesCount: function(){
-    return Countries.find().count();
+  uplAvCountriesCount: function() {
+    Meteor.subscribe('uplAvCountriesCount');
+    return AvCountries.find().count();
   },
-  getAdressChaptersCount: function() {
-    return AddressChapters.find().count();
+  uplAvChaptersCount: function() {
+    Meteor.subscribe('uplAvChaptersCount');
+    return AvChapters.find().count();
   },
-  getAvAssociationsCount: function() {
-    return AvAssociations.find().count();  
+  uplAvAssociationsCount: function() {
+    Meteor.subscribe('uplAvAssociationsCount');
+    return AvAssociations.find().count();
   },
-  getAvBlockIndicatorsCount: function() {
-    return avBlockIndicators.find().count();  
+  uplAvBlockIndicatorsCount: function() {
+    Meteor.subscribe('uplAvBlockIndicatorsCount');
+    return AvBlockIndicators.find().count();
+  },
+  uplAvCampaignsCount: function() {
+    Meteor.subscribe('uplAvCampaignsCount');
+    return AvCampaigns.find().count();
+  },
+  uplAvEducationsCount: function() {
+    Meteor.subscribe('uplAvEducationsCount');
+    return AvEducations.find().count();
   }
 });
 
 //-- template events
 Template.acpUploads.events({
-  'submit #uploadAvCustomers': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAvCustomers]').files;
+  'submit #uplAvCustomers': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvCustomers]').files;
     var file = input[0];
+    console.log(file);
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {  
-        Meteor.call('uploadAVData', data[i], function(error, result){
+        Meteor.call('uplAvCustomers', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -53,10 +66,9 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadCountries': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadCountries]').files;
+  'submit #uplAvCountries': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvCountries]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -64,9 +76,7 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadCountriesData', data[i], function(error, result){
+        Meteor.call('uplAvCountries', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -75,20 +85,36 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAdressChapters': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAdressChapters]').files;
+  'submit #uplAvChapters': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvChapters]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadChaptersData', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvChapters', data[i], function(error, result){
+          if(error)
+            console.log(error);
+          if(result)
+            console.log(result);
+        });
+      }
+    }
+  }, 
+  'submit #uplAvChaptersSections': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvChaptersSections]').files;
+    var file = input[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+      var csv = e.target.result;
+      var data = $.csv.toObjects(csv);
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvChaptersSections', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -97,20 +123,17 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAdressSections': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAdressSections]').files;
+  'submit #uplAvAssociations': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvAssociations]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadChaptersSections', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvAssociations', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -119,20 +142,17 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAdressChaptersIds': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAdressChaptersIds]').files;
+  'submit #uplAvBlockIndicators': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvBlockIndicators]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadChaptersIds', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvBlockIndicators', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -141,20 +161,17 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAvAssociations': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAvAssociations]').files;
+  'submit #uplAvCustomersLog': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvCustomersLog]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadAvAssociations', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvCustomersLog', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -163,20 +180,17 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAvAssociationsIds': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAvAssociationsIds]').files;
+  'submit #uplAvCampaigns': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvCampaigns]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadAvAssociationsIds', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvCampaigns', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -185,20 +199,17 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAvBlockIndicators': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAvBlockIndicators]').files;
+  'submit #uplAvEducations': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvEducations]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadAvBlockIndicators', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvEducations', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -207,20 +218,17 @@ Template.acpUploads.events({
       }
     }
   },
-  'submit #uploadAvBlockIndicatorsIds': function(e, tpl){
-    e.preventDefault();
-    
-    var input = tpl.find('input[name=fileUploadAvBlockIndicatorsIds]').files;
+  'submit #uplAvChaptersAssign': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvChaptersAssign]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {  
-      //for (var i = 0; i < 10; ++i) {  
-        //console.log(data[i]);
-        Meteor.call('uploadAvBlockIndicatorsIds', data[i], function(error, result){
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvChaptersAssign', data[i], function(error, result){
           if(error)
             console.log(error);
           if(result)
@@ -228,5 +236,81 @@ Template.acpUploads.events({
         });
       }
     }
-  } 
+  },
+  'submit #uplAvAssociationsAssign': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvAssociationsAssign]').files;
+    var file = input[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+      var csv = e.target.result;
+      var data = $.csv.toObjects(csv);
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvAssociationsAssign', data[i], function(error, result){
+          if(error)
+            console.log(error);
+          if(result)
+            console.log(result);
+        });
+      }
+    }
+  },
+  'submit #uplAvBlockIndicatorsAssign': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvBlockIndicatorsAssign]').files;
+    var file = input[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+      var csv = e.target.result;
+      var data = $.csv.toObjects(csv);
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvBlockIndicatorsAssign', data[i], function(error, result){
+          if(error)
+            console.log(error);
+          if(result)
+            console.log(result);
+        });
+      }
+    }
+  },
+  'submit #uplAvCampaignsAssign': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvCampaignsAssign]').files;
+    var file = input[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+      var csv = e.target.result;
+      var data = $.csv.toObjects(csv);
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvCampaignsAssign', data[i], function(error, result){
+          if(error)
+            console.log(error);
+          if(result)
+            console.log(result);
+        });
+      }
+    }
+  },
+  'submit #uplAvEducationsAssign': function(e, tpl){
+    e.preventDefault();    
+    var input = tpl.find('input[name=fileUplAvEducationsAssign]').files;
+    var file = input[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e){
+      var csv = e.target.result;
+      var data = $.csv.toObjects(csv);
+      for (var i = 0; i < data.length; ++i) {
+        Meteor.call('uplAvEducationsAssign', data[i], function(error, result){
+          if(error)
+            console.log(error);
+          if(result)
+            console.log(result);
+        });
+      }
+    }
+  }
 });

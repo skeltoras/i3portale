@@ -20,7 +20,14 @@ Router.route('/acp/upload', function (){
 });
 
 Router.route('/acp/kdn', function (){ 
-  this.render('acpCustomerlist');
+  this.render('acpCustomerlist', {
+    waitOn: function() {
+      return Meteor.subscribe('getAllAvCustomers');
+    },
+    data: function() {
+      //return AvCustomers.find({}, {sort: { avIdOld: 1}});
+    }
+  });
 }, {
   name: 'acp.customers',
   controller: 'AcpController'
@@ -35,7 +42,14 @@ Router.route('/acp/kd/new', function (){
 
 Router.route('/acp/kd/edit/:_id', function (){ 
   this.render('acpCustomerEdit', {
+    waitOn: function() {
+      return [
+        Meteor.subscribe('getSingleAvCustomers', this.params._id),
+        Meteor.subscribe('getAllAvBlockIndicators')
+      ];
+    },
     data: function() {
+      Meteor.subscribe('getSingleAvCustomers', this.params._id);
       return AvCustomers.findOne({_id: this.params._id});
     }
   });

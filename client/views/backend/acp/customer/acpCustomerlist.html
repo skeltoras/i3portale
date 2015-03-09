@@ -3,7 +3,7 @@
     <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-12">
-        Suche: {{> esInput index="avcustomers" placeholder="Name, AV-Nummer" }}
+        Suche: {{> esInput index="avCustomers" placeholder="Name, AV-Nummer" }}
       </div>
     </div>
     <div class="spacer-20"></div>
@@ -17,21 +17,21 @@
             </tr>
           </thead>
           <tbody>
-            {{#ifEsInputIsEmpty index="avcustomers"}}
+            {{#ifEsInputIsEmpty index="avCustomers"}}
               {{> avCustomersAllList}}
             {{/ifEsInputIsEmpty}}
         
-            {{#esEach index="avcustomers"}}
+            {{#esEach index="avCustomers"}}
               {{> avCustomersSearchList}}
             {{/esEach}}
             
-            {{> esLoadMoreButton index="avcustomers"}}
+            {{> esLoadMoreButton index="avCustomers"}}
             
-            {{#ifEsHasNoResults index="avcustomers"}}
+            {{#ifEsHasNoResults index="avCustomers"}}
               <div class="no-results">No results found!</div>
             {{/ifEsHasNoResults}}
             
-            {{#ifEsIsSearching index="avcustomers"}}
+            {{#ifEsIsSearching index="avCustomers"}}
               <div>Loading...</div>
             {{/ifEsIsSearching}}
           </tbody>
@@ -53,10 +53,8 @@
 <template name="avCustomersAllList">
   {{#each avCustomers}}
     <tr>
-      <td>
-        {{avIdOld}}
-      </td>
-      <td>{{avName1Old}} {{avName2Old}}</td>
+      <td><a href="/acp/kd/edit/{{_id}}">{{avIdOld}}</a></td>
+      <td><a href="/acp/kd/edit/{{_id}}">{{avName1Old}} {{avName2Old}} | {{avCustomerName}}</a></td>
     </tr>
   {{/each}}
 </template>
