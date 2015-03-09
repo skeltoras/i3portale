@@ -31,7 +31,7 @@ Template.checkBlockIndicators.helpers({
           getBlocksShort = getAvCustomerData[i].short;
           
           if(avBlockIndicatorsShort == getBlocksShort){
-            listItem += ['<div class="form-group"><label for="' + avBlockIndicatorsShort + '" class="col-sm-6 control-label">' + avBlockIndicatorsShort + '</label><div class="col-sm-6"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsShort + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsName + '" checked="checked"></div></div>'];
+            listItem += ['<div class="col-sm-6"><label for="' + avBlockIndicatorsShort + '" class="col-sm-6 control-label">' + avBlockIndicatorsShort + '</label><div class="col-sm-6"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsShort + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsName + '" checked="checked"></div></div>'];
             testFor = true;
             break;
           }
@@ -39,7 +39,7 @@ Template.checkBlockIndicators.helpers({
       }
       
       if(!testFor) {
-        listItem += ['<div class="form-group"><label for="' + avBlockIndicatorsShort + '" class="col-sm-6 control-label">' + avBlockIndicatorsShort + '</label><div class="col-sm-6"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsShort + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsName + '"></div></div>'];              
+        listItem += ['<div class="col-sm-6"><label for="' + avBlockIndicatorsShort + '" class="col-sm-6 control-label">' + avBlockIndicatorsShort + '</label><div class="col-sm-6"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsShort + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsName + '"></div></div>'];              
       }
     });
     return listItem;

@@ -14,6 +14,10 @@ Template.kdSingle.rendered = function(){
 
 //-- template helpers                            
 Template.kdSingle.helpers({
+  getCustomer: function() {
+    Meteor.subscribe('getSingleCustomerPage', this.avSiteUrl);
+    return AvCustomers.findOne();
+  },
   getFullData: function() {
     return true;
   }

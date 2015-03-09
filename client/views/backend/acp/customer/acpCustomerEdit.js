@@ -15,6 +15,10 @@ Template.acpCustomerEdit.rendered = function(){
 Template.acpCustomerEdit.helpers({
   editMode: function() {
     return Session.get('editMode');
+  },
+  getRpCustomersData: function(){
+    Meteor.subscribe('getSingleRpCustomers', this._id);
+    return RpCustomers.findOne();
   }
 });
 
@@ -64,6 +68,11 @@ Template.acpCustomerEdit.events({
         console.log(result);
     });
   },
+  'click #addRentings': function(e) {
+    e.preventDefault();
+    var customerId = this._id;
+    Router.go('acp.rentings.add', {_id: customerId});
+  },  
   'submit #editCustomerData': function(e) {
     e.preventDefault();
     var customerId = this._id;

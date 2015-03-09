@@ -19,6 +19,20 @@ Router.route('/acp/upload', function (){
   controller: 'AcpController'
 });
 
+Router.route('/acp/cl', function (){ 
+  this.render('acpCountryList');
+}, {
+  name: 'acp.countrylist',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/acl', function (){ 
+  this.render('acpAddressChaptersList');
+}, {
+  name: 'acp.adresschapterslist',
+  controller: 'AcpController'
+});
+
 Router.route('/acp/kdn', function (){ 
   this.render('acpCustomerlist', {
     waitOn: function() {
@@ -58,16 +72,21 @@ Router.route('/acp/kd/edit/:_id', function (){
   controller: 'AcpController'
 });
 
-Router.route('/acp/cl', function (){ 
-  this.render('acpCountryList');
+Router.route('/acp/kd/rp/:_id/new', function (){ 
+  this.render('acpAddRentings', {
+    waitOn: function() {
+      return [
+        //Meteor.subscribe('getSingleAvCustomers', this.params._id),
+        //Meteor.subscribe('getAllAvBlockIndicators')
+      ];
+    },
+    data: function() {
+      //Meteor.subscribe('getSingleAvCustomers', this.params._id);
+      //return AvCustomers.findOne({_id: this.params._id});
+      return {customerId: this.params._id};
+    }
+  });
 }, {
-  name: 'acp.countrylist',
-  controller: 'AcpController'
-});
-
-Router.route('/acp/acl', function (){ 
-  this.render('acpAddressChaptersList');
-}, {
-  name: 'acp.adresschapterslist',
+  name: 'acp.rentings.add',
   controller: 'AcpController'
 });

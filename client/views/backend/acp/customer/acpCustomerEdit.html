@@ -1,7 +1,7 @@
 <template name="acpCustomerEdit">
   <div class="container acp">
     <div class="row">
-      <div class="col-sm-12 text-center">
+      <div class="col-sm-12">
         <h2>{{avCustomerName}} - {{avIdOld}}</h2>
       </div>
     </div>
@@ -10,75 +10,68 @@
       <div class="col-sm-4">
         <button class="btn btn-danger" type="button" value="changeEditMode" id="changeEditMode">Editiermodus ist aus</button>
       </div>
-      <div class="col-sm-8"></div>
+    </div>
+    <div class="spacer-20"></div>
+    
+    <div class="row">
+      {{#if editMode}}
+        {{> acpCustomerEditEdit}}           
+      {{else}}    
+        {{> acpCustomerEditInfo}}    
+      {{/if}}
+      
+      <div class="col-sm-4">
+        <h3>Einstellungen</h3>
+        <form class="form form-horizontal" id="editCustomerData" role="form">
+          <fieldset>
+            <!-- avIsApproved -->
+            <div class="form-group">                   
+              <label for="avIsApproved" class="col-sm-4 control-label">Ist freigegeben</label>
+              <div class="col-sm-8">
+                {{#if avIsApproved}}
+                  <input type="checkbox" class="checkbox acp" id="avIsApproved" name="avIsApproved" checked="checked">
+                {{else}}
+                  <input type="checkbox" class="checkbox acp" id="avIsApproved" name="avIsApproved">
+                {{/if}}
+              </div>                                                
+            </div>
+            <!-- avIsFeatured -->
+            <div class="form-group">                   
+              <label for="avIsFeatured" class="col-sm-4 control-label">Ist Feature</label>
+              <div class="col-sm-8">
+                {{#if avIsFeatured}}
+                  <input type="checkbox" class="checkbox acp" id="avIsFeatured" name="avIsFeatured" checked="checked">
+                {{else}}
+                  <input type="checkbox" class="checkbox acp" id="avIsFeatured" name="avIsFeatured">
+                {{/if}}
+              </div>                             
+            </div>
+          </fieldset>
+        </form>
+        <div class="spacer-20"></div>
+        <h3>Portalverwaltung</h3>
+        <h4>Vermietungen</h4>
+        <button class="btn btn-sm btn-default" type="button" value="addRentings" id="addRentings"><i class="fa fa-plus"></i> Vermietung</button>        
+        <h4>Reisen</h4>
+        <button class="btn btn-sm btn-default" type="button" value="addTours" id="addTours"><i class="fa fa-plus"></i> Reise</button>
+      </div>
     </div>
     <div class="spacer-20"></div>
     <div class="row">
-      <div class="col-sm-8 acpBox {{#if avIsApproved}}green{{else}}red{{/if}}">
-        <div class="row">
-          {{#if editMode}}
-            {{> acpCustomerEditEdit}}
-          {{else}}
-            {{> acpCustomerEditInfo}}
-          {{/if}}
-        </div>
-      </div>
       <div class="col-sm-4">
-        <div class="row">
-          <div class="col-sm-12">
-            <h3 class="text-center">Einstellungen</h3>
-            <form class="form form-horizontal" id="editCustomerData" role="form">
-              <fieldset>
-                <!-- avIsApproved -->
-                <div class="form-group">                   
-                  <label for="avIsApproved" class="col-sm-6 control-label">Ist freigegeben</label>
-                  <div class="col-sm-6">
-                    {{#if avIsApproved}}
-                      <input type="checkbox" class="checkbox acp" id="avIsApproved" name="avIsApproved" checked="checked">
-                    {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avIsApproved" name="avIsApproved">
-                    {{/if}}
-                  </div>                                                
-                </div>
-                <!-- avIsFeatured -->
-                <div class="form-group">                   
-                  <label for="avIsFeatured" class="col-sm-6 control-label">Ist Feature</label>
-                  <div class="col-sm-6">
-                    {{#if avIsFeatured}}
-                      <input type="checkbox" class="checkbox acp" id="avIsFeatured" name="avIsFeatured" checked="checked">
-                    {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avIsFeatured" name="avIsFeatured">
-                    {{/if}}
-                  </div>                             
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <div class="spacer-20"></div>
-        <div class="row">
-          <div class="col-sm-12">
-            <h3 class="text-center">Sperren</h3>
-            <form class="form form-horizontal" id="editCustomerData" role="form">
-              <fieldset>                                                  
-                {{> checkBlockIndicators}}
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <div class="spacer-20"></div>
-        <div class="row">
-          <div class="col-sm-12">
-            <h3 class="text-center">Portalverwaltung</h3>
-          </div>
-        </div>
+        <h3 class="text-center">Sperren</h3>
+        <form class="form form-horizontal" id="editCustomerData" role="form">
+          <fieldset>                                                  
+            {{> checkBlockIndicators}}
+          </fieldset>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
-<template name="acpCustomerEditInfo">
-  <div class="col-sm-6">    
+<template name="acpCustomerEditInfo">   
+  <div class="col-sm-4 acpBox {{#if avIsApproved}}green{{else}}red{{/if}}">    
     <h3>{{avCustomerName}} {{#if avIsFeatured}}<span class="pull-right"><i class="fa fa-star featured"></i></span>{{/if}}</h3>
     <p>
       {{#if avDepartment}}{{avDepartment}}<br>{{/if}}
@@ -112,22 +105,11 @@
     <p>
       Sperren: {{#each avBlockIndicators}}{{short}}, {{/each}}
     </p>
-    <p>
-      Aktionen: {{#each avCampaigns}}{{name}}, {{/each}}
-    </p>
-    <p>
-      Ausbildung: {{#each avEducations}}{{category}}: {{name}}, {{/each}}
-    </p>
-    <p>
-      Änderungen: {{#each avChanges}}{{formatDate date}}: {{content}}, {{/each}}
-    </p>
-  </div>
-  <div class="col-sm-6">
   </div>
 </template>
                                                  
-<template name="acpCustomerEditEdit">
-  <div class="col-sm-12">    
+<template name="acpCustomerEditEdit"> 
+  <div class="col-sm-8 acpBox {{#if avIsApproved}}green{{else}}red{{/if}}">    
     <form class="form form-horizontal" id="editCustomerData" role="form">    
       
       <div class="spacer-20"></div>

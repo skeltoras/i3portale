@@ -14,8 +14,8 @@ Template.acpHome.rendered = function(){
 
 //-- template helpers                            
 Template.acpHome.helpers({
-  getRandomCustomer: function() {
-    return AvCustomers.find({}, {limit: 15});
+  getAvChapters: function() {
+    Meteor.subscribe('getAllAvChapters');
   }
 });
 

@@ -14,7 +14,7 @@ Template.avHome.rendered = function(){
 
 //-- template helpers                            
 Template.avHome.helpers({
-  getRandomCustomer: function() {
+  getFeaturedCustomer: function() {
     return AvCustomers.find({}, {limit: 15});
   }
 });

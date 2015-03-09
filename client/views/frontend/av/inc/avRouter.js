@@ -6,14 +6,30 @@ AVController = RouteController.extend({
 });
 
 Router.route('/', function (){ 
-  this.render('avHome');
+  this.render('avHome', {
+    waitOn: function() {
+      return Meteor.subscribe('getHomeAvCustomers');
+    },
+    data: function () {
+      //Meteor.subscribe('rentings');
+      return Meteor.subscribe('getHomeAvCustomers');
+    }
+  });
 }, {
   name: 'av.home',
   controller: 'AVController'
 });
 
 Router.route('/av', function (){ 
-  this.render('avHome');
+  this.render('avHome', {
+    waitOn: function() {
+      return Meteor.subscribe('getHomeAvCustomers');
+    },
+    data: function () {
+      //Meteor.subscribe('rentings');
+      return Meteor.subscribe('getHomeAvCustomers');
+    }
+  });
 }, {
   name: 'av.home.av',
   controller: 'AVController'
@@ -47,14 +63,31 @@ Router.route('/av/mediadaten', function (){
   controller: 'AVController'
 });
 
+Router.route('/av/cl/:chapterIndex', function (){ 
+  this.render('avChapters', {
+    waitOn: function() {
+      return Meteor.subscribe('getChaptersAvCustomers', this.params.chapterIndex);
+    },
+    data: function () {
+      //Meteor.subscribe('getChaptersAvCustomers', this.params.chapterIndex);
+      return {chapterIndex: this.params.chapterIndex};
+    }
+  });
+}, {
+  name: 'av.chapters',
+  controller: 'AVController'
+});
+
+
 Router.route('/av/kd/:avSiteUrl', function (){ 
   this.render('kdSingle', {
     waitOn: function() {
-      //return Meteor.subscribe('rentings');
+      return Meteor.subscribe('getSingleCustomerPage', this.params.avSiteUrl);
     },
     data: function () {
-      //Meteor.subscribe('rentings');
-      return AvCustomers.findOne({avSiteUrl: this.params.avSiteUrl});
+      //Meteor.subscribe('getSingleAvCustomers', this.params.avSiteUrl);
+      return {avSiteUrl: this.params.avSiteUrl};
+      //return AvCustomers.findOne({avSiteUrl: this.params.avSiteUrl});
     },
     action: function() {
       if (this.ready())

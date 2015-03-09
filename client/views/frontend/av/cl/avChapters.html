@@ -1,9 +1,9 @@
-<template name="avHome">
+<template name="avChapters">
   <img src="/img/av/header-av-1.jpg" style="width: 100%"/>
   <div class="container av">
     <div class="row">
       <div class="col-sm-12 text-center">
-        <h2>Kafka träumte schlecht im AV</h2>
+        <h2>{{#with getChapterName}}{{#each sections}}{{name}}{{/each}}{{/with}}</h2>
       </div>
     </div>
     <div class="row">
@@ -13,7 +13,7 @@
     </div>
     <div class="spacer-20"></div>
     <div class="row">
-      {{#each getFeaturedCustomer}}
+      {{#each getCustomer}}
         <div class="col-sm-4">
           <div class="panel panel-default panel-av">
             <div class="panel-heading">{{avCustomerName}}</div>
