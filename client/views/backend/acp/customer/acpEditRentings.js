@@ -1,5 +1,6 @@
 //-- template created functions
-Template.acpAddRentings.created = function(){
+Template.acpEditRentings.created = function(){
+  /*
   Session.set('rpRentingsHasPackageS', false);
   Session.set('rpRentingsHasPackageM', false);
   Session.set('rpRentingsHasPackageL', false);
@@ -12,14 +13,15 @@ Template.acpAddRentings.created = function(){
   Session.set('rpRentingsHasGalleryM', false);
   Session.set('rpRentingsHasVideo', false);
   Session.set('rpRentingsHasSocialMedia', false);
+  */
 };
 
 //-- template destroyed functions
-Template.acpAddRentings.destroyed = function(){
+Template.acpEditRentings.destroyed = function(){
 };
 
 //-- template rendered functions
-Template.acpAddRentings.rendered = function(){
+Template.acpEditRentings.rendered = function(){
   $('#countryData').select2();
   $('#regionData').select2();
   $('#regionNewData').select2({
@@ -30,7 +32,11 @@ Template.acpAddRentings.rendered = function(){
 };
 
 //-- template helpers
-Template.acpAddRentings.helpers({
+Template.acpEditRentings.helpers({
+  getRpRentingsData: function() {
+    return RpRentings.findOne({_id: this.rpRentingsId});
+  }
+  /*
   rpRentingsHasPackageS: function() {
     return Session.get('rpRentingsHasPackageS');
   },
@@ -67,10 +73,11 @@ Template.acpAddRentings.helpers({
   rpRentingsHasSocialMedia: function() {
     return Session.get('rpRentingsHasSocialMedia'); 
   }
+  */
 });
 
 //-- template events
-Template.acpAddRentings.events({
+Template.acpEditRentings.events({
   'change #rpRentingsHasPackageS': function(e) {
     e.preventDefault();    
     if(e.currentTarget.checked == true) {

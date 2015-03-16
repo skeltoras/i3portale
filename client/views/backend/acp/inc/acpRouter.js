@@ -90,3 +90,21 @@ Router.route('/acp/kd/rp/:_id/new', function (){
   name: 'acp.rentings.add',
   controller: 'AcpController'
 });
+
+Router.route('/acp/kd/rp/:customerId/edit/:_id', function (){ 
+  this.render('acpEditRentings', {
+    waitOn: function() {
+      return [
+        //Meteor.subscribe('getSingleAvCustomers', this.params._id),
+        //Meteor.subscribe('getAllAvBlockIndicators')
+      ];
+    },
+    data: function() {
+      //Meteor.subscribe('getSingleAvCustomers', this.params._id);
+      return {customerId: this.params.customerId, rpRentingsId: this.params._id};
+    }
+  });
+}, {
+  name: 'acp.rentings.edit',
+  controller: 'AcpController'
+});

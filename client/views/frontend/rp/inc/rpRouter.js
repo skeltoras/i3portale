@@ -6,7 +6,14 @@ RPController = RouteController.extend({
 });
 
 Router.route('/rp', function (){ 
-  this.render('rpHome');
+  this.render('rpHome', {
+    waitOn: function() {
+      return Meteor.subscribe('getHomeRpRentings');
+    },
+    data: function () {
+      return Meteor.subscribe('getHomeRpRentings');
+    }
+  });
 }, {
   name: 'rp.home',
   controller: 'RPController'
@@ -55,14 +62,14 @@ Router.route('/rp/mediadaten', function (){
 });
 
 
-Router.route('/rp/1/:rentingsSiteUrl', function (){ 
+Router.route('/rp/1/:rpRentingsSiteUrl', function (){ 
   this.render('rentingsSingle', {
     waitOn: function() {
-      return Meteor.subscribe('rentings');
+      return Meteor.subscribe('getSingleRpRentings');
     },
     data: function () {
-      Meteor.subscribe('rentings');
-      return Rentings.findOne({rentingsSiteUrl: this.params.rentingsSiteUrl});
+      Meteor.subscribe('getSingleRpRentings');
+      return RpRentings.findOne({rpRentingsSiteUrl: this.params.rpRentingsSiteUrl});
     },
     action: function() {
       if (this.ready())

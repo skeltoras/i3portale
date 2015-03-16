@@ -51,6 +51,9 @@
         <div class="spacer-20"></div>
         <h3>Portalverwaltung</h3>
         <h4>Vermietungen</h4>
+        {{#each getRpRentings}}
+          <a href="/acp/kd/rp/{{customerId}}/edit/{{_id}}">{{rpRentingsName}}</a><hr>
+        {{/each}}
         <button class="btn btn-sm btn-default" type="button" value="addRentings" id="addRentings"><i class="fa fa-plus"></i> Vermietung</button>        
         <h4>Reisen</h4>
         <button class="btn btn-sm btn-default" type="button" value="addTours" id="addTours"><i class="fa fa-plus"></i> Reise</button>

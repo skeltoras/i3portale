@@ -20,7 +20,6 @@ anti:fake
 meteorhacks:aggregate
 reactive-var
 fortawesome:fontawesome
-froala:editor
 iron:router
 mrt:jquery-csv
 chrismbeckett:toastr
@@ -31,3 +30,9 @@ alanning:roles
 summernote:standalone
 tracker
 reactive-dict
+cfs:standard-packages
+cfs:ui
+cfs:filesystem
+cfs:gridfs
+cfs:graphicsmagick
+raix:ui-dropped-event

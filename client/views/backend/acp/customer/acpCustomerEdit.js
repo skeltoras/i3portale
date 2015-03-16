@@ -19,6 +19,9 @@ Template.acpCustomerEdit.helpers({
   getRpCustomersData: function(){
     Meteor.subscribe('getSingleRpCustomers', this._id);
     return RpCustomers.findOne();
+  },
+  getRpRentings: function() {
+    return RpRentings.find({customerId: this._id});
   }
 });
 

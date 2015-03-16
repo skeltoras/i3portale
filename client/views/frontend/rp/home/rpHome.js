@@ -15,7 +15,7 @@ Template.rpHome.rendered = function(){
 //-- template helpers                            
 Template.rpHome.helpers({
   getRentings: function() {
-    return Rentings.find({});
+    return RpRentings.find({});
   },
   getTours: function(){
     return Tours.find({},{ fields: { toursName: 1, toursSiteUrl: 1, toursDefaultImage: 1} });

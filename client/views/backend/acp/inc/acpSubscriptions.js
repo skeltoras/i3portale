@@ -1,3 +1,4 @@
-//Meteor.subscribe('avHome');
-//Meteor.subscribe('avCount');
+Meteor.subscribe('rpHeaderImages');
+Meteor.subscribe('getAllRpRegions');
+Meteor.subscribe('getAllRpRentings');
 //Meteor.subscribe('rphometours');

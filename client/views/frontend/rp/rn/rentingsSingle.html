@@ -3,16 +3,16 @@
 <!-- Template for XS -->
   <div class="row hidden-sm hidden-md hidden-lg">
     <div class="col-xs-12 text-center">
-      {{#if rentingsDefaultImage}}<img class="headerimg" src="{{rentingsDefaultImage}}">{{/if}}
-      <h3>{{rentingsName}}</h3>
-      <p>{{#each rentingsRegions}}{{name}}{{/each}}<br></p>
+      {{#if rpRentingsDefaultImage}}<img class="headerimg" src="{{rpRentingsDefaultImage}}">{{/if}}
+      <h3>{{rpRentingsName}}</h3>
+      <p>{{#each rpRentingsRegions}}{{name}}{{/each}}<br></p>
     </div>
   </div>
   <div class="row hidden-sm hidden-md hidden-lg">
     <div class="col-xs-12 text-center">
       <div class="panel-group" id="xsTabs" role="tablist" aria-multiselectable="true">    
-        <!-- rentingsHasGalleryS -->
-        {{#if rentingsHasGalleryS}}
+        <!-- rpRentingsHasGalleryS -->
+        {{#if rpRentingsHasGalleryS}}
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="rentingsHeadOne">
               <h4 class="panel-title">
@@ -30,8 +30,8 @@
             </div> 
           </div>
         {{/if}}
-        <!-- rentingsHasGalleryM -->
-        {{#if rentingsHasGalleryM}}
+        <!-- rpRentingsHasGalleryM -->
+        {{#if rpRentingsHasGalleryM}}
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="rentingsHeadTwo">
               <h4 class="panel-title">
@@ -54,19 +54,19 @@
           <div class="panel-heading" role="tab" id="rentingsHeadThree">
             <h4 class="panel-title">
               <a class="collapsed" data-toggle="collapse" data-parent="#xsTabs" href="#rentingsCollapseThree" aria-expanded="false" aria-controls="rentingsCollapseThree">
-                {{#if rentingsTabOneS}}{{rentingsTabOneS}}{{/if}}
-                {{#if rentingsTabOneM}}{{rentingsTabOneM}}{{/if}}
-                {{#if rentingsTabOneL}}{{rentingsTabOneL}}{{/if}}
-                {{#if rentingsTabOneXL}}{{rentingsTabOneXL}}{{/if}}
+                {{#if rpRentingsTabOneS}}{{rpRentingsTabOneS}}{{/if}}
+                {{#if rpRentingsTabOneM}}{{rpRentingsTabOneM}}{{/if}}
+                {{#if rpRentingsTabOneL}}{{rpRentingsTabOneL}}{{/if}}
+                {{#if rpRentingsTabOneXL}}{{rpRentingsTabOneXL}}{{/if}}
               </a>
             </h4>
           </div> 
           <div id="rentingsCollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHeadThree">
             <div class="panel-body text-left">
-              {{#if rentingsTextOneS}}{{{rentingsTextOneS}}}{{/if}}
-              {{#if rentingsTextOneM}}{{{rentingsTextOneM}}}{{/if}}
-              {{#if rentingsTextOneL}}{{{rentingsTextOneL}}}{{/if}}
-              {{#if rentingsTextOneXL}}{{{rentingsTextOneXL}}}{{/if}}
+              {{#if rpRentingsTextOneS}}{{{rpRentingsTextOneS}}}{{/if}}
+              {{#if rpRentingsTextOneM}}{{{rpRentingsTextOneM}}}{{/if}}
+              {{#if rpRentingsTextOneL}}{{{rpRentingsTextOneL}}}{{/if}}
+              {{#if rpRentingsTextOneXL}}{{{rpRentingsTextOneXL}}}{{/if}}
             </div>
           </div> 
         </div>
@@ -82,12 +82,13 @@
           <div id="rentingsCollapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHeadFour">
             <div class="panel-body">
               <p>
-                {{rentingsStreet}}<br>
-                {{#if rentingsAdditional}}{{rentingsAdditional}}<br>{{/if}}
-                {{rentingsPlz}} {{rentingsCity}}
-                {{#if rentingsUrl}}<br><br><i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{rentingsUrl}}" target="_blank">{{rentingsUrl}}</a>{{/if}}
+                {{rpRentingsStreet}}<br>
+                {{#if rpRentingsAdditional}}{{rpRentingsAdditional}}<br>{{/if}}
+                {{rpRentingsPlz}} {{rpRentingsCity}}
+                {{#if rpRentingsUrl}}<br><br><i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{rpRentingsUrl}}" target="_blank">{{rpRentingsUrl}}</a>{{/if}}
               </p>
               <p>
+                <!-- TODO -->
                 {{#with getCustomer}}
                   {{customerName}}<br>
                   {{#if telephone}}<i class="fa fa-phone"></i> <a href="tel:{{telephone}}">{{telephone}}</a><br>{{/if}}
@@ -97,8 +98,8 @@
             </div>
           </div> 
         </div>
-        <!-- rentingsHasSocialMedia -->
-        {{#if rentingsHasSocialMedia}}
+        <!-- rpRentingsHasSocialMedia -->
+        {{#if rpRentingsHasSocialMedia}}
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="rentingsHeadFive">
             <h4 class="panel-title">
@@ -111,6 +112,7 @@
             <div class="panel-body">
               <p>
                 <span class="socialIcons">
+                  <!-- TODO -->
                   {{#with getCustomer}}
                     {{#if socialFacebook}}<a href="https://www.facebook.com/{{socialFacebook}}" target="_blank"><i class="fa fa-facebook-square"></i></a>{{/if}}
                     {{#if socialGplus}}<a href="https://plus.google.com/u/0/+{{socialGplus}}/posts" target="_blank"><i class="fa fa-google-plus-square"></i></a>{{/if}}
@@ -119,7 +121,7 @@
                   {{/with}}
                 </span> 
               </p>
-              {{#if rentingsHasVideo}}
+              {{#if rpRentingsHasVideo}}
                 <p>
                   Video kommt noch... 
                 </p>
@@ -141,128 +143,128 @@
             <div class="panel-body">
               <div class="panel-group" id="xsTabsSub" role="tablist" aria-multiselectable="true">
                 <!-- packageM -->
-                {{#if rentingsHasPackageM}}
+                {{#if rpRentingsHasPackageM}}
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsTabTwoM}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsTabTwoM}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsTabTwoM}}" aria-expanded="false" aria-controls="{{rentingsTabTwoM}}">
-                          {{rentingsTabTwoM}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsTabTwoM}}" aria-expanded="false" aria-controls="{{rpRentingsTabTwoM}}">
+                          {{rpRentingsTabTwoM}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsTabTwoM}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsTabTwoM}}">
+                    <div id="{{rpRentingsTabTwoM}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsTabTwoM}}">
                       <div class="panel-body text-left">
-                        {{{rentingsTextTwoM}}}  
+                        {{{rpRentingsTextTwoM}}}  
                       </div>
                     </div> 
                   </div>
                 {{/if}}
                 <!-- packageL -->
-                {{#if rentingsHasPackageL}}
+                {{#if rpRentingsHasPackageL}}
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsTabTwoL}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsTabTwoL}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsTabTwoL}}" aria-expanded="false" aria-controls="{{rentingsTabTwoL}}">
-                          {{rentingsTabTwoL}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsTabTwoL}}" aria-expanded="false" aria-controls="{{rpRentingsTabTwoL}}">
+                          {{rpRentingsTabTwoL}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsTabTwoL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsTabTwoL}}">
+                    <div id="{{rpRentingsTabTwoL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsTabTwoL}}">
                       <div class="panel-body text-left">
-                        {{{rentingsTextTwoL}}}  
+                        {{{rpRentingsTextTwoL}}}  
                       </div>
                     </div> 
                   </div>
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsTabThreeL}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsTabThreeL}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsTabThreeL}}" aria-expanded="false" aria-controls="{{rentingsTabThreeL}}">
-                          {{rentingsTabThreeL}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsTabThreeL}}" aria-expanded="false" aria-controls="{{rpRentingsTabThreeL}}">
+                          {{rpRentingsTabThreeL}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsTabThreeL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsTabThreeL}}">
+                    <div id="{{rpRentingsTabThreeL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsTabThreeL}}">
                       <div class="panel-body text-left">
-                        {{{rentingsTextThreeL}}}  
+                        {{{rpRentingsTextThreeL}}}  
                       </div>
                     </div> 
                   </div>
                 {{/if}}
                 <!-- packageXL -->
-                {{#if rentingsHasPackageXL}}
+                {{#if rpRentingsHasPackageXL}}
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsTabTwoXL}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsTabTwoXL}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsTabTwoXL}}" aria-expanded="false" aria-controls="{{rentingsTabTwoXL}}">
-                          {{rentingsTabTwoXL}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsTabTwoXL}}" aria-expanded="false" aria-controls="{{rpRentingsTabTwoXL}}">
+                          {{rpRentingsTabTwoXL}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsTabTwoXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsTabTwoXL}}">
+                    <div id="{{rpRentingsTabTwoXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsTabTwoXL}}">
                       <div class="panel-body text-left">
-                        {{{rentingsTextTwoXL}}}  
+                        {{{rpRentingsTextTwoXL}}}  
                       </div>
                     </div> 
                   </div>
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsTabThreeXL}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsTabThreeXL}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsTabThreeXL}}" aria-expanded="false" aria-controls="{{rentingsTabThreeXL}}">
-                          {{rentingsTabThreeXL}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsTabThreeXL}}" aria-expanded="false" aria-controls="{{rpRentingsTabThreeXL}}">
+                          {{rpRentingsTabThreeXL}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsTabThreeXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsTabThreeXL}}">
+                    <div id="{{rpRentingsTabThreeXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsTabThreeXL}}">
                       <div class="panel-body text-left">
-                        {{{rentingsTextThreeXL}}}  
+                        {{{rpRentingsTextThreeXL}}}  
                       </div>
                     </div> 
                   </div>
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsTabFourXL}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsTabFourXL}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsTabFourXL}}" aria-expanded="false" aria-controls="{{rentingsTabFourXL}}">
-                          {{rentingsTabFourXL}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsTabFourXL}}" aria-expanded="false" aria-controls="{{rpRentingsTabFourXL}}">
+                          {{rpRentingsTabFourXL}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsTabFourXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsTabFourXL}}">
+                    <div id="{{rpRentingsTabFourXL}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsTabFourXL}}">
                       <div class="panel-body text-left">
-                        {{{rentingsTextFourXL}}}  
-                      </div>
-                    </div> 
-                  </div>
-                {{/if}}
-                <!-- rentingsHasAddTextOne -->
-                {{#if rentingsHasAddTextOne}}
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsAddTextTabOne}}">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsAddTextTabOne}}" aria-expanded="false" aria-controls="{{rentingsAddTextTabOne}}">
-                          {{rentingsAddTextTabOne}}
-                        </a>
-                      </h4>
-                    </div> 
-                    <div id="{{rentingsAddTextTabOne}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsAddTextTabOne}}">
-                      <div class="panel-body text-left">
-                        {{{rentingsAddTextOne}}}  
+                        {{{rpRentingsTextFourXL}}}  
                       </div>
                     </div> 
                   </div>
                 {{/if}}
-                <!-- rentingsHasAddTextTwo -->
-                {{#if rentingsHasAddTextTwo}}
+                <!-- rpRentingsHasAddTextOne -->
+                {{#if rpRentingsHasAddTextOne}}
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="rentingsHead_{{rentingsAddTextTabTwo}}">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsAddTextTabOne}}">
                       <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rentingsAddTextTabTwo}}" aria-expanded="false" aria-controls="{{rentingsAddTextTabTwo}}">
-                          {{rentingsAddTextTabTwo}}
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsAddTextTabOne}}" aria-expanded="false" aria-controls="{{rpRentingsAddTextTabOne}}">
+                          {{rpRentingsAddTextTabOne}}
                         </a>
                       </h4>
                     </div> 
-                    <div id="{{rentingsAddTextTabTwo}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rentingsAddTextTabTwo}}">
+                    <div id="{{rpRentingsAddTextTabOne}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsAddTextTabOne}}">
                       <div class="panel-body text-left">
-                        {{{rentingsAddTextTwo}}}  
+                        {{{rpRentingsAddTextOne}}}  
+                      </div>
+                    </div> 
+                  </div>
+                {{/if}}
+                <!-- rpRentingsHasAddTextTwo -->
+                {{#if rpRentingsHasAddTextTwo}}
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="rentingsHead_{{rpRentingsAddTextTabTwo}}">
+                      <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#xsTabsSub" href="#{{rpRentingsAddTextTabTwo}}" aria-expanded="false" aria-controls="{{rpRentingsAddTextTabTwo}}">
+                          {{rpRentingsAddTextTabTwo}}
+                        </a>
+                      </h4>
+                    </div> 
+                    <div id="{{rpRentingsAddTextTabTwo}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="rentingsHead_{{rpRentingsAddTextTabTwo}}">
+                      <div class="panel-body text-left">
+                        {{{rpRentingsAddTextTwo}}}  
                       </div>
                     </div> 
                   </div>
@@ -278,17 +280,18 @@
 
 <!-- Template for SM MD LG -->   
   <!-- Header Img / header Slider -->
-  {{#if rentingsHasHeaderSlider}}
+  {{#if rpRentingsHasHeaderSlider}}
     <div class="row hidden-xs">
       <div class="col-sm-12">
         <!-- placeholder -->
+        <img class="headerimg" src="http://placehold.it/1200x300" alt="headerImg" />
       </div>
     </div>
   {{else}}
-    {{#if rentingsHasHeaderImg}}
+    {{#if rpRentingsHasHeaderImg}}
       <div class="row hidden-xs">
         <div class="col-sm-12">
-          <img class="headerimg" src="{{rentingsHeaderImg}}" alt="headerImg" />
+          <img class="headerimg" src="{{rpRentingsHeaderImg}}" alt="headerImg" />
         </div>
       </div>
     {{else}}
@@ -303,24 +306,25 @@
 <!-- sidebar SM -->
   <div class="row hidden-xs hidden-md hidden-lg">
     <div class="col-sm-4">
-      <h3>{{rentingsName}}</h3>
+      <h3>{{rpRentingsName}}</h3>
       <p>
         Bereich: <a href="/rp">Vermietung</a><br>
-        Land: {{#each rentingsCountries}}<a href="/rp">{{name}}</a> {{/each}}<br>
-        Region: {{#each rentingsRegions}}{{name}} {{/each}}
+        Land: {{#each rpRentingsCountries}}<a href="/rp">{{name}}</a> {{/each}}<br>
+        Region: {{#each rpRentingsRegions}}{{name}} {{/each}}
       </p>
     </div>
     <div class="col-sm-4 text-center">
       <h3>Objektadresse</h3>
       <p>
-        {{rentingsStreet}}<br>
-        {{#if rentingsAdditional}}{{rentingsAdditional}}<br>{{/if}}
-        {{rentingsPlz}} {{rentingsCity}}<br>
+        {{rprpRentingsStreet}}<br>
+        {{#if rpRentingsAdditional}}{{rpRentingsAdditional}}<br>{{/if}}
+        {{rpRentingsPlz}} {{rpRentingsCity}}<br>
       </p>      
     </div>
     <div class="col-sm-4 text-right">
       <h3>Kontakt Vermieter</h3>
       <p>
+        <!-- TODO -->
         {{#with getCustomer}}
           {{customerName}}<br>
           {{#if telephone}}<i class="fa fa-phone"></i> {{telephone}}<br>{{/if}}
@@ -333,17 +337,17 @@
 <!-- END sidebar SM -->  
   <div class="row">
     <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
-      <h3>{{rentingsName}}</h3>
+      <h3>{{rpRentingsName}}</h3>
       <p>
         Bereich: <a href="/rp">Vermietung</a><br>
-        Land: {{#each rentingsCountries}}<a href="/rp">{{name}}</a> {{/each}}<br>
-        Region: {{#each rentingsRegions}}{{name}} {{/each}}
+        Land: {{#each rpRentingsCountries}}<a href="/rp">{{name}}</a> {{/each}}<br>
+        Region: {{#each rpRentingsRegions}}{{name}} {{/each}}
       </p>
       <h3>Objektadresse</h3>
       <p>
-        {{rentingsStreet}}<br>
-        {{#if rentingsAdditional}}{{rentingsAdditional}}<br>{{/if}}
-        {{rentingsPlz}} {{rentingsCity}}<br>
+        {{rpRentingsStreet}}<br>
+        {{#if rpRentingsAdditional}}{{rpRentingsAdditional}}<br>{{/if}}
+        {{rpRentingsPlz}} {{rpRentingsCity}}<br>
       </p>
       <h3>Kontakt Vermieter</h3>
       <p>
@@ -357,13 +361,13 @@
           {{#if emailOff}}<i class="fa fa-envelope"></i> <a href="mailto:{{emailOff}}">{{emailOff}}</a>{{/if}}
         {{/with}}
       </p>
-      {{#if rentingsUrl}}
+      {{#if rpRentingsUrl}}
         <h3>Website</h3>
         <p>
-          <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{rentingsUrl}}" target="_blank">{{rentingsUrl}}</a>
+          <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{rpRentingsUrl}}" target="_blank">{{rpRentingsUrl}}</a>
         </p>
       {{/if}}
-      {{#if rentingsHasSocialMedia}}
+      {{#if rpRentingsHasSocialMedia}}
         <h3>Social Media</h3>
         <p>
           <span class="socialIcons">
@@ -376,15 +380,15 @@
           </span> 
         </p>
       {{/if}}
-      {{#if rentingsHasGalleryS}}
+      {{#if rpRentingsHasGalleryS}}
         <h3>Galerie</h3>
         Galerie (klein) kommt noch...
       {{/if}}
-      {{#if rentingsHasGalleryM}}
+      {{#if rpRentingsHasGalleryM}}
         <h3>Galerie</h3>
         Galerie (groß) kommt noch...
       {{/if}}
-      {{#if rentingsHasVideo}}
+      {{#if rpRentingsHasVideo}}
         <h3>Video</h3>
         <p>
           kommt noch...
@@ -392,57 +396,57 @@
       {{/if}}
     </div>  
     <div class="col-sm-12 col-md-9 col-lg-9 hidden-xs">
-      <!-- rentingsPackages -->
+      <!-- rpRentingsPackages -->
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-          {{#if rentingsHasPackageS}}<a href="#{{rentingsTabOneS}}" aria-controls="{{rentingsTabOneS}}" role="tab" data-toggle="tab">{{rentingsTabOneS}}</a>{{/if}}
-          {{#if rentingsHasPackageM}}<a href="#{{rentingsTabOneM}}" aria-controls="{{rentingsTabOneM}}" role="tab" data-toggle="tab">{{rentingsTabOneM}}</a>{{/if}}
-          {{#if rentingsHasPackageL}}<a href="#{{rentingsTabOneL}}" aria-controls="{{rentingsTabOneL}}" role="tab" data-toggle="tab">{{rentingsTabOneL}}</a>{{/if}}
-          {{#if rentingsHasPackageXL}}<a href="#{{rentingsTabOneXL}}" aria-controls="{{rentingsTabOneXL}}" role="tab" data-toggle="tab">{{rentingsTabOneXL}}</a>{{/if}}
+          {{#if rpRentingsHasPackageS}}<a href="#{{lowerCase rpRentingsTabOneS}}" aria-controls="{{lowerCase rpRentingsTabOneS}}" role="tab" data-toggle="tab">{{rpRentingsTabOneS}}</a>{{/if}}
+          {{#if rpRentingsHasPackageM}}<a href="#{{lowerCase rpRentingsTabOneM}}" aria-controls="{{lowerCase rpRentingsTabOneM}}" role="tab" data-toggle="tab">{{rpRentingsTabOneM}}</a>{{/if}}
+          {{#if rpRentingsHasPackageL}}<a href="#{{lowerCase rpRentingsTabOneL}}" aria-controls="{{lowerCase rpRentingsTabOneL}}" role="tab" data-toggle="tab">{{rpRentingsTabOneL}}</a>{{/if}}
+          {{#if rpRentingsHasPackageXL}}<a href="#{{lowerCase rpRentingsTabOneXL}}" aria-controls="{{lowerCase rpRentingsTabOneXL}}" role="tab" data-toggle="tab">{{rpRentingsTabOneXL}}</a>{{/if}}
         </li>
-        {{#if rentingsHasPackageM}}
-          <li role="presentation"><a href="#{{rentingsTabTwoM}}" aria-controls="{{rentingsTabTwoM}}" role="tab" data-toggle="tab">{{rentingsTabTwoM}}</a></li>
+        {{#if rpRentingsHasPackageM}}
+          <li role="presentation"><a href="#{{lowerCase rpRentingsTabTwoM}}" aria-controls="{{lowerCase rpRentingsTabTwoM}}" role="tab" data-toggle="tab">{{rpRentingsTabTwoM}}</a></li>
         {{/if}} 
-        {{#if rentingsHasPackageL}}
-          <li role="presentation"><a href="#{{rentingsTabTwoL}}" aria-controls="{{rentingsTabTwoL}}" role="tab" data-toggle="tab">{{rentingsTabTwoL}}</a></li>
-          <li role="presentation"><a href="#{{rentingsTabThreeL}}" aria-controls="{{rentingsTabThreeL}}" role="tab" data-toggle="tab">{{rentingsTabThreeL}}</a></li>
+        {{#if rpRentingsHasPackageL}}
+          <li role="presentation"><a href="#{{lowerCase rpRentingsTabTwoL}}" aria-controls="{{lowerCase rpRentingsTabTwoL}}" role="tab" data-toggle="tab">{{rpRentingsTabTwoL}}</a></li>
+          <li role="presentation"><a href="#{{lowerCase rpRentingsTabThreeL}}" aria-controls="{{lowerCase rpRentingsTabThreeL}}" role="tab" data-toggle="tab">{{rpRentingsTabThreeL}}</a></li>
         {{/if}}
-        {{#if rentingsHasPackageXL}}
-          <li role="presentation"><a href="#{{rentingsTabTwoXL}}" aria-controls="{{rentingsTabTwoXL}}" role="tab" data-toggle="tab">{{rentingsTabTwoXL}}</a></li>
-          <li role="presentation"><a href="#{{rentingsTabThreeXL}}" aria-controls="{{rentingsTabThreeXL}}" role="tab" data-toggle="tab">{{rentingsTabThreeXL}}</a></li>
-          <li role="presentation"><a href="#{{rentingsTabFourXL}}" aria-controls="{{rentingsTabFourXL}}" role="tab" data-toggle="tab">{{rentingsTabFourXL}}</a></li>
+        {{#if rpRentingsHasPackageXL}}
+          <li role="presentation"><a href="#{{lowerCase rpRentingsTabTwoXL}}" aria-controls="{{lowerCase rpRentingsTabTwoXL}}" role="tab" data-toggle="tab">{{rpRentingsTabTwoXL}}</a></li>
+          <li role="presentation"><a href="#{{lowerCase rpRentingsTabThreeXL}}" aria-controls="{{lowerCase rpRentingsTabThreeXL}}" role="tab" data-toggle="tab">{{rpRentingsTabThreeXL}}</a></li>
+          <li role="presentation"><a href="#{{lowerCase rpRentingsTabFourXL}}" aria-controls="{{lowerCase rpRentingsTabFourXL}}" role="tab" data-toggle="tab">{{rpRentingsTabFourXL}}</a></li>
         {{/if}}
-        {{#if rentingsHasAddTextOne}}
-          <li role="presentation"><a href="#{{rentingsAddTextTabOne}}" aria-controls="{{rentingsAddTextTabOne}}" role="tab" data-toggle="tab">{{rentingsAddTextTabOne}}</a></li>
+        {{#if rpRentingsHasAddTextOne}}
+          <li role="presentation"><a href="#{{lowerCase rpRentingsAddTextTabOne}}" aria-controls="{{lowerCase rpRentingsAddTextTabOne}}" role="tab" data-toggle="tab">{{rpRentingsAddTextTabOne}}</a></li>
         {{/if}}
-        {{#if rentingsHasAddTextTwo}}
-          <li role="presentation"><a href="#{{rentingsAddTextTabTwo}}" aria-controls="{{rentingsAddTextTabTwo}}" role="tab" data-toggle="tab">{{rentingsAddTextTabTwo}}</a></li>
+        {{#if rpRentingsHasAddTextTwo}}
+          <li role="presentation"><a href="#{{lowerCase rpRentingsAddTextTabTwo}}" aria-controls="{{lowerCase rpRentingsAddTextTabTwo}}" role="tab" data-toggle="tab">{{rpRentingsAddTextTabTwo}}</a></li>
         {{/if}}
       </ul>
       <div class="tab-content">
-        {{#if rentingsHasPackageS}}
-          <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneS}}">{{{rentingsTextOneS}}}</div>
+        {{#if rpRentingsHasPackageS}}
+          <div role="tabpanel" class="tab-pane fade in active" id="{{lowerCase rpRentingsTabOneS}}">{{{rpRentingsTextOneS}}}</div>
         {{/if}}
-        {{#if rentingsHasPackageM}}
-          <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneM}}">{{{rentingsTextOneM}}}</div>
-          <div role="tabpanel" class="tab-pane" id="{{rentingsTabTwoM}}">{{{rentingsTextTwoM}}}</div>
+        {{#if rpRentingsHasPackageM}}
+          <div role="tabpanel" class="tab-pane fade in active" id="{{lowerCase rpRentingsTabOneM}}">{{{rpRentingsTextOneM}}}</div>
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsTabTwoM}}">{{{rpRentingsTextTwoM}}}</div>
         {{/if}}
-        {{#if rentingsHasPackageL}}
-          <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneL}}">{{{rentingsTextOneL}}}</div>
-          <div role="tabpanel" class="tab-pane" id="{{rentingsTabTwoL}}">{{{rentingsTextTwoL}}}</div>
-          <div role="tabpanel" class="tab-pane" id="{{rentingsTabThreeL}}">{{{rentingsTextThreeL}}}</div>
+        {{#if rpRentingsHasPackageL}}
+          <div role="tabpanel" class="tab-pane fade in active" id="{{lowerCase rpRentingsTabOneL}}">{{{rpRentingsTextOneL}}}</div>
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsTabTwoL}}">{{{rpRentingsTextTwoL}}}</div>
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsTabThreeL}}">{{{rpRentingsTextThreeL}}}</div>
         {{/if}}
-        {{#if rentingsHasPackageXL}}
-          <div role="tabpanel" class="tab-pane active" id="{{rentingsTabOneXL}}">{{{rentingsTextOneXL}}}</div>
-          <div role="tabpanel" class="tab-pane" id="{{rentingsTabTwoXL}}">{{{rentingsTextTwoXL}}}</div>
-          <div role="tabpanel" class="tab-pane" id="{{rentingsTabThreeXL}}">{{{rentingsTextThreeXL}}}</div>
-          <div role="tabpanel" class="tab-pane" id="{{rentingsTabFourXL}}">{{{rentingsTextFourXL}}}</div>
+        {{#if rpRentingsHasPackageXL}}
+          <div role="tabpanel" class="tab-pane fade in active" id="{{lowerCase rpRentingsTabOneXL}}">{{{rpRentingsTextOneXL}}}</div>
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsTabTwoXL}}">{{{rpRentingsTextTwoXL}}}</div>
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsTabThreeXL}}">{{{rpRentingsTextThreeXL}}}</div>
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsTabFourXL}}">{{{rpRentingsTextFourXL}}}</div>
         {{/if}}
-        {{#if rentingsHasAddTextOne}}
-          <div role="tabpanel" class="tab-pane" id="{{rentingsAddTextTabOne}}">{{{rentingsAddTextOne}}}</div>
+        {{#if rpRentingsHasAddTextOne}}
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsAddTextTabOne}}">{{{rpRentingsAddTextOne}}}</div>
         {{/if}}
-        {{#if rentingsHasAddTextTwo}}
-          <div role="tabpanel" class="tab-pane" id="{{rentingsAddTextTabTwo}}">{{{rentingsAddTextTwo}}}</div>
+        {{#if rpRentingsHasAddTextTwo}}
+          <div role="tabpanel" class="tab-pane fade" id="{{lowerCase rpRentingsAddTextTabTwo}}">{{{rpRentingsAddTextTwo}}}</div>
         {{/if}}
       </div>
     </div>
@@ -451,15 +455,15 @@
   <div class="spacer-20 hiden-xs hidden-md hidden-lg"></div>
   <div class="row hidden-xs hidden-md hidden-lg">
     <div class="col-sm-3">
-      {{#if rentingsUrl}}
+      {{#if rpRentingsUrl}}
         <h3>Website</h3>
         <p>
-          <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{rentingsUrl}}" target="_blank">{{rentingsUrl}}</a>
+          <i class="fa fa-arrow-circle-o-right"></i> <a href="http://{{rpRentingsUrl}}" target="_blank">{{rpRentingsUrl}}</a>
         </p>
       {{/if}}
     </div>
     <div class="col-sm-3 text-center">
-      {{#if rentingsHasSocialMedia}}
+      {{#if rpRentingsHasSocialMedia}}
         <h3>Social Media</h3>
         <p>
           <span class="socialIcons">
@@ -474,17 +478,17 @@
       {{/if}}    
     </div>
     <div class="col-sm-3 text-center">
-      {{#if rentingsHasGalleryM}}
+      {{#if rpRentingsHasGalleryM}}
         <h3>Galerie</h3>
         Galerie (klein) kommt noch...
       {{/if}}
-      {{#if rentingsHasGalleryM}}
+      {{#if rpRentingsHasGalleryM}}
         <h3>Galerie</h3>
         Galerie (groß) kommt noch...
       {{/if}}
     </div>
     <div class="col-sm-3 text-right">
-      {{#if rentingsHasVideo}}
+      {{#if rpRentingsHasVideo}}
         <h3>Video</h3>
         <p>
           kommt noch...
