@@ -28,3 +28,6 @@ aldeed:collection2
 accounts-password
 accounts-ui
 alanning:roles
+summernote:standalone
+tracker
+reactive-dict

@@ -22,7 +22,7 @@
           </div>
           <div class="spacer-20"></div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <fieldset>
                 <legend>Adressdaten</legend>
                 <!-- rpRentingsName -->                
@@ -114,154 +114,371 @@
                 </div>
               </fieldset>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <fieldset>
                 <legend>Pakete / Einstellungen</legend>
-                <div class="form-group">
-                  <div class="col-sm-12">
+                  <div class="form-group">
                     <!-- rpRentingsHasPackageS -->                  
-                    <label for="rpRentingsHasPackageS" class="col-sm-4 control-label">rpRentingsHasPackageS</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasPackageS}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageS" name="rpRentingsHasPackageS" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageS" name="rpRentingsHasPackageS">
-                      {{/if}}
-                    </div>                             
+                    <label for="rpRentingsHasPackageS" class="col-sm-8 control-label">rpRentingsHasPackageS</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageS" name="rpRentingsHasPackageS">
+                    </div>
+                  </div>
+                  <div class="form-group">                             
                     <!-- rpRentingsHasPackageM -->                 
-                    <label for="rpRentingsHasPackageM" class="col-sm-4 control-label">rpRentingsHasPackageM</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasPackageM}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageM" name="rpRentingsHasPackageM" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageM" name="rpRentingsHasPackageM">
-                      {{/if}}
+                    <label for="rpRentingsHasPackageM" class="col-sm-8 control-label">rpRentingsHasPackageM</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageM" name="rpRentingsHasPackageM">
                     </div>
-                   </div>                             
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-12">
+                  </div>                             
+                  <div class="form-group">
                     <!-- rpRentingsHasPackageL -->                   
-                    <label for="rpRentingsHasPackageL" class="col-sm-4 control-label">rpRentingsHasPackageL</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasPackageL}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageL" name="rpRentingsHasPackageL" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageL" name="rpRentingsHasPackageL">
-                      {{/if}}
-                    </div>                             
+                    <label for="rpRentingsHasPackageL" class="col-sm-8 control-label">rpRentingsHasPackageL</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageL" name="rpRentingsHasPackageL">
+                    </div>
+                  </div>
+                  <div class="form-group">                            
                     <!-- rpRentingsHasPackageXL -->              
-                    <label for="rpRentingsHasPackageXL" class="col-sm-4 control-label">rpRentingsHasPackageXL</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasPackageXL}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageXL" name="rpRentingsHasPackageXL" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageXL" name="rpRentingsHasPackageXL">
-                      {{/if}}
+                    <label for="rpRentingsHasPackageXL" class="col-sm-8 control-label">rpRentingsHasPackageXL</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasPackageXL" name="rpRentingsHasPackageXL">
                     </div>
-                  </div>                            
-                </div>
+                  </div> 
                 <hr>
-                <div class="form-group">
-                  <div class="col-sm-12">
+                  <div class="form-group">
                     <!-- rpRentingsHasAddTextOne -->              
-                    <label for="rpRentingsHasAddTextOne" class="col-sm-4 control-label">rpRentingsHasAddTextOne</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasAddTextOne}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasAddTextOne" name="rpRentingsHasAddTextOne" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasAddTextOne" name="rpRentingsHasAddTextOne">
-                      {{/if}}
-                    </div>                             
+                    <label for="rpRentingsHasAddTextOne" class="col-sm-8 control-label">rpRentingsHasAddTextOne</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasAddTextOne" name="rpRentingsHasAddTextOne">
+                    </div>
+                  </div>
+                  <div class="form-group">                             
                     <!-- rpRentingsHasAddTextTwo -->                
-                    <label for="rpRentingsHasAddTextTwo" class="col-sm-4 control-label">rpRentingsHasAddTextTwo</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasAddTextTwo}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasAddTextTwo" name="rpRentingsHasAddTextTwo" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasAddTextTwo" name="rpRentingsHasAddTextTwo">
-                      {{/if}}
+                    <label for="rpRentingsHasAddTextTwo" class="col-sm-8 control-label">rpRentingsHasAddTextTwo</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasAddTextTwo" name="rpRentingsHasAddTextTwo">
                     </div>
                   </div>                             
-                </div>
                 <hr>
-                <div class="form-group">
-                  <div class="col-sm-12">
+                  <div class="form-group">
                     <!-- rpRentingsHasHeaderImg -->                 
-                    <label for="rpRentingsHasHeaderImg" class="col-sm-4 control-label">rpRentingsHasHeaderImg</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasHeaderImg}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderImg" name="rpRentingsHasHeaderImg" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderImg" name="rpRentingsHasHeaderImg">
-                      {{/if}}
-                    </div>                             
+                    <label for="rpRentingsHasHeaderImg" class="col-sm-8 control-label">rpRentingsHasHeaderImg</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderImg" name="rpRentingsHasHeaderImg">
+                    </div>
+                  </div>
+                  <div class="form-group">                            
                     <!-- rpRentingsHasHeaderSlider -->                   
-                    <label for="rpRentingsHasHeaderSlider" class="col-sm-4 control-label">rpRentingsHasHeaderSlider</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasHeaderSlider}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderSlider" name="rpRentingsHasHeaderSlider" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderSlider" name="rpRentingsHasHeaderSlider">
-                      {{/if}}
+                    <label for="rpRentingsHasHeaderSlider" class="col-sm-8 control-label">rpRentingsHasHeaderSlider</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderSlider" name="rpRentingsHasHeaderSlider">
                     </div>
                   </div>                             
-                </div>
                 <hr>
-                <div class="form-group">
-                  <div class="col-sm-12">
+                  <div class="form-group">
                     <!-- rpRentingsHasGalleryS -->                 
-                    <label for="rpRentingsHasGalleryS" class="col-sm-4 control-label">rpRentingsHasGalleryS</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasGalleryS}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasGalleryS" name="rpRentingsHasGalleryS" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasGalleryS" name="rpRentingsHasGalleryS">
-                      {{/if}}
-                    </div>                             
+                    <label for="rpRentingsHasGalleryS" class="col-sm-8 control-label">rpRentingsHasGalleryS</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasGalleryS" name="rpRentingsHasGalleryS">
+                    </div>
+                  </div>
+                  <div class="form-group">                            
                     <!-- rpRentingsHasGalleryM -->                                  
-                    <label for="rpRentingsHasGalleryM" class="col-sm-4 control-label">rpRentingsHasGalleryM</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasHeaderSlider}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasGalleryM" name="rpRentingsHasGalleryM" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasGalleryM" name="rpRentingsHasGalleryM">
-                      {{/if}}
+                    <label for="rpRentingsHasGalleryM" class="col-sm-8 control-label">rpRentingsHasGalleryM</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasGalleryM" name="rpRentingsHasGalleryM">
                     </div>                             
                   </div>
-                </div>
                 <hr>
-                <div class="form-group">
-                  <div class="col-sm-12">
+                  <div class="form-group">
                     <!-- rpRentingsHasVideo -->                 
-                    <label for="rpRentingsHasVideo" class="col-sm-4 control-label">rpRentingsHasVideo</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasVideo}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasVideo" name="rpRentingsHasVideo" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasVideo" name="rpRentingsHasVideo">
-                      {{/if}}
-                    </div>                             
+                    <label for="rpRentingsHasVideo" class="col-sm-8 control-label">rpRentingsHasVideo</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasVideo" name="rpRentingsHasVideo">
+                    </div>
+                  </div>
+                  <div class="form-group">                             
                     <!-- rpRentingsHasSocialMedia -->                                  
-                    <label for="rpRentingsHasSocialMedia" class="col-sm-4 control-label">rpRentingsHasSocialMedia</label>
-                    <div class="col-sm-2">
-                      {{#if rpRentingsHasSocialMedia}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasSocialMedia" name="rpRentingsHasSocialMedia" checked="checked">
-                      {{else}}
-                        <input type="checkbox" class="checkbox acp" id="rpRentingsHasSocialMedia" name="rpRentingsHasSocialMedia">
-                      {{/if}}
+                    <label for="rpRentingsHasSocialMedia" class="col-sm-8 control-label">rpRentingsHasSocialMedia</label>
+                    <div class="col-sm-4">
+                      <input type="checkbox" class="checkbox acp" id="rpRentingsHasSocialMedia" name="rpRentingsHasSocialMedia">
                     </div>                             
                   </div>
-                </div>
               </fieldset>  
-            </div>
-            <div class="col-sm-4">
-              <fieldset>
-                <legend>Zusatzdaten</legend>
-              </fieldset>
             </div>
           </div> 
         </form>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          {{#if rpRentingsHasPackageS}}
+            <li role="presentation"><a href="#packageS" aria-controls="packageS" role="tab" data-toggle="tab">Paket S</a></li>
+          {{/if}}
+          {{#if rpRentingsHasPackageM}}
+            <li role="presentation"><a href="#packageM" aria-controls="packageM" role="tab" data-toggle="tab">Paket M</a></li>
+          {{/if}}
+          {{#if rpRentingsHasPackageL}}
+            <li role="presentation"><a href="#packageL" aria-controls="packageL" role="tab" data-toggle="tab">Paket L</a></li>
+          {{/if}}
+          {{#if rpRentingsHasPackageXL}}
+            <li role="presentation"><a href="#packageXL" aria-controls="packageXL" role="tab" data-toggle="tab">Paket XL</a></li>
+          {{/if}}
+          {{#if rpRentingsHasAddTextOne}}
+            <li role="presentation"><a href="#addTextOne" aria-controls="addTextOne" role="tab" data-toggle="tab">Zusatztext #1</a></li>
+          {{/if}}
+          {{#if rpRentingsHasAddTextTwo}}
+            <li role="presentation"><a href="#addTextTwo" aria-controls="addTextTwo" role="tab" data-toggle="tab">Zusatztext #2</a></li>
+          {{/if}}
+          <li role="presentation" class="active"><a href="#rentingsAdditional" aria-controls="rentingsAdditional" role="tab" data-toggle="tab">Zusatzdaten</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- packageS -->
+          <div role="tabpanel" class="tab-pane" id="packageS">
+            <form class="form form-horizontal" id="addRentingsPackageS" role="form">
+              <fieldset>
+                <legend>Paket S:</legend>
+                <!-- rpRentingsTabOneS -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabOneS" class="col-sm-4 control-label">rpRentingsTabOneS</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabOneS" name="rpRentingsTabOneS" value="Übersicht">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextOneS -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextOneS" name="rpRentingsTextOneS">rpRentingsTextOneS</textarea>              
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <!-- packageM -->
+          <div role="tabpanel" class="tab-pane" id="packageM">
+            <form class="form form-horizontal" id="addRentingsPackageM" role="form">
+              <fieldset>
+                <legend>Paket M:</legend>
+                <!-- rpRentingsTabOneM -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabOneM" class="col-sm-4 control-label">rpRentingsTabOneM</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabOneM" name="rpRentingsTabOneM" value="Übersicht">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextOneM -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextOneM" name="rpRentingsTextOneM">rpRentingsTextOneM</textarea>              
+                </div>
+                <!-- rpRentingsTabTwoM -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabTwoM" class="col-sm-4 control-label">rpRentingsTabTwoM</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabTwoM" name="rpRentingsTabTwoM">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextTwoM -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextTwoM" name="rpRentingsTextTwoM">rpRentingsTextTwoM</textarea>              
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <!-- packageL -->
+          <div role="tabpanel" class="tab-pane" id="packageL">
+            <form class="form form-horizontal" id="addRentingsPackageL" role="form">
+              <fieldset>
+                <legend>Paket L:</legend>
+                <!-- rpRentingsTabOneL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabOneL" class="col-sm-4 control-label">rpRentingsTabOneL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabOneL" name="rpRentingsTabOneL" value="Übersicht">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextOneL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextOneL" name="rpRentingsTextOneL">rpRentingsTextOneL</textarea>              
+                </div>
+                <!-- rpRentingsTabTwoL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabTwoL" class="col-sm-4 control-label">rpRentingsTabTwoL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabTwoL" name="rpRentingsTabTwoL">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextTwoL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextTwoL" name="rpRentingsTextTwoL">rpRentingsTextTwoL</textarea>              
+                </div>
+                <!-- rpRentingsTabThreeL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabThreeL" class="col-sm-4 control-label">rpRentingsTabThreeL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabThreeL" name="rpRentingsTabThreeL">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextThreeL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextThreeL" name="rpRentingsTextThreeL">rpRentingsTextThreeL</textarea>              
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <!-- packageXL -->
+          <div role="tabpanel" class="tab-pane" id="packageXL">
+            <form class="form form-horizontal" id="addRentingsPackageXL" role="form">
+              <fieldset>
+                <legend>Paket XL:</legend>
+                <!-- rpRentingsTabOneXL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabOneXL" class="col-sm-4 control-label">rpRentingsTabOneXL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabOneXL" name="rpRentingsTabOneXL" value="Übersicht">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextOneXL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextOneXL" name="rpRentingsTextOneXL">rpRentingsTextOneXL</textarea>              
+                </div>
+                <!-- rpRentingsTabTwoXL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabTwoXL" class="col-sm-4 control-label">rpRentingsTabTwoXL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabTwoXL" name="rpRentingsTabTwoXL">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextTwoXL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextTwoXL" name="rpRentingsTextTwoXL">rpRentingsTextTwoXL</textarea>              
+                </div>
+                <!-- rpRentingsTabThreeXL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabThreeXL" class="col-sm-4 control-label">rpRentingsTabThreeXL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabThreeXL" name="rpRentingsTabThreeXL">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextThreeXL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextThreeXL" name="rpRentingsTextThreeXL">rpRentingsTextThreeXL</textarea>              
+                </div>
+                <!-- rpRentingsTabFourXL -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsTabFourXL" class="col-sm-4 control-label">rpRentingsTabFourXL</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsTabFourXL" name="rpRentingsTabFourXL">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsTextFourXL -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsTextFourXL" name="rpRentingsTextFourXL">rpRentingsTextFourXL</textarea>              
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <!-- addTextOne -->
+          <div role="tabpanel" class="tab-pane" id="addTextOne">
+            <form class="form form-horizontal" id="addRentingsAddTextOne" role="form">
+              <fieldset>
+                <!-- rpRentingsAddTextTabOne -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsAddTextTabOne" class="col-sm-4 control-label">rpRentingsAddTextTabOne</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsAddTextTabOne" name="rpRentingsAddTextTabOne">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsAddTextOne -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsAddTextOne" name="rpRentingsAddTextOne">rpRentingsAddTextOne</textarea>              
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <!-- addTextTwo -->
+          <div role="tabpanel" class="tab-pane" id="addTextTwo">
+            <form class="form form-horizontal" id="addRentingsAddTextTwo" role="form">
+              <fieldset>
+                <!-- rpRentingsAddTextTabTwo -->                
+                <div class="form-group is-public">                   
+                  <label for="rpRentingsAddTextTabTwo" class="col-sm-4 control-label">rpRentingsAddTextTabTwo</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rpRentingsAddTextTabTwo" name="rpRentingsAddTextTabTwo">                   
+                  </div>               
+                </div>
+                <!-- rpRentingsAddTextTwo -->                
+                <div class="form-group is-public">                  
+                  <textarea class="form-control summernote" id="rpRentingsAddTextTwo" name="rpRentingsAddTextTwo">rpRentingsAddTextTwo</textarea>              
+                </div>
+              </fieldset>
+            </form>  
+          </div>
+          <!-- rentingsAdditional -->
+          <div role="tabpanel" class="tab-pane active" id="rentingsAdditional">
+            <form class="form form-horizontal" id="addRentingsAdditional" role="form">              
+              {{#if rpRentingsHasHeaderImg}}
+                <legend>Headerbild</legend>
+                <fieldset>
+                  <!-- rpRentingsHeaderImg -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsHeaderImg" class="col-sm-4 control-label">rpRentingsHeaderImg</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="file" class="form-control" id="rpRentingsHeaderImg" name="rpRentingsHeaderImg">                   
+                    </div>               
+                  </div>
+                </fieldset>
+              {{/if}}
+              {{#if rpRentingsHasHeaderSlider}}
+                <legend>Header-Slider</legend>
+                <fieldset>
+                  <!-- rpRentingsHeaderSliderOne -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsHeaderSliderOne" class="col-sm-4 control-label">rpRentingsHeaderSliderOne</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="file" class="form-control" id="rpRentingsHeaderSliderOne" name="rpRentingsHeaderSliderOne">                   
+                    </div>               
+                  </div>
+                  <!-- rpRentingsHeaderSliderTwo -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsHeaderSliderTwo" class="col-sm-4 control-label">rpRentingsHeaderSliderTwo</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="file" class="form-control" id="rpRentingsHeaderSliderTwo" name="rpRentingsHeaderSliderTwo">                   
+                    </div>               
+                  </div>
+                  <!-- rpRentingsHeaderSliderThree -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsHeaderSliderThree" class="col-sm-4 control-label">rpRentingsHeaderSliderThree</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="file" class="form-control" id="rpRentingsHeaderSliderThree" name="rpRentingsHeaderSliderThree">                   
+                    </div>               
+                  </div>
+                  <!-- rpRentingsHeaderSliderFour -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsHeaderSliderFour" class="col-sm-4 control-label">rpRentingsHeaderSliderFour</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="file" class="form-control" id="rpRentingsHeaderSliderFour" name="rpRentingsHeaderSliderFour">                   
+                    </div>               
+                  </div>
+                </fieldset>
+              {{/if}}
+              {{#if rpRentingsHasGalleryS}}
+                <legend>Galerie (klein)</legend>
+                <fieldset>
+                  <!-- rpRentingsHeaderImg -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsHeaderImg" class="col-sm-4 control-label">rpRentingsHeaderImg</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="file" class="form-control" id="rpRentingsHeaderImg" name="rpRentingsHeaderImg" multiple>                   
+                    </div>               
+                  </div>
+                </fieldset>
+              {{/if}}
+            </form>  
+          </div>
+        </div>
       </div>
     </div>
   </div>
