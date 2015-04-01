@@ -6,11 +6,25 @@ Meteor.methods({
       AvCustomers.update(customerId, {$set: {avIsApproved: false}});
     }
   },
-  setAvCustomersFeatured: function(customerId, settings) {
+  setAvCustomersPortalsAV: function(customerId, settings) {
     if(settings == true){
-      AvCustomers.update(customerId, {$set: {avIsFeatured: true}});
+      AvCustomers.update(customerId, {$set: {avHasAV: true}});
     } else {
-      AvCustomers.update(customerId, {$set: {avIsFeatured: false}});
+      AvCustomers.update(customerId, {$set: {avHasAV: false}});
+    }
+  },
+  setAvCustomersPortalsRP: function(customerId, settings) {
+    if(settings == true){
+      AvCustomers.update(customerId, {$set: {avHasRP: true}});
+    } else {
+      AvCustomers.update(customerId, {$set: {avHasRP: false}});
+    }
+  },
+  setAvCustomersPortalsKG: function(customerId, settings) {
+    if(settings == true){
+      AvCustomers.update(customerId, {$set: {avHasKG: true}});
+    } else {
+      AvCustomers.update(customerId, {$set: {avHasKG: false}});
     }
   },
   updateAvCustomers:  function(customerId, customerData) {

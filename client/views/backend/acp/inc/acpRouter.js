@@ -2,7 +2,19 @@
 AcpController = RouteController.extend({
   layoutTemplate: 'acpLayout',
   loadingTemplate: 'loading',
-  notFoundTemplate: 'notFound'
+  notFoundTemplate: 'notFound',
+  before: function() {
+    if (! Meteor.user()) {
+      if (Meteor.loggingIn()){
+        this.render(this.loadingTemplate);
+      } else {
+        this.redirect('/login');
+        this.next();
+      }
+    } else {
+      this.next();
+    }
+  }
 });
 
 Router.route('/acp', function (){ 
@@ -33,15 +45,23 @@ Router.route('/acp/acl', function (){
   controller: 'AcpController'
 });
 
+Router.route('/acp/al', function (){ 
+  this.render('acpAvAssociationsList');
+}, {
+  name: 'acp.associationslist',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/bil', function (){ 
+  this.render('acpAvBlockIndicatorsList');
+}, {
+  name: 'acp.blockindicatorslist',
+  controller: 'AcpController'
+});
+
+/** KUNDEN **/
 Router.route('/acp/kdn', function (){ 
-  this.render('acpCustomerlist', {
-    waitOn: function() {
-      return Meteor.subscribe('getAllAvCustomers');
-    },
-    data: function() {
-      //return AvCustomers.find({}, {sort: { avIdOld: 1}});
-    }
-  });
+  this.render('acpAvCustomersList');
 }, {
   name: 'acp.customers',
   controller: 'AcpController'
@@ -56,14 +76,15 @@ Router.route('/acp/kd/new', function (){
 
 Router.route('/acp/kd/edit/:_id', function (){ 
   this.render('acpCustomerEdit', {
-    waitOn: function() {
-      return [
-        Meteor.subscribe('getSingleAvCustomers', this.params._id),
-        Meteor.subscribe('getAllAvBlockIndicators')
-      ];
-    },
+    //waitOn: function() {
+    //  return [
+    //    Meteor.subscribe('getSingleAvCustomers', this.params._id),
+    //    Meteor.subscribe('getAllAvBlockIndicators')
+    //  ];
+    //},
     data: function() {
-      Meteor.subscribe('getSingleAvCustomers', this.params._id);
+      Session.set('customerId', this.params._id);
+      //Meteor.subscribe('getSingleAvCustomers', this.params._id);
       return AvCustomers.findOne({_id: this.params._id});
     }
   });

@@ -1,19 +1,23 @@
-//-- template created functions
-Template.acpAddressChaptersList.created = function(){
-};
+//-- template onCreated functions
+Template.acpAddressChaptersList.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('acp_allAvChapters');
+  });
+});
 
-//-- template destroyed functions
-Template.acpAddressChaptersList.destroyed = function(){
-};
+//-- template onDestroyed functions
+Template.acpAddressChaptersList.onDestroyed(function () {
+});
 
-//-- template rendered functions
-Template.acpAddressChaptersList.rendered = function(){
-};
+//-- template onRendered functions
+Template.acpAddressChaptersList.onRendered(function () {
+});
 
 //-- template helpers                            
 Template.acpAddressChaptersList.helpers({
   getList: function() {
-    return AddressChapters.find();
+    return AvChapters.find({}, {sort: {chapterShort: 1}});
   }
 });
 

@@ -30,3 +30,7 @@ Meteor.publish('getChaptersAvCustomers', function(chapterIndex) {
   });
   self.ready();
 });
+
+Meteor.publish('getLastInsertedCustomer', function() {
+  return AvCustomers.find({}, {sort: {avSubmitted: -1}, limit: 1});
+});

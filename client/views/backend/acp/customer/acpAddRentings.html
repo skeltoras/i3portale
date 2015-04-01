@@ -169,14 +169,6 @@
                 <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderImg" name="rpRentingsHasHeaderImg">
               </div>
             </div>
-            <div class="form-group">    
-              <!-- rpRentingsHasHeaderSlider --> 
-              <label for="rpRentingsHasHeaderSlider" class="col-sm-8 control-label">rpRentingsHasHeaderSlider</label>
-              <div class="col-sm-4">
-                <input type="checkbox" class="checkbox acp" id="rpRentingsHasHeaderSlider" name="rpRentingsHasHeaderSlider">
-              </div>
-            </div>     
-            <hr>
             <div class="form-group">
               <!-- rpRentingsHasGalleryS -->     
               <label for="rpRentingsHasGalleryS" class="col-sm-8 control-label">rpRentingsHasGalleryS</label>
@@ -459,16 +451,53 @@
               {{#if rpRentingsHasGalleryM}}
                 <legend>Galerie (groß)</legend>
                 <fieldset>
+                  <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
+                  </form>
                 </fieldset>
               {{/if}}
               {{#if rpRentingsHasVideo}}
                 <legend>Video</legend>
                 <fieldset>
+                  <!-- rpRentingsVideoUrl -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsVideoUrl" class="col-sm-4 control-label">rpRentingsVideoUrl</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rpRentingsVideoUrl" name="rpRentingsVideoUrl">                   
+                    </div>               
+                  </div>
                 </fieldset>
               {{/if}}
               {{#if rpRentingsHasSocialMedia}}
                 <legend>Social Media</legend>
                 <fieldset>
+                  <!-- rpRentingsFacebookData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsFacebookData" class="col-sm-4 control-label">rpRentingsFacebookData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rpRentingsFacebookData" name="rpRentingsFacebookData">                   
+                    </div>               
+                  </div>
+                  <!-- rpRentingsTwitterData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsTwitterData" class="col-sm-4 control-label">rpRentingsTwitterData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rpRentingsTwitterData" name="rpRentingsTwitterData">                   
+                    </div>               
+                  </div>
+                  <!-- rpRentingsGplusData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsGplusData" class="col-sm-4 control-label">rpRentingsGplusData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rpRentingsGplusData" name="rpRentingsGplusData">                   
+                    </div>               
+                  </div>
+                  <!-- rpRentingsYoutubeData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rpRentingsYoutubeData" class="col-sm-4 control-label">rpRentingsYoutubeData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rpRentingsYoutubeData" name="rpRentingsYoutubeData">                   
+                    </div>               
+                  </div>                
                 </fieldset>
               {{/if}} 
             </div>

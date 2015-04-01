@@ -35,4 +35,5 @@ cfs:ui
 cfs:filesystem
 cfs:gridfs
 cfs:graphicsmagick
-raix:ui-dropped-event
+dbarrett:dropzonejs
+spiderable

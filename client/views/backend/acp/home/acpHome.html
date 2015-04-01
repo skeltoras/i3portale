@@ -1,13 +1,29 @@
 <template name="acpHome">
-  {{getAvChapters}}
+{{#if Template.subscriptionsReady}} 
   <div class="container acp">
     <div class="row">
-      <div class="col-sm-12 text-center">
-        <h2>Dashboard</h2>
+      <div class="col-sm-12">
+        <h2>{{#with currentUser}}{{#with profile}}Willkommen <small>{{first_name}} {{last_name}}</small>{{/with}}{{/with}}</h2>
       </div>
     </div>
     <div class="spacer-20"></div>
     <div class="row">
+      <div class="col-sm-12">
+        <p>Es sind zur Zeit <strong>{{countAll}}</strong> Kunden im System, davon sind <strong>{{countApproved}}</strong> freigegeben.</p>
+        <p>Kunden ohne Mailadresse: <strong>{{countWithoutMail}}</strong></p>
+        <p>Änderungen ohne Bestätigung:</p>
+        <p>Neuester Kunde:</p>
+        <p>Letzte Änderung:</p>
+        <hr>
+        <h3>AV-Portal</h3>
+        <p>Aktive Kunden:</p>
+        <h3>Reiseportal</h3>
+        <p>Aktive Vermietungen:</p>
+        <p>Aktive Reisen:</p>
+      </div>
     </div>
   </div>
+{{else}}
+  {{> loading}}
+{{/if}}
 </template>

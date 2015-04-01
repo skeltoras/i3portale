@@ -16,7 +16,7 @@ Template.checkBlockIndicators.rendered = function(){
 //-- template helpers                            
 Template.checkBlockIndicators.helpers({
   getBlockIndicators: function() {
-    Meteor.subscribe('getAllAvBlockIndicators');
+    //Meteor.subscribe('getAllAvBlockIndicators');
     var listItems = AvBlockIndicators.find({});
     var listItem = [];
     var getAvCustomerData = AvCustomers.findOne({_id: this._id}).avBlockIndicators;
@@ -31,7 +31,7 @@ Template.checkBlockIndicators.helpers({
           getBlocksShort = getAvCustomerData[i].short;
           
           if(avBlockIndicatorsShort == getBlocksShort){
-            listItem += ['<div class="col-sm-6"><label for="' + avBlockIndicatorsShort + '" class="col-sm-6 control-label">' + avBlockIndicatorsShort + '</label><div class="col-sm-6"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsShort + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsName + '" checked="checked"></div></div>'];
+            listItem += ['<div class="form-group"><div class="col-sm-2"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsName + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsShort + '" checked="checked"></div><label for="' + avBlockIndicatorsShort + '" class="col-sm-10">' + avBlockIndicatorsName + '</label></div>'];
             testFor = true;
             break;
           }
@@ -39,7 +39,7 @@ Template.checkBlockIndicators.helpers({
       }
       
       if(!testFor) {
-        listItem += ['<div class="col-sm-6"><label for="' + avBlockIndicatorsShort + '" class="col-sm-6 control-label">' + avBlockIndicatorsShort + '</label><div class="col-sm-6"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsShort + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsName + '"></div></div>'];              
+        listItem += ['<div class="form-group"><div class="col-sm-2"><input type="checkbox" class="checkbox acp blocks" id="' + avBlockIndicatorsShort + '" name="' + avBlockIndicatorsName + '" rel="txtTooltip" data-toggle="tooltip" data-placement="right" title="' + avBlockIndicatorsShort + '"></div><label for="' + avBlockIndicatorsShort + '" class="col-sm-10">' + avBlockIndicatorsName + '</label></div>'];              
       }
     });
     return listItem;
@@ -51,7 +51,7 @@ Template.checkBlockIndicators.events({
   'click .checkbox.acp.blocks': function(e){
     var avCustomersId = this._id;
     var avBlockIndicatorsShort = e.currentTarget.id;
-    var avBlockIndicatorsName = e.currentTarget.title;
+    var avBlockIndicatorsName = e.currentTarget.name;
     var addData = [];
     var removeData = [];
     addData = {
@@ -64,16 +64,16 @@ Template.checkBlockIndicators.events({
     if(e.currentTarget.checked == true ){
       Meteor.call('addAvCustomersBlockIndicators', avCustomersId, addData, function(error, result){
         if(error)
-          console.log(error);
+          console.log(error);  //debug
         if(result)
-          console.log(result);
+          console.log(result); //debug
       }); 
     } else {
       Meteor.call('removeAvCustomersBlockIndicators', avCustomersId, removeData, function(error, result){
         if(error)
-          console.log(error);
+          console.log(error); //debug
         if(result)
-          console.log(result);
+          console.log(result); //debug
       });
     }   
   } 

@@ -1,19 +1,23 @@
-//-- template created functions
-Template.acpCountryList.created = function(){
-};
+//-- template onCreated functions
+Template.acpCountryList.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('acp_allCountries');
+  });
+});
 
-//-- template destroyed functions
-Template.acpCountryList.destroyed = function(){
-};
+//-- template onDestroyed functions
+Template.acpCountryList.onDestroyed(function () {
+});
 
-//-- template rendered functions
-Template.acpCountryList.rendered = function(){
-};
+//-- template onRendered functions
+Template.acpCountryList.onRendered(function () {
+});
 
 //-- template helpers                            
 Template.acpCountryList.helpers({
   getList: function() {
-    return Countries.find();
+    return AvCountries.find();
   }
 });
 

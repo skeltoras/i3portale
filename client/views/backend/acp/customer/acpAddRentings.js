@@ -27,6 +27,8 @@ Template.acpAddRentings.rendered = function(){
     tokenSeparators : [',']
   });
   $('.summernote').summernote();
+  //Dropzone.autoDiscover = false;
+  //var dropzone = new Dropzone('.dropzone');
 };
 
 //-- template helpers

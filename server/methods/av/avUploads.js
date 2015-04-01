@@ -11,39 +11,66 @@ Meteor.methods({
       console.log('AV-Kunde ' + avName1 + ' schon vorhanden'); // server console
     } else {    
       var customerData = {
+        // old fields
         avIdOld: avId,
         avKDNr: data.nKundennummer,
+        avRandomSort: avRandomSort,
         avCreatedOld: data.dErfassung,
         avChangedOld: data.dAenderung,
         avName1Old: avName1,
         avName2Old: data.tName2,
+        avRegisterNameOld: data.tRegistername,
+        avAlpha1Old: data.tAlpha1,
+        avAlpha2Old: data.tAlpha2,
+        avAlpha3Old: data.tAlpha3,
         avLegalForm: data.tRechtsform,
+        avCityPartOld: data.tOrtsteil,
+        avKantonOld: data.tKanton,
+        avCountryOldId: data.xLand,
+        avQuestionToCustomerOld: data.tFragenAnKunde,
+        avAnswerFromCustomerOld: data.tMitteilung,
+        avbMultiplikatorOld: data.bMultiplikator,
+        avbProbeaboOld: data.bProbeabo,
+        avbInteresseAnzeigenOld: data.bInteresseAnzeigen,
+        avbInteressePrintausgabeOld: data.bInteressePrintausgabe,
+        avbKeinBelegexemplarOld: data.bKeinBelegexemplar,
+        avmNotizenOld: data.mNotizen,
+        avShortinfo2Old: data.tKInfo2,
+        avSelfinfoOld: data.mSelbstdarstellung,
+        avCountEmployeesOld: data.nAnzahlMitarbeiter,
+        // actual fields
+        avId: avId,
+        avCustomerName: '',  
         avDepartment: data.tZusatz,
         avPostAddition: data.tCoPost,
         avStreet: data.tStrasse,
         avPlz: data.tPLZ,
         avCity: data.tOrt,
-        avCityPartOld: data.tOrtsteil,
-        avCountryOldId: data.xLand,
+        avRegion: '',
+        avCountry: '',
         avTelephoneFormal: data.tTelefon,
-        avTelephoneInformal: data.tTelefon2,
+        avTelephoneInternal: data.tTelefon2,
         avTelefax: data.tFax,
+        avMobil: '',
         avMailInternal: data.tEmail,
         avMailContact: data.tEmail2,
         avMailFormal: data.tEmail3,
         avMailNewsletter: data.tEmail4,
         avUrl: data.tWeb,
         avShortinfo: data.tKurzinfo,
-        avSelfinfoOld: data.mSelbstdarstellung,
-        avCountEmployees: data.nAnzahlMitarbeiter,
-        avRegisterNameOld: data.tRegistername,
-        avShortinfo2: data.tKInfo2,
         avContactPerson: data.tAnsprechpartner, 
-        avRandomSort: avRandomSort,   
         avSiteUrl: avSiteUrl,
-        avNotes: 'tSelektion: ' + data.tSelektion + ', xSperre' + data.xSperre + ', Sperrgrund: ' + data.tSperrgrund + ' am: ' + data.dSperrdatum + ', Notizen: ' + data.mNotizen, 
+        avNotes: 'tSelektion: ' + data.tSelektion + ', xSperre: ' + data.xSperre + ', Sperrgrund: ' + data.tSperrgrund + ' am: ' + data.dSperrdatum, 
         avIsApproved: false,
         avIsFeatured: false,
+        avHasAV: false,
+        avHasRP: false,
+        avHasKG: false,
+        avAddressChapters: [],
+        avAssociations: [],
+        avBlockIndicators: [],
+        avCampaigns: [],
+        avEducations: [],
         avChanges: [{date: new Date().getTime(), content: 'AV-Kunde importiert', user: 'Skeltoras'}],
         avSubmitted: new Date().getTime(),
         avUpdatedAt: new Date().getTime()      
@@ -104,14 +131,9 @@ Meteor.methods({
   uplAvChaptersSections: function(data){
     var chapterIndex = data.idAdressbereich;
     var name = data.tName_de;
-    var sectionsData = [];
-    sectionsData = {
-      id: chapterIndex,
-      name: name
-    }  
     var setData = AvChapters.find({chapterIndex: chapterIndex});   
     setData.forEach(function(section){
-      AvChapters.update(section._id, {$addToSet: {sections: sectionsData}});
+      AvChapters.update(section._id, {$set: {chapterSection: name}});
       console.log(name + ' bei ' + section.chapterShort + ' eingetragen'); // server console    
     })
   },
@@ -253,11 +275,8 @@ Meteor.methods({
     var getBlockIndicator = AvBlockIndicators.findOne({blocksOldId: blocksOldId});
     var avCustomersData = [];
     avBlockIndicatorsData = {
-      id: blocksOldId,
       short: getBlockIndicator.blocksShort,
-      name: getBlockIndicator.blocksName,
-      reason: '',
-      blockDate: new Date().getTime()   
+      name: getBlockIndicator.blocksName
     }
     var setData = AvCustomers.find({avIdOld: avCustomerId});    
     setData.forEach(function(customer){

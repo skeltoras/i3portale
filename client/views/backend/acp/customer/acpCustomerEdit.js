@@ -1,15 +1,21 @@
-//-- template created functions
-Template.acpCustomerEdit.created = function(){ 
+//-- template onCreated functions
+Template.acpCustomerEdit.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('acp_getSingleAvCustomer', Session.get('customerId'));
+    self.subscribe('getAllAvCountries');
+    self.subscribe('getAllAvBlockIndicators');
+  });
   Session.set('editMode', false);
-};
+});
 
-//-- template destroyed functions
-Template.acpCustomerEdit.destroyed = function(){
-};
+//-- template onDestroyed functions
+Template.acpCustomerEdit.onDestroyed(function () {
+});
 
-//-- template rendered functions
-Template.acpCustomerEdit.rendered = function(){
-};
+//-- template onRendered functions
+Template.acpCustomerEdit.onRendered(function () {
+});
 
 //-- template helpers
 Template.acpCustomerEdit.helpers({
@@ -29,12 +35,12 @@ Template.acpCustomerEdit.helpers({
 Template.acpCustomerEdit.events({
   'click #changeEditMode': function(e) {
     e.preventDefault();
-    if(e.currentTarget.className == "btn btn-danger"){
-      e.currentTarget.className = 'btn btn-info';
+    if(e.currentTarget.className == "btn btn-info"){
+      e.currentTarget.className = 'btn btn-danger';
       e.currentTarget.innerText = 'Editiermodus ist an';
       Session.set('editMode', true);
-    } else if(e.currentTarget.className == "btn btn-info"){
-      e.currentTarget.className = 'btn btn-danger';
+    } else if(e.currentTarget.className == "btn btn-danger"){
+      e.currentTarget.className = 'btn btn-info';
       e.currentTarget.innerText = 'Editiermodus ist aus';
       Session.set('editMode', false);
     }
@@ -49,13 +55,13 @@ Template.acpCustomerEdit.events({
       settings = false;
     }
     Meteor.call('setAvCustomersApproved', customerId, settings, function(error, result){
-      if(error)
-        console.log(error);
-      if(result)
-        console.log(result);
+      //if(error)
+        //console.log(error); //debug
+      //if(result)
+        //console.log(result); //debug
     });
   },
-  'click #avIsFeatured': function(e) {
+  'click #avHasAV': function(e) {
     //e.preventDefault();
     var settings = false;
     var customerId = this._id;
@@ -64,62 +70,134 @@ Template.acpCustomerEdit.events({
     } else {
       settings = false;
     }
-    Meteor.call('setAvCustomersFeatured', customerId, settings, function(error, result){
+    Meteor.call('setAvCustomersPortalsAV', customerId, settings, function(error, result){
       if(error)
-        console.log(error);
+        toastr.warning(error);
       if(result)
-        console.log(result);
+        toastr.success('Portaleinstellung erfolgreich geändert');
     });
   },
-  'click #addRentings': function(e) {
-    e.preventDefault();
+  'click #avHasRP': function(e) {
+    //e.preventDefault();
+    var settings = false;
     var customerId = this._id;
-    Router.go('acp.rentings.add', {_id: customerId});
-  },  
+    if(e.currentTarget.checked == true ){
+      settings = true;  
+    } else {
+      settings = false;
+    }
+    Meteor.call('setAvCustomersPortalsRP', customerId, settings, function(error, result){
+      if(error)
+        toastr.warning(error);
+      if(result)
+        toastr.success('Portaleinstellung erfolgreich geändert');
+    });
+  },
+  'click #avHasKG': function(e) {
+    //e.preventDefault();
+    var settings = false;
+    var customerId = this._id;
+    if(e.currentTarget.checked == true ){
+      settings = true;  
+    } else {
+      settings = false;
+    }
+    Meteor.call('setAvCustomersPortalsKG', customerId, settings, function(error, result){
+      if(error)
+        toastr.warning(error);
+      if(result)
+        toastr.success('Portaleinstellung erfolgreich geändert');
+    });
+  },
   'submit #editCustomerData': function(e) {
     e.preventDefault();
     var customerId = this._id;
     var customerData = [];
+    var countryData = [];
     var customerName = $(e.target).find('[name=avCustomerName]').val();
+    var avIsApproved = false;
+    var avIsFeatured = false;
+    
+    $('#countryData :selected').each(function(i, selected){
+      countryData[i] = {
+        avCountryOldId: $(selected).val(),
+        avCountry: $(selected).text()
+      };
+    });
+    
+    if($(e.target).find('[name=avIsApproved]').is(':checked')) {
+      avIsApproved = true;   
+    }
+    
+    if($(e.target).find('[name=avIsFeatured]').is(':checked')) {
+      avIsFeatured = true;   
+    }
+    
     
     customerData = {
+      // old fields
+      //avIdOld: '',
+      avKDNr: $(e.target).find('[name=avKDNr]').val(),
+      avRandomSort: $(e.target).find('[name=avRandomSort]').val(),
+      avName1Old: $(e.target).find('[name=avName1Old]').val(),
+      avName2Old: $(e.target).find('[name=avName2Old]').val(),
+      avRegisterNameOld: $(e.target).find('[name=avName2Old]').val(),
+      avAlpha1Old: $(e.target).find('[name=avAlpha1Old]').val(),
+      avAlpha2Old: $(e.target).find('[name=avAlpha2Old]').val(),
+      avAlpha3Old: $(e.target).find('[name=avAlpha3Old]').val(),
+      avLegalForm: $(e.target).find('[name=avLegalForm]').val(),
+      avCityPartOld: $(e.target).find('[name=avCityPartOld]').val(),
+      avKantonOld: $(e.target).find('[name=avKantonOld]').val(),
+      avCountryOldId: countryData[0].avCountryOldId,
+      avQuestionToCustomerOld: $(e.target).find('[name=avQuestionToCustomerOld]').val(),
+      avAnswerFromCustomerOld: $(e.target).find('[name=avAnswerFromCustomerOld]').val(),
+      //avbMultiplikatorOld: '',
+      //avbProbeaboOld: '',
+      //avbInteresseAnzeigenOld: '',
+      //avbInteressePrintausgabeOld: '',
+      //avbKeinBelegexemplarOld: '',
+      avmNotizenOld: $(e.target).find('[name=avmNotizenOld]').val(),
+      avbProbeaboOld: $(e.target).find('[name=avbProbeaboOld]').val(),
+      avShortinfo2Old: $(e.target).find('[name=avShortinfo2Old]').val(),
+      avSelfinfoOld: $(e.target).find('[name=avSelfinfoOld]').val(),
+      avCountEmployeesOld: $(e.target).find('[name=avCountEmployees]').val(),      
       // official fields
+      //avId: '',
       avCustomerName: $(e.target).find('[name=avCustomerName]').val(),
       avDepartment: $(e.target).find('[name=avDepartment]').val(),
       avPostAddition: $(e.target).find('[name=avPostAddition]').val(),
       avStreet: $(e.target).find('[name=avStreet]').val(),
       avPlz: $(e.target).find('[name=avPlz]').val(),
-      avCity: $(e.target).find('[name=avCity]').val(),
-      avCountry: $(e.target).find('[name=avCountry]').val(),
+      avCity: $(e.target).find('[name=avCity]').val(),     
+      avCountry: countryData[0].avCountry, 
       avTelephoneFormal: $(e.target).find('[name=avTelephoneFormal]').val(),
       avTelefax: $(e.target).find('[name=avTelefax]').val(),
       avMailFormal: $(e.target).find('[name=avMailFormal]').val(),
       avUrl: $(e.target).find('[name=avUrl]').val(),
       avShortinfo: $(e.target).find('[name=avShortinfo]').val(),
-      avFacebookData: $(e.target).find('[name=avFacebookData]').val(),
-      avTwitterData: $(e.target).find('[name=avTwitterData]').val(),
-      avGplusData: $(e.target).find('[name=avGplusData]').val(),
-      avYoutubeData: $(e.target).find('[name=avYoutubeData]').val(),
       // inofficial fields
-      avKDNr: $(e.target).find('[name=avKDNr]').val(),
-      avSiteUrl: $(e.target).find('[name=avSiteUrl]').val(),
-      avName1Old: $(e.target).find('[name=avName1Old]').val(),
-      avName2Old: $(e.target).find('[name=avName2Old]').val(),
-      avLegalForm: $(e.target).find('[name=avLegalForm]').val(),
       avRegion: $(e.target).find('[name=avRegion]').val(),
       avTelephoneInternal: $(e.target).find('[name=avTelephoneInternal]').val(),
       avMobil: $(e.target).find('[name=avMobil]').val(),
-      avContactPerson: $(e.target).find('[name=avContactPerson]').val(),
       avMailInternal: $(e.target).find('[name=avMailInternal]').val(),
       avMailNewsletter: $(e.target).find('[name=avMailNewsletter]').val(),
       avMailContact: $(e.target).find('[name=avMailContact]').val(),
-      avCountEmployees: $(e.target).find('[name=avCountEmployees]').val(),
-      avShortinfo2: $(e.target).find('[name=avShortinfo2]').val(),
-      avSelfinfoOld: $(e.target).find('[name=avSelfinfoOld]').val(),
+      avContactPerson: $(e.target).find('[name=avContactPerson]').val(),
+      avSiteUrl: $(e.target).find('[name=avSiteUrl]').val(),
       avNotes: $(e.target).find('[name=avNotes]').val(),
+      avIsApproved: avIsApproved,
+      avIsFeatured: avIsFeatured,
+      //avPortalsCheck: [],
+      //avAddressChapters: [],
+      //avAssociations: [],
+      //avBlockIndicators: [],
+      //avCampaigns: [],
+      //avEducations: [],
+      //avChanges: [],
       avUpdatedAt: new Date().getTime()
     }
     
+    //console.log(customerData);
     Meteor.call('updateAvCustomers', customerId, customerData, function(error, result){
       if(error)
         toastr.warning(error);
