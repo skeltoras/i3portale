@@ -1,4 +1,5 @@
 <template name="avHome">
+{{#if Template.subscriptionsReady}}
   <img src="/img/av/header-av-1.jpg" style="width: 100%"/>
   <div class="container av">
     <div class="row">
@@ -33,4 +34,7 @@
       {{/each}}
     </div>
   </div>
+{{else}}
+  {{> loading}}
+{{/if}}
 </template>

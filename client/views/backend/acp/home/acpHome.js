@@ -2,7 +2,10 @@
 Template.acpHome.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('acp_countAllAvCustomers');
+    self.subscribe('acp_countAvCustomers');   
+    self.subscribe('acp_getNewestAvCustomers');
+    self.subscribe('acp_getLastEditedAvCustomers');
+    //self.subscribe('acp_AllAvCustomers');    
   });
 });
 
@@ -16,14 +19,11 @@ Template.acpHome.onRendered(function () {
 
 //-- template helpers                            
 Template.acpHome.helpers({
-  countAll: function(){
-    return AvCustomers.find().count();
+  getLastCustomer: function(){
+    return AvCustomers.findOne({}, {sort: {avSubmitted: -1}});
   },
-  countApproved: function(){
-    return AvCustomers.find({avIsApproved: true}).count();
-  },
-  countWithoutMail: function(){
-    return AvCustomers.find({$and: [{avMailInternal: {$exists: false}},{avMailContact: {$exists: false}},{avMailFormal: {$exists: false}},{avMailNewsletter: {$exists: false}}]}).count();
+  getLastEditedCustomer: function(){
+    return AvCustomers.findOne({}, {sort: {avUpdatedAt: -1}});
   }
 });
 

@@ -1,7 +1,7 @@
 Meteor.methods({
   //customerData
   uplAvCustomers: function(data){
-    var avId = data.idAdresse;
+    var avId = Number(data.idAdresse);
     var avRandomSort = _.random(100000, 999999);
     var avName1 = data.tName;    
     var avSiteUrl = avName1.replace(/\./g, "").replace(/ /g, "_").replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/Ä/g,"Ae").replace(/Ö/g,"Oe").replace(/Ü/g,"Ue").replace(/ß/g,"ss") + '_' + _.uniqueId();
@@ -12,7 +12,7 @@ Meteor.methods({
     } else {    
       var customerData = {
         // old fields
-        avIdOld: avId,
+        avIdOld: data.idAdresse,
         avKDNr: data.nKundennummer,
         avRandomSort: avRandomSort,
         avCreatedOld: data.dErfassung,

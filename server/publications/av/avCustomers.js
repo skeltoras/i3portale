@@ -12,7 +12,7 @@ Meteor.publish('getSingleCustomerPage', function(avSiteUrl) {
 
 // get all customers with approved and withut blocks: I, S, V, X, Z
 Meteor.publish('getHomeAvCustomers', function() {
-  return AvCustomers.find({avIsApproved: true, avIsFeatured: true, $and: [{'avBlockIndicators.short': { $ne: 'I' }}, {'avBlockIndicators.short': { $ne: 'S' }}, {'avBlockIndicators.short': { $ne: 'V' }}, {'avBlockIndicators.short': { $ne: 'X' }}, {'avBlockIndicators.short': { $ne: 'Z' }} ]}, {fields: {avSiteUrl: 1, avCustomerName: 1, avStreet: 1, avPlz: 1, avCity: 1, avCountry: 1, avShortinfo: 1}});
+  return AvCustomers.find({avHasAV: true}, {fields: {avSiteUrl: 1, avCustomerName: 1, avStreet: 1, avPlz: 1, avCity: 1, avCountry: 1, avShortinfo: 1}, limit: 6});
 });
 
 // get all customers with approved and withut blocks: I, S, V, X, Z

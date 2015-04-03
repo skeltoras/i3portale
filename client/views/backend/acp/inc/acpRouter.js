@@ -129,3 +129,23 @@ Router.route('/acp/kd/rp/:customerId/edit/:_id', function (){
   name: 'acp.rentings.edit',
   controller: 'AcpController'
 });
+
+/** AV-PORTAL **/
+Router.route('/acp/av/list', function (){ 
+  this.render('acpListAV');
+}, {
+  name: 'acp.av.list',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/av/edit/:_id', function (){ 
+  this.render('acpEditAV', {
+    data: function() {
+      Session.set('customerId', this.params._id);
+      return AvCustomers.findOne({_id: this.params._id});
+    }
+  });
+}, {
+  name: 'acp.av.edit',
+  controller: 'AcpController'
+});

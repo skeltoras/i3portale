@@ -1,0 +1,28 @@
+<template name="acpListAV">
+{{#if Template.subscriptionsReady}} 
+  <div class="container acp">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>AV-Portal</h2>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table table-horizontal">
+          <thead>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            {{#each getList}}
+              <tr><td><a href="/acp/av/edit/{{_id}}">{{avCustomerName}}</a></td></tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

@@ -1,0 +1,310 @@
+<template name="acpEditAV">
+  <div class="container acp">
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-default panel-av-detail">
+          <div class="panel-heading"><h3>{{avCustomerName}} <small>(Vorschau)</small></h3></div>
+          <div class="panel-body">
+            <p>
+              {{avShortinfo}}
+            </p>
+            <h3>Adresse</h3>
+            <p>
+              {{#if avDepartment}}{{avDepartment}}<br>{{/if}}
+              {{#if avPostAddition}}{{avPostAddition}}<br>{{/if}}
+              {{#if avStreet}}{{avStreet}}<br>{{/if}}
+              {{#if avPlz}}{{avPlz}}{{/if}} {{#if avCity}}{{avCity}}<br>{{/if}}     
+              {{#if avCountry}}{{avCountry}}{{/if}}
+            </p>
+            <h3>Kontakt</h3>
+            <p>
+              {{#if avTelephoneFormal}}<i class="fa fa-phone"></i> {{avTelephoneFormal}}<br>{{/if}}
+              {{#if avTelefax}}<i class="fa fa-fax"></i> {{avTelefax}}<br>{{/if}}
+              {{#if avMailFormal}}<i class="fa fa-envelope"></i> {{avMailFormal}}<br>{{/if}}
+            </p>          
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <form class="form form-horizontal">
+          <div class="row">
+            <legend>Optionen</legend>
+            <div class="col-sm-4">        
+              <fieldset>
+                <!-- avDataHasPackageS -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasPackageS}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageS" name="avDataHasPackageS" checked="checked" data-toggle="collapse" data-target="#packageS" aria-expanded="true" aria-controls="packageS">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageS" name="avDataHasPackageS" data-toggle="collapse" data-target="#packageS" aria-expanded="false" aria-controls="packageS">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasPackageS" class="col-sm-10">Paket S</label>                                                             
+                </div>
+                <!-- avDataHasPackageM -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasPackageM}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageM" name="avDataHasPackageM" checked="checked" data-toggle="collapse" data-target="#packageM" aria-expanded="true" aria-controls="packageM">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageM" name="avDataHasPackageM" data-toggle="collapse" data-target="#packageM" aria-expanded="false" aria-controls="packageM">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasPackageM" class="col-sm-10">Paket M</label>                                                             
+                </div>          
+                <!-- avDataHasPackageL -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasPackageL}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageL" name="avDataHasPackageL" checked="checked" data-toggle="collapse" data-target="#packageL" aria-expanded="true" aria-controls="packageL">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageL" name="avDataHasPackageL" data-toggle="collapse" data-target="#packageL" aria-expanded="false" aria-controls="packageL">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasPackageL" class="col-sm-10">Paket L</label>                                                             
+                </div>          
+                <!-- avDataHasPackageXL -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasPackageXL}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageXL" name="avDataHasPackageXL" checked="checked" data-toggle="collapse" data-target="#packageXL" aria-expanded="true" aria-controls="packageXL">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasPackageXL" name="avDataHasPackageXL" data-toggle="collapse" data-target="#packageXL" aria-expanded="false" aria-controls="packageXL">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasPackageXL" class="col-sm-10">Paket XL</label>                                                             
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-4">
+              <fieldset>          
+                <!-- avDataHasAddTextOne -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasAddTextOne}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextOne" name="avDataHasAddTextOne" checked="checked" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="true" aria-controls="toAddTextOne">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextOne" name="avDataHasAddTextOne" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="false" aria-controls="toAddTextOne">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasAddTextOne" class="col-sm-10">Zusatztext 1</label>                                                             
+                </div> 
+                <!-- avDataHasAddTextTwo -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasAddTextTwo}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextTwo" name="avDataHasAddTextTwo" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextTwo" name="avDataHasAddTextTwo" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasAddTextTwo" class="col-sm-10">Zusatztext 2</label>                                                             
+                </div>
+                <!-- avDataHasGalleryS -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasGalleryS}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryS" name="avDataHasGalleryS" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryS" name="avDataHasGalleryS" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasGalleryS" class="col-sm-10">kleine Galerie</label>                                                             
+                </div>        
+                <!-- avDataHasGalleryM -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasGalleryM}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryM" name="avDataHasGalleryM" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryM" name="avDataHasGalleryM" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasGalleryM" class="col-sm-10">große Galerie</label>                                                             
+                </div>         
+              </fieldset>
+            </div>
+            <div class="col-sm-4">
+              <fieldset>          
+                <!-- avDataHasWebsite -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasWebsite}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasWebsite" name="avDataHasWebsite" checked="checked" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="true" aria-controls="toAddTextOne">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasWebsite" name="avDataHasWebsite" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="false" aria-controls="toAddTextOne">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasWebsite" class="col-sm-10">Website</label>                                                             
+                </div> 
+                <!-- avDataHasHeaderImg -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasHeaderImg}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasHeaderImg" name="avDataHasHeaderImg" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasHeaderImg" name="avDataHasHeaderImg" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasHeaderImg" class="col-sm-10">Eigenes Headerbild</label>                                                             
+                </div> 
+                <!-- avDataHasVideo -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasVideo}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasVideo" name="avDataHasVideo" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasVideo" name="avDataHasVideo" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasVideo" class="col-sm-10">Video</label>                                                             
+                </div>
+                <!-- avDataHasSocialMedia -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasSocialMedia}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasSocialMedia" name="avDataHasSocialMedia" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasSocialMedia" name="avDataHasSocialMedia" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasSocialMedia" class="col-sm-10">Social Media</label>                                                             
+                </div>         
+              </fieldset>
+            </div>
+          </div>
+          <div class="spacer-20"></div>
+          <div class="row">
+            <legend>Daten</legend>
+            <div class="col-sm-12"> 
+              <fieldset>
+                <div class="collapse" id="packageS">
+                  <!-- tabOneS -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabOneS" class="col-sm-4 control-label">tabOneS</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabOneS" name="tabOneS" value="{{tabOneS}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textOneS" name="textOneS">{{textOneS}}</div>
+                </div>
+              </fieldset>
+              <div class="spacer-20"></div>
+              <fieldset>
+                <div class="collapse" id="packageM">
+                  <!-- tabOneM -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabOneM" class="col-sm-4 control-label">tabOneM</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabOneM" name="tabOneM" value="{{tabOneM}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textOneM" name="textOneM">{{textOneM}}</div>
+                  <div class="spacer-20"></div>
+                  <!-- tabTwoM -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabTwoM" class="col-sm-4 control-label">tabTwoM</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabTwoM" name="tabTwoM" value="{{tabTwoM}}" placeholder="Unterkunft">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textTwoM" name="textTwoM">{{textTwoM}}</div>
+                </div>
+              </fieldset>
+              <div class="spacer-20"></div>
+              <fieldset>
+                <div class="collapse" id="packageL">
+                  <!-- tabOneL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabOneL" class="col-sm-4 control-label">tabOneL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabOneL" name="tabOneL" value="{{tabOneL}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textOneL" name="textOneL">{{textOneL}}</div>
+                  <div class="spacer-20"></div>
+                  <!-- tabTwoL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabTwoL" class="col-sm-4 control-label">tabTwoL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabTwoL" name="tabTwoL" value="{{tabTwoL}}" placeholder="Unterkunft">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textTwoL" name="textTwoL">{{textTwoL}}</div>
+                  <div class="spacer-20"></div>
+                  <!-- tabThreeL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabThreeL" class="col-sm-4 control-label">tabThreeL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabThreeL" name="tabThreeL" value="{{tabThreeL}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textThreeL" name="textThreeL">{{textThreeL}}</div>
+                </div>
+              </fieldset>
+              <div class="spacer-20"></div>
+              <fieldset>
+                <div class="collapse" id="packageXL">
+                  <!-- tabOneXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabOneXL" class="col-sm-4 control-label">tabOneXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabOneXL" name="tabOneXL" value="{{tabOneXL}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textOneXL" name="textOneXL">{{textOneXL}}</div>
+                  <div class="spacer-20"></div>
+                  <!-- tabTwoXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabTwoXL" class="col-sm-4 control-label">tabTwoXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabTwoXL" name="tabTwoXL" value="{{tabTwoXL}}" placeholder="Unterkunft">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textTwoXL" name="textTwoXL">{{textTwoXL}}</div>
+                  <div class="spacer-20"></div>
+                  <!-- tabThreeXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabThreeXL" class="col-sm-4 control-label">tabThreeXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabThreeXL" name="tabThreeXL" value="{{tabThreeXL}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textThreeXL" name="textThreeXL">{{textThreeXL}}</div>
+                  <div class="spacer-20"></div>
+                  <!-- tabFourXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="tabFourXL" class="col-sm-4 control-label">tabFourXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="tabFourXL" name="tabFourXL" value="{{tabFourXL}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="textFourXL" name="textFourXL">{{textFourXL}}</div>
+                </div>
+              </fieldset>
+              <div class="spacer-20"></div>
+              <fieldset>
+                <div class="collapse" id="toAddTextOne">
+                  <!-- addTextTabOne -->                
+                  <div class="form-group is-public">                   
+                    <label for="addTextTabOne" class="col-sm-4 control-label">addTextTabOne</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="addTextTabOne" name="addTextTabOne" value="{{addTextTabOne}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <div class="summernote" id="addTextOne" name="addTextOne">{{addTextOne}}</div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{{#if Template.subscriptionsReady}} 
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

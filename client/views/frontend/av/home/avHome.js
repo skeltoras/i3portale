@@ -1,16 +1,18 @@
-//since v0.1.1
+//-- template onCreated functions
+Template.avHome.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('getHomeAvCustomers');     
+  });
+});
 
-//-- template created functions
-Template.avHome.created = function(){
-};
+//-- template onDestroyed functions
+Template.avHome.onDestroyed(function () {
+});
 
-//-- template destroyed functions
-Template.avHome.destroyed = function(){
-};
-
-//-- template rendered functions
-Template.avHome.rendered = function(){
-};
+//-- template onRendered functions
+Template.avHome.onRendered(function () {
+});
 
 //-- template helpers                            
 Template.avHome.helpers({
