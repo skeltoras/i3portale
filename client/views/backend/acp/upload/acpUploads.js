@@ -1,47 +1,21 @@
-//since v0.1.1
+//-- template onCreated functions
+Template.acpUploads.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('uploadCounts');   
+  });
+});
 
-//-- template created functions
-Template.acpUploads.created = function(){
-};
+//-- template onDestroyed functions
+Template.acpUploads.onDestroyed(function () {
+});
 
-//-- template destroyed functions
-Template.acpUploads.destroyed = function(){
-};
-
-//-- template rendered functions
-Template.acpUploads.rendered = function(){
-};
+//-- template onRendered functions
+Template.acpUploads.onRendered(function () {
+});
 
 //-- template helpers                            
 Template.acpUploads.helpers({
-  uplAvCustomersCount: function() {
-    Meteor.subscribe('uplAvCustomersCount');
-    return AvCustomers.find().count();
-  },
-  uplAvCountriesCount: function() {
-    Meteor.subscribe('uplAvCountriesCount');
-    return AvCountries.find().count();
-  },
-  uplAvChaptersCount: function() {
-    Meteor.subscribe('uplAvChaptersCount');
-    return AvChapters.find().count();
-  },
-  uplAvAssociationsCount: function() {
-    Meteor.subscribe('uplAvAssociationsCount');
-    return AvAssociations.find().count();
-  },
-  uplAvBlockIndicatorsCount: function() {
-    Meteor.subscribe('uplAvBlockIndicatorsCount');
-    return AvBlockIndicators.find().count();
-  },
-  uplAvCampaignsCount: function() {
-    Meteor.subscribe('uplAvCampaignsCount');
-    return AvCampaigns.find().count();
-  },
-  uplAvEducationsCount: function() {
-    Meteor.subscribe('uplAvEducationsCount');
-    return AvEducations.find().count();
-  }
 });
 
 //-- template events
@@ -56,12 +30,13 @@ Template.acpUploads.events({
     reader.onload = function(e){
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
+      //for (var i = 0; i < 1000; ++i) {
       for (var i = 0; i < data.length; ++i) {  
-        Meteor.call('uplAvCustomers', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadNewCustomers', data[i], function(error, result){
+          //if(error)
+          //  console.log(error);
+          //if(result)
+          //  console.log(result);
         });
       }
     }
@@ -76,11 +51,11 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {  
-        Meteor.call('uplAvCountries', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadCountries', data[i], function(error, result){
+          //if(error)
+          //  console.log(error);
+          //if(result)
+          //  console.log(result);
         });
       }
     }

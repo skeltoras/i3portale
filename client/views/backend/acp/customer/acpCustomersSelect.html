@@ -1,0 +1,36 @@
+<template name="acpCustomersSelect"> 
+{{#if Template.subscriptionsReady}} 
+  <div class="container acp">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Kundenselektion</h2>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <form class="form form-horizontal" id="editCustomerData" role="form">
+          <legend>Selektionsbereich auswählen</legend>
+          <fieldset>
+            {{> listChapters}}
+          </fieldset>
+          <div class="spacer-20"></div>
+          <fieldset>
+            <div class="control-group">            
+              <div class="controls">              
+                <input type="submit" class="btn btn-default" value="Selektion erstellen"/> 
+                <input type="reset" class="btn btn-default" value="Selektion löschen"/>              
+              </div>          
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="col-sm-8">
+        Aktuell sind <strong>{{getPublishedCount 'cnt_allSelectedCustomers'}}</strong> Adressen aus dem Bereich <strong>{{getChapter}}</strong> ausgewählt.
+      </div>  
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

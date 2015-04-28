@@ -1,33 +1,79 @@
 <template name="acpEditAV">
+{{#if Template.subscriptionsReady}}
   <div class="container acp">
     <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-4">
+        {{#with getCustomerData}}
+          <div class="panel panel-default panel-av-detail">
+            <div class="panel-heading"><h3>{{avCustomerName}} <small>(Vorschau)</small></h3></div>
+            <div class="panel-body">
+              <p>
+                {{avShortinfo}}
+              </p>
+              <h3>Adresse</h3>
+              <p>
+                {{#if avDepartment}}{{avDepartment}}<br>{{/if}}
+                {{#if avPostAddition}}{{avPostAddition}}<br>{{/if}}
+                {{#if avStreet}}{{avStreet}}<br>{{/if}}
+                {{#if avPlz}}{{avPlz}}{{/if}} {{#if avCity}}{{avCity}}<br>{{/if}}     
+                {{#if avCountry}}{{avCountry}}{{/if}}
+              </p>
+              <h3>Kontakt</h3>
+              <p>
+                {{#if avTelephoneFormal}}<i class="fa fa-phone"></i> {{avTelephoneFormal}}<br>{{/if}}
+                {{#if avTelefax}}<i class="fa fa-fax"></i> {{avTelefax}}<br>{{/if}}
+                {{#if avMailFormal}}<i class="fa fa-envelope"></i> {{avMailFormal}}<br>{{/if}}
+              </p>          
+            </div>
+          </div>
+        {{/with}}
         <div class="panel panel-default panel-av-detail">
-          <div class="panel-heading"><h3>{{avCustomerName}} <small>(Vorschau)</small></h3></div>
           <div class="panel-body">
-            <p>
-              {{avShortinfo}}
-            </p>
-            <h3>Adresse</h3>
-            <p>
-              {{#if avDepartment}}{{avDepartment}}<br>{{/if}}
-              {{#if avPostAddition}}{{avPostAddition}}<br>{{/if}}
-              {{#if avStreet}}{{avStreet}}<br>{{/if}}
-              {{#if avPlz}}{{avPlz}}{{/if}} {{#if avCity}}{{avCity}}<br>{{/if}}     
-              {{#if avCountry}}{{avCountry}}{{/if}}
-            </p>
-            <h3>Kontakt</h3>
-            <p>
-              {{#if avTelephoneFormal}}<i class="fa fa-phone"></i> {{avTelephoneFormal}}<br>{{/if}}
-              {{#if avTelefax}}<i class="fa fa-fax"></i> {{avTelefax}}<br>{{/if}}
-              {{#if avMailFormal}}<i class="fa fa-envelope"></i> {{avMailFormal}}<br>{{/if}}
-            </p>          
+            <h3>Notizen</h3>
+            {{{avDataNotes}}}         
           </div>
         </div>
       </div>
       <div class="col-sm-8">
         <form class="form form-horizontal">
+          <div class="row">    
+            <div class="col-sm-12">
+              <fieldset>
+                <div class="control-group">            
+                  <div class="controls">              
+                    <input type="submit" class="btn btn-default" value="Speichern"/>              
+                  </div>          
+                </div>
+              </fieldset>          
+            </div>
+          </div>      
+          <div class="spacer-20"></div>
+          {{> acpEditAVOptions}}
+          <div class="spacer-20"></div>
+          {{> acpEditAVData}}
+          <div class="spacer-20"></div>
+          <div class="row">    
+            <div class="col-sm-12">
+              <fieldset>
+                <div class="control-group">            
+                  <div class="controls">              
+                    <input type="submit" class="btn btn-default" value="Speichern"/>              
+                  </div>          
+                </div>
+              </fieldset>          
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>
+
+<template name="acpEditAVOptions">
           <div class="row">
             <legend>Optionen</legend>
             <div class="col-sm-4">        
@@ -84,9 +130,9 @@
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasAddTextOne}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextOne" name="avDataHasAddTextOne" checked="checked" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="true" aria-controls="toAddTextOne">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextOne" name="avDataHasAddTextOne" checked="checked" data-toggle="collapse" data-target="#addTextOne" aria-expanded="true" aria-controls="addTextOne">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextOne" name="avDataHasAddTextOne" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="false" aria-controls="toAddTextOne">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextOne" name="avDataHasAddTextOne" data-toggle="collapse" data-target="#addTextOne" aria-expanded="false" aria-controls="addTextOne">
                     {{/if}}
                   </div>
                   <label for="avDataHasAddTextOne" class="col-sm-10">Zusatztext 1</label>                                                             
@@ -95,9 +141,9 @@
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasAddTextTwo}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextTwo" name="avDataHasAddTextTwo" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextTwo" name="avDataHasAddTextTwo" checked="checked" data-toggle="collapse" data-target="#addTextTwo" aria-expanded="true" aria-controls="addTextTwo">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextTwo" name="avDataHasAddTextTwo" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasAddTextTwo" name="avDataHasAddTextTwo" data-toggle="collapse" data-target="#addTextTwo" aria-expanded="false" aria-controls="addTextTwo">
                     {{/if}}
                   </div>
                   <label for="avDataHasAddTextTwo" class="col-sm-10">Zusatztext 2</label>                                                             
@@ -106,9 +152,9 @@
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasGalleryS}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryS" name="avDataHasGalleryS" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryS" name="avDataHasGalleryS" checked="checked" data-toggle="collapse" data-target="#addGalleryS" aria-expanded="true" aria-controls="addGalleryS">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryS" name="avDataHasGalleryS" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryS" name="avDataHasGalleryS" data-toggle="collapse" data-target="#addGalleryS" aria-expanded="false" aria-controls="addGalleryS">
                     {{/if}}
                   </div>
                   <label for="avDataHasGalleryS" class="col-sm-10">kleine Galerie</label>                                                             
@@ -117,9 +163,9 @@
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasGalleryM}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryM" name="avDataHasGalleryM" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryM" name="avDataHasGalleryM" checked="checked" data-toggle="collapse" data-target="#addGalleryM" aria-expanded="true" aria-controls="addGalleryM">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryM" name="avDataHasGalleryM" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasGalleryM" name="avDataHasGalleryM" data-toggle="collapse" data-target="#addGalleryM" aria-expanded="false" aria-controls="addGalleryM">
                     {{/if}}
                   </div>
                   <label for="avDataHasGalleryM" class="col-sm-10">große Galerie</label>                                                             
@@ -128,35 +174,35 @@
             </div>
             <div class="col-sm-4">
               <fieldset>          
-                <!-- avDataHasWebsite -->
-                <div class="form-group">                   
-                  <div class="col-sm-2">
-                    {{#if avDataHasWebsite}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasWebsite" name="avDataHasWebsite" checked="checked" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="true" aria-controls="toAddTextOne">
-                    {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasWebsite" name="avDataHasWebsite" data-toggle="collapse" data-target="#toAddTextOne" aria-expanded="false" aria-controls="toAddTextOne">
-                    {{/if}}
-                  </div>
-                  <label for="avDataHasWebsite" class="col-sm-10">Website</label>                                                             
-                </div> 
                 <!-- avDataHasHeaderImg -->
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasHeaderImg}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasHeaderImg" name="avDataHasHeaderImg" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasHeaderImg" name="avDataHasHeaderImg" checked="checked" data-toggle="collapse" data-target="#addHeaderImage" aria-expanded="true" aria-controls="addHeaderImage">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasHeaderImg" name="avDataHasHeaderImg" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasHeaderImg" name="avDataHasHeaderImg" data-toggle="collapse" data-target="#addHeaderImage" aria-expanded="false" aria-controls="addHeaderImage">
                     {{/if}}
                   </div>
                   <label for="avDataHasHeaderImg" class="col-sm-10">Eigenes Headerbild</label>                                                             
+                </div> 
+                <!-- avDataHasWebsite -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if avDataHasWebsite}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasWebsite" name="avDataHasWebsite" checked="checked" data-toggle="collapse" data-target="#addWebsite" aria-expanded="true" aria-controls="addWebsite">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="avDataHasWebsite" name="avDataHasWebsite" data-toggle="collapse" data-target="#addWebsite" aria-expanded="false" aria-controls="addWebsite">
+                    {{/if}}
+                  </div>
+                  <label for="avDataHasWebsite" class="col-sm-10">Website</label>                                                             
                 </div> 
                 <!-- avDataHasVideo -->
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasVideo}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasVideo" name="avDataHasVideo" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasVideo" name="avDataHasVideo" checked="checked" data-toggle="collapse" data-target="#addVideo" aria-expanded="true" aria-controls="addVideo">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasVideo" name="avDataHasVideo" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasVideo" name="avDataHasVideo" data-toggle="collapse" data-target="#addVideo" aria-expanded="false" aria-controls="addVideo">
                     {{/if}}
                   </div>
                   <label for="avDataHasVideo" class="col-sm-10">Video</label>                                                             
@@ -165,9 +211,9 @@
                 <div class="form-group">                   
                   <div class="col-sm-2">
                     {{#if avDataHasSocialMedia}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasSocialMedia" name="avDataHasSocialMedia" checked="checked" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="true" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasSocialMedia" name="avDataHasSocialMedia" checked="checked" data-toggle="collapse" data-target="#addSocialMedia" aria-expanded="true" aria-controls="addSocialMedia">
                     {{else}}
-                      <input type="checkbox" class="checkbox acp" id="avDataHasSocialMedia" name="avDataHasSocialMedia" data-toggle="collapse" data-target="#toAddTextTwo" aria-expanded="false" aria-controls="toAddTextTwo">
+                      <input type="checkbox" class="checkbox acp" id="avDataHasSocialMedia" name="avDataHasSocialMedia" data-toggle="collapse" data-target="#addSocialMedia" aria-expanded="false" aria-controls="addSocialMedia">
                     {{/if}}
                   </div>
                   <label for="avDataHasSocialMedia" class="col-sm-10">Social Media</label>                                                             
@@ -175,136 +221,582 @@
               </fieldset>
             </div>
           </div>
-          <div class="spacer-20"></div>
+          <div class="row">
+            <div class="col-sm-4">
+              <fieldset>
+                <!-- avDataCountImages -->                
+                <div class="form-group">                         
+                  <div class="col-sm-4">                       
+                    <input type="number" class="form-control form-control-sm" id="avDataCountImages" name="avDataCountImages" value="{{avDataCountImages}}">                   
+                  </div>
+                  <label for="avDataCountImages" class="col-sm-8 control-label">Gebuchte Bilder im Textteil</label>               
+                </div>
+                <div class="spacer-20"></div>
+              </fieldset>  
+            </div>
+          </div>
+</template>
+
+<template name="acpEditAVData">
           <div class="row">
             <legend>Daten</legend>
             <div class="col-sm-12"> 
+              <!-- avDataLogo -->
               <fieldset>
-                <div class="collapse" id="packageS">
-                  <!-- tabOneS -->                
+                <h4>Logo</h4>
+                <div class="thumbnailBox logo">
+                  {{#if getLogo}}
+                    {{#with getLogo}}
+                      <div class="thumb show logo">
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgLogoThumb'}}" alt="imgLogoThumb" /></a>
+                      </div>
+                      <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                    {{/with}}
+                  {{else}}
+                    <div class="thumb upload logo">
+                      <input type="file" class="upload logo" id="avDataLogo" name="avDataLogo">
+                      <i class="fa fa-upload"></i>
+                    </div>
+                  {{/if}}
+                </div>
+                <div class="spacer-20"></div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="collapse {{#if avDataHasPackageS}}in{{/if}}" id="packageS">
+                  <h4>Paket S</h4>
+                  <!-- avDataTabOneS -->                
                   <div class="form-group is-public">                   
-                    <label for="tabOneS" class="col-sm-4 control-label">tabOneS</label>                   
+                    <label for="avDataTabOneS" class="col-sm-4 control-label">avDataTabOneS</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabOneS" name="tabOneS" value="{{tabOneS}}" placeholder="Übersicht">                   
+                      <input type="text" class="form-control" id="avDataTabOneS" name="avDataTabOneS" value="{{avDataTabOneS}}" placeholder="Übersicht">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textOneS" name="textOneS">{{textOneS}}</div>
+                  <!-- avDataTextOneS -->
+                  <textarea class="editableFroala" id="avDataTextOneS" name="avDataTextOneS">{{{avDataTextOneS}}}</textarea>
+                  <div class="spacer-20"></div>
                 </div>
               </fieldset>
-              <div class="spacer-20"></div>
+              
               <fieldset>
-                <div class="collapse" id="packageM">
-                  <!-- tabOneM -->                
+                <div class="collapse {{#if avDataHasPackageM}}in{{/if}}" id="packageM">
+                  <h4>Paket M</h4>
+                  <!-- avDataTabOneM -->                
                   <div class="form-group is-public">                   
-                    <label for="tabOneM" class="col-sm-4 control-label">tabOneM</label>                   
+                    <label for="avDataTabOneM" class="col-sm-4 control-label">avDataTabOneM</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabOneM" name="tabOneM" value="{{tabOneM}}" placeholder="Übersicht">                   
+                      <input type="text" class="form-control" id="avDataTabOneM" name="avDataTabOneM" value="{{avDataTabOneM}}" placeholder="Übersicht">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textOneM" name="textOneM">{{textOneM}}</div>
+                  <!-- avDataTextOneM -->
+                  <textarea class="editableFroala" id="avDataTextOneM" name="avDataTextOneM">{{{avDataTextOneM}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- tabTwoM -->                
+                  <!-- avDataTabTwoM -->                
                   <div class="form-group is-public">                   
-                    <label for="tabTwoM" class="col-sm-4 control-label">tabTwoM</label>                   
+                    <label for="avDataTabTwoM" class="col-sm-4 control-label">avDataTabTwoM</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabTwoM" name="tabTwoM" value="{{tabTwoM}}" placeholder="Unterkunft">                   
+                      <input type="text" class="form-control" id="avDataTabTwoM" name="avDataTabTwoM" value="{{avDataTabTwoM}}" placeholder="Unterkunft">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textTwoM" name="textTwoM">{{textTwoM}}</div>
+                  <!-- avDataTextTwoM -->
+                  <textarea class="editableFroala" id="avDataTextTwoM" name="avDataTextTwoM">{{{avDataTextTwoM}}}</textarea>
+                  <div class="spacer-20"></div>
                 </div>
               </fieldset>
-              <div class="spacer-20"></div>
+              
               <fieldset>
-                <div class="collapse" id="packageL">
-                  <!-- tabOneL -->                
+                <div class="collapse {{#if avDataHasPackageL}}in{{/if}}" id="packageL">
+                  <h4>Paket L</h4>
+                  <!-- avDataTabOneL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabOneL" class="col-sm-4 control-label">tabOneL</label>                   
+                    <label for="avDataTabOneL" class="col-sm-4 control-label">avDataTabOneL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabOneL" name="tabOneL" value="{{tabOneL}}" placeholder="Übersicht">                   
+                      <input type="text" class="form-control" id="avDataTabOneL" name="avDataTabOneL" value="{{avDataTabOneL}}" placeholder="Übersicht">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textOneL" name="textOneL">{{textOneL}}</div>
+                  <!-- avDataTextOneL -->
+                  <textarea class="editableFroala" id="avDataTextOneL" name="avDataTextOneL">{{{avDataTextOneL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- tabTwoL -->                
+                  <!-- avDataTabTwoL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabTwoL" class="col-sm-4 control-label">tabTwoL</label>                   
+                    <label for="avDataTabTwoL" class="col-sm-4 control-label">avDataTabTwoL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabTwoL" name="tabTwoL" value="{{tabTwoL}}" placeholder="Unterkunft">                   
+                      <input type="text" class="form-control" id="avDataTabTwoL" name="avDataTabTwoL" value="{{avDataTabTwoL}}" placeholder="Unterkunft">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textTwoL" name="textTwoL">{{textTwoL}}</div>
+                  <!-- avDataTextTwoL -->
+                  <textarea class="editableFroala" id="avDataTextTwoL" name="avDataTextTwoL">{{{avDataTextTwoL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- tabThreeL -->                
+                  <!-- avDataTabThreeL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabThreeL" class="col-sm-4 control-label">tabThreeL</label>                   
+                    <label for="avDataTabThreeL" class="col-sm-4 control-label">avDataTabThreeL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabThreeL" name="tabThreeL" value="{{tabThreeL}}" placeholder="">                   
+                      <input type="text" class="form-control" id="avDataTabThreeL" name="avDataTabThreeL" value="{{avDataTabThreeL}}">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textThreeL" name="textThreeL">{{textThreeL}}</div>
+                  <!-- avDataTextThreeL -->
+                  <textarea class="editableFroala" id="avDataTextThreeL" name="avDataTextThreeL">{{{avDataTextThreeL}}}</textarea>
+                  <div class="spacer-20"></div>            
                 </div>
               </fieldset>
-              <div class="spacer-20"></div>
+              
               <fieldset>
-                <div class="collapse" id="packageXL">
-                  <!-- tabOneXL -->                
+                <div class="collapse {{#if avDataHasPackageXL}}in{{/if}}" id="packageXL">
+                  <h4>Paket XL</h4>
+                  <!-- avDataTabOneXL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabOneXL" class="col-sm-4 control-label">tabOneXL</label>                   
+                    <label for="avDataTabOneXL" class="col-sm-4 control-label">avDataTabOneXL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabOneXL" name="tabOneXL" value="{{tabOneXL}}" placeholder="Übersicht">                   
+                      <input type="text" class="form-control" id="avDataTabOneXL" name="avDataTabOneXL" value="{{avDataTabOneXL}}" placeholder="Übersicht">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textOneXL" name="textOneXL">{{textOneXL}}</div>
+                  <!-- avDataTextOneXL -->
+                  <textarea class="editableFroala" id="avDataTextOneXL" name="avDataTextOneXL">{{{avDataTextOneXL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- tabTwoXL -->                
+                  <!-- avDataTabTwoXL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabTwoXL" class="col-sm-4 control-label">tabTwoXL</label>                   
+                    <label for="avDataTabTwoXL" class="col-sm-4 control-label">avDataTabTwoXL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabTwoXL" name="tabTwoXL" value="{{tabTwoXL}}" placeholder="Unterkunft">                   
+                      <input type="text" class="form-control" id="avDataTabTwoXL" name="avDataTabTwoXL" value="{{avDataTabTwoXL}}" placeholder="Unterkunft">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textTwoXL" name="textTwoXL">{{textTwoXL}}</div>
+                  <!-- avDataTextTwoXL -->
+                  <textarea class="editableFroala" id="avDataTextTwoXL" name="avDataTextTwoXL">{{{avDataTextTwoXL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- tabThreeXL -->                
+                  <!-- avDataTabThreeXL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabThreeXL" class="col-sm-4 control-label">tabThreeXL</label>                   
+                    <label for="avDataTabThreeXL" class="col-sm-4 control-label">avDataTabThreeXL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabThreeXL" name="tabThreeXL" value="{{tabThreeXL}}" placeholder="">                   
+                      <input type="text" class="form-control" id="avDataTabThreeXL" name="avDataTabThreeXL" value="{{avDataTabThreeXL}}">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textThreeXL" name="textThreeXL">{{textThreeXL}}</div>
+                  <!-- avDataTextThreeXL -->
+                  <textarea class="editableFroala" id="avDataTextThreeXL" name="avDataTextThreeXL">{{{avDataTextThreeXL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- tabFourXL -->                
+                  <!-- avDataTabFourXL -->                
                   <div class="form-group is-public">                   
-                    <label for="tabFourXL" class="col-sm-4 control-label">tabFourXL</label>                   
+                    <label for="avDataTabFourXL" class="col-sm-4 control-label">avDataTabFourXL</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="tabFourXL" name="tabFourXL" value="{{tabFourXL}}" placeholder="">                   
+                      <input type="text" class="form-control" id="avDataTabFourXL" name="avDataTabFourXL" value="{{avDataTabFourXL}}">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="textFourXL" name="textFourXL">{{textFourXL}}</div>
+                  <!-- avDataTextFourXL -->
+                  <textarea class="editableFroala" id="avDataTextFourXL" name="avDataTextFourXL">{{{avDataTextFourXL}}}</textarea>
+                  <div class="spacer-20"></div>
                 </div>
               </fieldset>
-              <div class="spacer-20"></div>
+
               <fieldset>
-                <div class="collapse" id="toAddTextOne">
-                  <!-- addTextTabOne -->                
+                <div class="collapse {{#if avDataHasAddTextOne}}in{{/if}}" id="addTextOne">
+                  <h4>Zusatztext 1</h4>
+                  <!-- avDataAddTextTabOne -->                
                   <div class="form-group is-public">                   
-                    <label for="addTextTabOne" class="col-sm-4 control-label">addTextTabOne</label>                   
+                    <label for="avDataAddTextTabOne" class="col-sm-4 control-label">avDataAddTextTabOne</label>                   
                     <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="addTextTabOne" name="addTextTabOne" value="{{addTextTabOne}}" placeholder="">                   
+                      <input type="text" class="form-control" id="avDataAddTextTabOne" name="avDataAddTextTabOne" value="{{avDataAddTextTabOne}}" placeholder="">                   
                     </div>               
                   </div>
-                  <div class="summernote" id="addTextOne" name="addTextOne">{{addTextOne}}</div>
+                  <!-- avDataAddTextOne -->
+                  <textarea class="editableFroala" id="avDataAddTextOne" name="avDataAddTextOne">{{{avDataAddTextOne}}}</textarea>
+                  <div class="spacer-20"></div>
                 </div>
               </fieldset>
+
+              <fieldset>
+                <div class="collapse {{#if avDataHasAddTextTwo}}in{{/if}}" id="addTextTwo">
+                  <h4>Zusatztext 2</h4>
+                  <!-- avDataAddTextTabTwo -->                
+                  <div class="form-group is-public">                   
+                    <label for="avDataAddTextTabTwo" class="col-sm-4 control-label">avDataAddTextTabTwo</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataAddTextTabTwo" name="avDataAddTextTabTwo" value="{{avDataAddTextTabTwo}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <!-- avDataAddTextTwo -->
+                  <textarea class="editableFroala" id="avDataAddTextTwo" name="avDataAddTextTwo">{{{avDataAddTextTwo}}}</textarea>
+                  <div class="spacer-20"></div>
+                </div>
+              </fieldset>
+              
+              <!-- avDataGalleryS -->
+              <div class="collapse {{#if avDataHasGalleryS}}in{{/if}}" id="addGalleryS">
+                <fieldset>
+                  <h4>kleine Galerie</h4>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS1}}
+                      {{#with getGS1}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="avDataGS1" name="avDataGS1">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS2}}
+                      {{#with getGS2}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="avDataGS2" name="avDataGS2">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS3}}
+                      {{#with getGS3}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="avDataGS3" name="avDataGS3">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS4}}
+                      {{#with getGS4}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="avDataGS4" name="avDataGS4">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS5}}
+                      {{#with getGS5}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="avDataGS5" name="avDataGS5">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS6}}
+                      {{#with getGS6}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="avDataGS6" name="avDataGS6">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                                  
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- avDataGalleryM -->
+              <div class="collapse {{#if avDataHasGalleryM}}in{{/if}}" id="addGalleryM">
+                <fieldset>
+                  <h4>große Galerie</h4>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM1}}
+                      {{#with getGM1}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM1" name="avDataGM1">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM2}}
+                      {{#with getGM2}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM2" name="avDataGM2">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM3}}
+                      {{#with getGM3}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM3" name="avDataGM3">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM4}}
+                      {{#with getGM4}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM4" name="avDataGM4">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM5}}
+                      {{#with getGM5}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM5" name="avDataGM5">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM6}}
+                      {{#with getGM6}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM6" name="avDataGM6">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM7}}
+                      {{#with getGM7}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM7" name="avDataGM7">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM8}}
+                      {{#with getGM8}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM8" name="avDataGM8">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM9}}
+                      {{#with getGM9}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM9" name="avDataGM9">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM10}}
+                      {{#with getGM10}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM10" name="avDataGM10">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM11}}
+                      {{#with getGM11}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM11" name="avDataGM11">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM12}}
+                      {{#with getGM12}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgGalleryThumb'}}" alt="imgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="avDataGM12" name="avDataGM12">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                                  
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>             
+
+              <!-- avDataHeaderImg -->
+              <div class="collapse {{#if avDataHasHeaderImg}}in{{/if}}" id="addHeaderImage">
+                <fieldset>
+                  <h4>Header-Bild</h4>
+                  <div class="thumbnailBox headerImg">
+                    {{#if getHeaderImg}}
+                      {{#with getHeaderImg}}
+                        <div class="thumb show headerImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='imgHeaderThumb'}}" alt="imgHeaderThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload headerImg">
+                        <input type="file" class="upload headerImg" id="avDataHeaderImg" name="avDataHeaderImg">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                                  
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- avDataUrl -->                
+              <div class="collapse {{#if avDataHasWebsite}}in{{/if}}" id="addWebsite">
+                <fieldset>
+                  <h4>Website</h4>
+                  <div class="form-group is-public">                   
+                    <label for="avDataUrl" class="col-sm-4 control-label">avDataUrl</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataUrl" name="avDataUrl" value="{{avDataUrl}}">                   
+                    </div>               
+                  </div>
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- avDataVideoUrl -->                
+              <div class="collapse {{#if avDataHasVideo}}in{{/if}}" id="addVideo">                      
+                <fieldset>
+                  <h4>Video</h4>
+                  <div class="form-group is-public">                   
+                    <label for="avDataUrl" class="col-sm-4 control-label">avDataVideoUrl</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataVideoUrl" name="avDataVideoUrl" value="{{avDataVideoUrl}}">                   
+                    </div>               
+                  </div>
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- avDataSocialMedia --> 
+              <div class="collapse {{#if avDataHasSocialMedia}}in{{/if}}" id="addSocialMedia">
+                <fieldset>
+                  <h4>Social Media</h4>
+                  <!-- avDataFacebookData -->                
+                  <div class="form-group is-public">                   
+                    <label for="avDataFacebookData" class="col-sm-4 control-label">avDataFacebookData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataFacebookData" name="avDataFacebookData" value="{{avDataFacebookData}}">                   
+                    </div>               
+                  </div>
+                  <!-- avDataTwitterData -->                
+                  <div class="form-group is-public">                   
+                    <label for="avDataTwitterData" class="col-sm-4 control-label">avDataTwitterData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataTwitterData" name="avDataTwitterData" value="{{avDataTwitterData}}">                   
+                    </div>               
+                  </div>
+                  <!-- avDataGplusData -->                
+                  <div class="form-group is-public">                   
+                    <label for="avDataGplusData" class="col-sm-4 control-label">avDataGplusData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataGplusData" name="avDataGplusData" value="{{avDataGplusData}}">                   
+                    </div>               
+                  </div>
+                  <!-- avDataYoutubeData -->                
+                  <div class="form-group is-public">                   
+                    <label for="avDataYoutubeData" class="col-sm-4 control-label">avDataYoutubeData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="avDataYoutubeData" name="avDataYoutubeData" value="{{avDataYoutubeData}}">                   
+                    </div>               
+                  </div>
+                </fieldset>    
+                <div class="spacer-20"></div>
+              </div> 
+              
+              <fieldset>
+                <h4>Notizen</h4>
+                <!-- avDataNotes -->
+                <textarea class="editableFroala" id="avDataNotes" name="avDataNotes">{{{avDataNotes}}}</textarea>
+                <div class="spacer-20"></div>
+              </fieldset>                         
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-{{#if Template.subscriptionsReady}} 
-{{else}}
-  {{> loading}}
-{{/if}}
 </template>

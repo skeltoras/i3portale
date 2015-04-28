@@ -1,5 +1,5 @@
 Meteor.publish('acp_allCountries', function() {
-  return AvCountries.find({});
+  return Countries.find({});
 });
 
 Meteor.publish('acp_allAvChapters', function() {

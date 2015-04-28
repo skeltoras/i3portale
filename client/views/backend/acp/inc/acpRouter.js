@@ -59,40 +59,6 @@ Router.route('/acp/bil', function (){
   controller: 'AcpController'
 });
 
-/** KUNDEN **/
-Router.route('/acp/kdn', function (){ 
-  this.render('acpAvCustomersList');
-}, {
-  name: 'acp.customers',
-  controller: 'AcpController'
-});
-
-Router.route('/acp/kd/new', function (){ 
-  this.render('acpCustomerNew');
-}, {
-  name: 'acp.customer.new',
-  controller: 'AcpController'
-});
-
-Router.route('/acp/kd/edit/:_id', function (){ 
-  this.render('acpCustomerEdit', {
-    //waitOn: function() {
-    //  return [
-    //    Meteor.subscribe('getSingleAvCustomers', this.params._id),
-    //    Meteor.subscribe('getAllAvBlockIndicators')
-    //  ];
-    //},
-    data: function() {
-      Session.set('customerId', this.params._id);
-      //Meteor.subscribe('getSingleAvCustomers', this.params._id);
-      return AvCustomers.findOne({_id: this.params._id});
-    }
-  });
-}, {
-  name: 'acp.customer.edit',
-  controller: 'AcpController'
-});
-
 Router.route('/acp/kd/rp/:_id/new', function (){ 
   this.render('acpAddRentings', {
     waitOn: function() {
@@ -142,7 +108,7 @@ Router.route('/acp/av/edit/:_id', function (){
   this.render('acpEditAV', {
     data: function() {
       Session.set('customerId', this.params._id);
-      return AvCustomers.findOne({_id: this.params._id});
+      return AvData.findOne({customerId: this.params._id});
     }
   });
 }, {

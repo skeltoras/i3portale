@@ -28,34 +28,7 @@ Template.listCountriesSelect.helpers({
   }
 });
 
-// - Select list for template bookNew
-Template.editCountriesSelect.helpers({
-  listCountries: function(){
-    var listItems = AvCountries.find({}, {sort: {countryName: 1}});
-    var listItem = [];
-    var getCustomerData = AvCustomers.findOne({_id: this._id}).avCountry;
-    var getCustomerCountry = [];
-    if(getCustomerData){
-      listItems.forEach(function(country){
-        var countryId = country.countryOldId;
-        var countryName = country.countryName;
-        var testFor = false;
-        if(countryName == getCustomerData){
-          listItem += ['<option value="' + countryId + '" selected>' + countryName + '</option>'];
-        } else {
-          listItem += ['<option value="' + countryId + '">' + countryName + '</option>'];
-        }
-      });
-    } else {
-      listItems.forEach(function(country){
-        var countryId = country.countryOldId;
-        var countryName = country.countryName;
-        listItem += ['<option value="' + countryId + '">' + countryName + '</option>']; 
-      });
-    }
-    return listItem;
-  }
-});
+
 
 Template.editCountries.helpers({
   editCountries: function(){
@@ -82,6 +55,72 @@ Template.editCountries.helpers({
         }      
         if(!testFor) {
           listItem += ['<option value="' + countryId + '">' + countryName + '</option>'];  
+        }
+      });
+    } else {
+      listItems.forEach(function(country){
+        var countryId = country.countryOldId;
+        var countryName = country.countryName;
+        listItem += ['<option value="' + countryId + '">' + countryName + '</option>']; 
+      });
+    }
+    return listItem;
+  }
+});
+
+
+
+// - Select list for template bookNew
+Template.editCountriesSelect.helpers({
+  listCountries: function(){
+    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItem = [];
+    
+    var checkPending = CustomersPending.find().count();
+    if(checkPending > 0) {
+      var getCustomerData = CustomersPending.findOne({_id: this._id}).customerCountry;
+    } else {
+      var getCustomerData = Customers.findOne({_id: this._id}).customerCountry;
+    }    
+    var getCustomerCountry = [];
+    if(getCustomerData){
+      listItems.forEach(function(country){
+        var countryId = country.countryOldId;
+        var countryName = country.countryName;
+        var testFor = false;
+        if(countryName == getCustomerData){
+          listItem += ['<option value="' + countryId + '" selected>' + countryName + '</option>'];
+        } else {
+          listItem += ['<option value="' + countryId + '">' + countryName + '</option>'];
+        }
+      });
+    } else {
+      listItems.forEach(function(country){
+        var countryId = country.countryOldId;
+        var countryName = country.countryName;
+        listItem += ['<option value="' + countryId + '">' + countryName + '</option>']; 
+      });
+    }
+    return listItem;
+  }
+});
+
+Template.editCountriesSelection.helpers({
+  listCountries: function(){
+    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItem = [];
+    
+    var getCustomerData = CustomersSelection.findOne({_id: this._id}).customerCountry;   
+    var getCustomerCountry = [];
+    if(getCustomerData){
+      listItems.forEach(function(country){
+        var countryId = country.countryOldId;
+        var countryName = country.countryName;
+        var testFor = false;
+        if(countryName == getCustomerData){
+          listItem += ['<option value="' + countryId + '" selected>' + countryName + '</option>'];
+        } else {
+          listItem += ['<option value="' + countryId + '">' + countryName + '</option>'];
         }
       });
     } else {

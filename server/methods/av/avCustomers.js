@@ -9,6 +9,29 @@ Meteor.methods({
   setAvCustomersPortalsAV: function(customerId, settings) {
     if(settings == true){
       AvCustomers.update(customerId, {$set: {avHasAV: true}});
+      var data = AvData.find({customerId: customerId}).count();
+      if(data > 0) {
+        // do nothing 
+      } else {
+        var avData = [];
+        avData = {
+          customerId: customerId,
+          avDataHasPackageS: false,
+          avDataHasPackageM: false,
+          avDataHasPackageL: false,
+          avDataHasPackageXL: false,
+          avDataHasAddTextOne: false,
+          avDataHasAddTextTwo: false,
+          avDataHasWebsite: false,
+          avDataHasHeaderImg: false,
+          avDataHasGalleryS: false,
+          avDataHasGalleryM: false,
+          avDataHasVideo: false,
+          avDataHasSocialMedia: false,
+          avDataSubmitted: new Date().getTime()  
+        }
+        AvData.insert(avData);
+      }
     } else {
       AvCustomers.update(customerId, {$set: {avHasAV: false}});
     }
@@ -27,8 +50,11 @@ Meteor.methods({
       AvCustomers.update(customerId, {$set: {avHasKG: false}});
     }
   },
-  updateAvCustomers:  function(customerId, customerData) {
+  updateAvCustomers: function(customerId, customerData) {
     return AvCustomers.update(customerId, {$set: customerData});
+  },
+  insertAvCustomers: function(customerData) {
+    return AvCustomers.insert(customerData);
   },
   addAvCustomersBlockIndicators: function(avCustomersId, addData) {
     return AvCustomers.update(avCustomersId, {$addToSet: {avBlockIndicators: addData}});    

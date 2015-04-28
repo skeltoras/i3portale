@@ -81,17 +81,11 @@ Router.route('/av/cl/:chapterIndex', function (){
 
 Router.route('/av/kd/:avSiteUrl', function (){ 
   this.render('kdSingle', {
-    waitOn: function() {
-      return Meteor.subscribe('getSingleCustomerPage', this.params.avSiteUrl);
-    },
     data: function () {
+      Session.set('avSiteUrl', this.params.avSiteUrl);
       //Meteor.subscribe('getSingleAvCustomers', this.params.avSiteUrl);
-      return {avSiteUrl: this.params.avSiteUrl};
-      //return AvCustomers.findOne({avSiteUrl: this.params.avSiteUrl});
-    },
-    action: function() {
-      if (this.ready())
-        this.render();
+      //return {avSiteUrl: this.params.avSiteUrl};
+      return AvCustomers.findOne({avSiteUrl: this.params.avSiteUrl});
     }
   });
 }, {

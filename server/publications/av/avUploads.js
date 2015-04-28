@@ -1,5 +1,5 @@
 Meteor.publish('uplAvCustomersCount', function() {
-  return AvCustomers.find({}, {field: {_id: 1}});
+  return CustomersPending.find({}, {fields: {_id: 1}});
 });
 
 Meteor.publish('uplAvCountriesCount', function() {

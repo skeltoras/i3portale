@@ -10,7 +10,7 @@
       <!-- uplAvCustomers -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload AV-Kunden <small>Datensätze: {{uplAvCustomersCount}}</small></h3></div>
+          <div class="panel-heading"><h3>Upload AV-Kunden <small>Datensätze: {{getPublishedCount 'cnt_allCustomers'}}</small></h3></div>
           <div class="panel-body">
             <form role="form" id="uplAvCustomers">
               <input type="file" id="fileUplAvCustomers" name="fileUplAvCustomers">
@@ -22,7 +22,7 @@
       <!-- uplAvCountries -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Länder <small>Datensätze: {{uplAvCountriesCount}}</small></h3></div>
+          <div class="panel-heading"><h3>Upload Länder <small>Datensätze: {{getPublishedCount 'cnt_allCountries'}}</small></h3></div>
           <div class="panel-body">
             <form role="form" id="uplAvCountries">
               <input type="file" id="fileUplAvCountries" name="fileUplAvCountries">
@@ -34,7 +34,7 @@
       <!-- uplAvChapters -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Adresskapitel <small>Datensätze: {{uplAvChaptersCount}}</small></h3></div>
+          <div class="panel-heading"><h3>Upload Adresskapitel <small>Datensätze: {{getPublishedCount 'cnt_allAvChapters'}}</small></h3></div>
           <div class="panel-body">
             <form role="form" id="uplAvChapters">
               <input type="file" id="fileUplAvChapters" name="fileUplAvChapters">
@@ -61,7 +61,7 @@
       <!-- uplAvAssociations -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Verbände <small>Datensätze: {{uplAvAssociationsCount}}</small></h3></div>
+          <div class="panel-heading"><h3>Upload Verbände <small>Datensätze: {{getPublishedCount 'cnt_allAvAssociations'}}</small></h3></div>
           <div class="panel-body">
             <form role="form" id="uplAvAssociations">
               <input type="file" id="fileUplAvAssociations" name="fileUplAvAssociations">
@@ -73,7 +73,7 @@
       <!-- uplAvBlockIndicators -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Sperren <small>Datensätze: {{uplAvBlockIndicatorsCount}}</small></h3></div>
+          <div class="panel-heading"><h3>Upload Sperren <small>Datensätze: {{getPublishedCount 'cnt_allAvBlockIndicators'}}</small></h3></div>
           <div class="panel-body">
             <form role="form" id="uplAvBlockIndicators">
               <input type="file" id="fileUplAvBlockIndicators" name="fileUplAvBlockIndicators">

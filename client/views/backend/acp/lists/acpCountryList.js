@@ -17,7 +17,7 @@ Template.acpCountryList.onRendered(function () {
 //-- template helpers                            
 Template.acpCountryList.helpers({
   getList: function() {
-    return AvCountries.find();
+    return Countries.find();
   }
 });
 

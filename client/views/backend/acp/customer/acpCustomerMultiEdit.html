@@ -1,0 +1,254 @@
+<template name="acpCustomerMultiEdit">
+{{#if Template.subscriptionsReady}}
+  <div class="container acp">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Multi-Edit Kunden <small><strong>{{getPublishedCount 'cnt_allSelectedCustomers'}}</strong> Adressen selektiert</small></h1>
+      </div>
+    </div>
+    {{> acpCustomerMultiEditSelection}}    
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>
+
+<template name="acpCustomerMultiEditSelection">
+    <div class="row">
+      <div class="col-sm-12">
+        {{> pagesNav}}  <!--Bottom navigation-->  
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-12">
+        {{> pages}}  
+      </div>
+    </div> 
+    <hr>
+    <div class="spacer-20"></div>   
+    <div class="row">
+      <div class="col-sm-12">
+        {{> pagesNav}}  <!--Bottom navigation-->  
+      </div>
+    </div>
+</template>
+                           
+<template name="acpCustomerMultiEditEdit">
+  <form class="form form-horizontal" id="editCustomerData" role="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <legend>Kundendaten</legend>
+        <fieldset>
+          <!-- customerId -->                
+          <div class="form-group">                   
+            <label for="customerId" class="col-sm-4 control-label">KD-Nr.</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerId" name="customerId" value="{{customerId}}" disabled>                   
+            </div>               
+          </div>
+        </fieldset>
+        <fieldset>
+          <!-- customerName -->                
+          <div class="form-group is-public">                   
+            <label for="customerName" class="col-sm-4 control-label">Name (max. 45 Zeichen)</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerName" name="customerName" value="{{customerName}}">                   
+            </div>               
+          </div>
+          <!-- customerLongName -->                
+          <div class="form-group is-public">                   
+            <label for="customerLongName" class="col-sm-4 control-label">Name (lange Version)</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerLongName" name="customerLongName" value="{{customerLongName}}">                   
+            </div>               
+          </div>
+          <!-- customerDepartment -->                
+          <div class="form-group is-public">                   
+            <label for="customerDepartment" class="col-sm-4 control-label">Abteilung</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerDepartment" name="customerDepartment" value="{{customerDepartment}}">                   
+            </div>               
+          </div>           
+          <!-- customerPostAddition -->                
+          <div class="form-group is-public">                   
+            <label for="customerPostAddition" class="col-sm-4 control-label">Zusatz oder c/o</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerPostAddition" name="customerPostAddition" value="{{customerPostAddition}}">                   
+            </div>               
+          </div>
+          <!-- customerStreet -->                
+          <div class="form-group is-public">                   
+            <label for="customerStreet" class="col-sm-4 control-label">Straße</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerStreet" name="customerStreet" value="{{customerStreet}}">                   
+            </div>               
+          </div>              
+          <!-- customerPlz -->                
+          <div class="form-group is-public">                   
+            <label for="customerPlz" class="col-sm-4 control-label">PLZ</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerPlz" name="customerPlz" value="{{customerPlz}}">                   
+            </div>               
+          </div>                           
+          <!-- customerCity -->                
+          <div class="form-group is-public">                   
+            <label for="customerCity" class="col-sm-4 control-label">Ort</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerCity" name="customerCity" value="{{customerCity}}">                   
+            </div>               
+          </div>
+          <!-- customerCountry -->                
+          <div class="form-group is-public">                   
+            <label for="countryData" class="col-sm-4 control-label">Land</label>                   
+            <div class="col-sm-8">                       
+              {{> editCountriesSelection}}                   
+            </div>               
+          </div>
+          <!-- customerTelephoneFormal -->                
+          <div class="form-group is-public">                   
+            <label for="customerTelephoneFormal" class="col-sm-4 control-label">Telefon</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerTelephoneFormal" name="customerTelephoneFormal" value="{{customerTelephoneFormal}}">                   
+            </div>               
+          </div>
+          <!-- customerTelefax -->                
+          <div class="form-group is-public">                   
+            <label for="customerTelefax" class="col-sm-4 control-label">Fax</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerTelefax" name="customerTelefax" value="{{customerTelefax}}">                   
+            </div>                                                    
+          </div>
+          <!-- customerMailFormal -->                
+          <div class="form-group is-public">                   
+            <label for="customerMailFormal" class="col-sm-4 control-label">E-Mail</label>                   
+            <div class="col-sm-8">                       
+              <input type="email" class="form-control" id="customerMailFormal" name="customerMailFormal" value="{{customerMailFormal}}">                   
+            </div>               
+          </div>                     
+          <!-- customerUrl -->                
+          <div class="form-group is-public">                   
+            <label for="customerUrl" class="col-sm-4 control-label">URL</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerUrl" name="customerUrl" value="{{customerUrl}}">                   
+            </div>                                                    
+          </div>
+          <!-- customerInfo -->                
+          <div class="form-group is-public">                   
+            <label for="customerInfo" class="col-sm-4 control-label">Kurzinfo</label>                   
+            <div class="col-sm-8">                       
+              <textarea class="form-control" id="customerInfo" name="customerInfo">{{customerInfo}}</textarea>                   
+            </div>                                                    
+          </div>
+        </fieldset>
+        <hr>
+        <fieldset>
+          <!-- customerSiteUrl -->                                   
+          <div class="form-group">                   
+            <label for="customerSiteUrl" class="col-sm-4 control-label">Permalink</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerSiteUrl" name="customerSiteUrl" value="{{customerSiteUrl}}">                   
+            </div>               
+          </div> 
+          <!-- customerContact -->                                   
+          <div class="form-group">                   
+            <label for="customerContact" class="col-sm-4 control-label">Ansprechpartner</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerContact" name="customerContact" value="{{customerContact}}">                   
+            </div>               
+          </div>
+          <!-- customerTelephoneInternal -->                                   
+          <div class="form-group">                   
+            <label for="customerTelephoneInternal" class="col-sm-4 control-label">Telefon</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerTelephoneInternal" name="customerTelephoneInternal" value="{{customerTelephoneInternal}}">                   
+            </div>               
+          </div>
+          <!-- customerMobil -->                                   
+          <div class="form-group">                   
+            <label for="customerMobil" class="col-sm-4 control-label">Mobil</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerMobil" name="customerMobil" value="{{customerMobil}}">                   
+            </div>               
+          </div>
+          <!-- customerMailInternal -->                                   
+          <div class="form-group">                   
+            <label for="customerMailInternal" class="col-sm-4 control-label">E-Mail</label>                   
+            <div class="col-sm-8">                       
+              <input type="text" class="form-control" id="customerMailInternal" name="customerMailInternal" value="{{customerMailInternal}}">                   
+            </div>               
+          </div>
+          <!-- customerNotes -->                
+          <div class="form-group">                   
+            <label for="customerNotes" class="col-sm-4 control-label">Notizen</label>                   
+            <div class="col-sm-8">                       
+              <textarea class="form-control" id="customerNotes" name="customerNotes">{{customerNotes}}</textarea>                   
+            </div>                                                    
+          </div>                                  
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <legend>Kundendetails</legend>
+        <table class="table table-horizontal table-condensed">
+          <thead>
+            <tr>
+              <th class="col-sm-4"></th>
+              <th class="col-sm-8"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <td>Kunden-Nr. MS-Adam</td>
+              <td>{{nKundennummer}}</td>
+            </tr>
+            <tr> 
+              <td>Einstellungsdatum</td>
+              <td>{{formatDate dErfassung}}</td>
+            </tr>
+            <tr> 
+              <td>Letzte Änderung</td>
+              <td>{{formatDate dAenderung}}</td>
+            </tr>
+            <tr> 
+              <td>Alter Name</td>
+              <td>{{tName}} {{tName2}} {{tRechtsform}}</td>
+            </tr>
+            <tr> 
+              <td>Fragen an Kunden</td>
+              <td>{{tFragenAnKunde}}</td>
+            </tr>
+            <tr> 
+              <td>Mitteilungen von Kunden</td>
+              <td>{{tMitteilung}}</td>
+            </tr>   
+            <tr> 
+              <td>Anzahl Mitarbeiter</td>
+              <td>{{nAnzahlMitarbeiter}}</td>
+            </tr>
+            <tr> 
+              <td>Anmerkungen</td>
+              <td>{{tAnmerkungen1}} {{tAnmerkungen2}} {{tAnmerkungen3}} {{tAnmerkungen4}} {{tAnmerkungen5}} {{tAnmerkungen6}}</td>
+            </tr>
+            <tr> 
+              <td>Kurzinfo2</td>
+              <td>{{tKInfo2}}</td>
+            </tr>
+            <tr> 
+              <td>Zusatztext</td>
+              <td>{{tZusatztext}}</td>
+            </tr>
+            <tr> 
+              <td>Adresskapitel</td>
+              <td>{{#each avAddressChapters}} {{shortname}} | {{/each}}</td>
+            </tr>
+            <tr> 
+              <td>Importiert</td>
+              <td>{{formatDate avSubmitted}}</td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>
+    </div>
+  </form>
+</template>
