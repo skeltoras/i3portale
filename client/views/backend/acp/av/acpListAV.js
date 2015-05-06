@@ -2,7 +2,7 @@
 Template.acpListAV.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('acp_av_getAllCustomers');     
+    self.subscribe('acp_getAllApprovedAVCustomers');     
   });
 });
 
@@ -17,7 +17,7 @@ Template.acpListAV.onRendered(function () {
 //-- template helpers                            
 Template.acpListAV.helpers({
   getList: function() {
-    return AvCustomers.find().fetch();
+    return Customers.find().fetch();
   }
 });
 

@@ -2,7 +2,7 @@
 Template.avHome.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('getHomeAvCustomers');     
+    self.subscribe('av_getHomeAVCustomers');     
   });
 });
 
@@ -17,7 +17,14 @@ Template.avHome.onRendered(function () {
 //-- template helpers                            
 Template.avHome.helpers({
   getFeaturedCustomer: function() {
-    return AvCustomers.find({}, {limit: 15});
+    var customersPool = Customers.find().fetch();
+    customersPool = _.shuffle(customersPool);
+    //var data = [];
+    //for(var i = 0; i < 15; i++){
+    
+    //}
+    console.log(customersPool); //DEBUG
+    return customersPool;
   }
 });
 

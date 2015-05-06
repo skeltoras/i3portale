@@ -17,8 +17,8 @@ blaze@2.1.2
 blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
-cfs:access-point@0.1.47
-cfs:base-package@0.0.29
+cfs:access-point@0.1.49
+cfs:base-package@0.0.30
 cfs:collection@0.5.5
 cfs:collection-filters@0.2.4
 cfs:data-man@0.0.6
@@ -26,12 +26,12 @@ cfs:file@0.1.17
 cfs:filesystem@0.1.2
 cfs:graphicsmagick@0.0.18
 cfs:gridfs@0.0.33
-cfs:http-methods@0.0.28
+cfs:http-methods@0.0.29
 cfs:http-publish@0.0.13
 cfs:power-queue@0.9.11
 cfs:reactive-list@0.0.9
 cfs:reactive-property@0.0.4
-cfs:standard-packages@0.5.8
+cfs:standard-packages@0.5.9
 cfs:storage-adapter@0.2.2
 cfs:tempstore@0.1.5
 cfs:upload-http@0.0.20
@@ -47,6 +47,8 @@ email@1.0.6
 fastclick@1.0.3
 fortawesome:fontawesome@4.3.0
 froala:editor@1.2.6
+gadicohen:robots-txt@0.0.9
+gadicohen:sitemaps@0.0.21
 geojson-utils@1.0.3
 html-tools@1.0.4
 htmljs@1.0.4
@@ -67,7 +69,8 @@ less@1.0.14
 livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7
-matteodem:easy-search@1.5.4
+manuelschoebel:ms-seo@0.4.1
+matteodem:easy-search@1.5.6
 meteor@1.1.6
 meteor-platform@1.2.2
 meteorhacks:aggregate@1.2.1
@@ -84,6 +87,7 @@ nemo64:bootstrap-data@3.3.4_1
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
 ordered-dict@1.0.3
+osv:mongo-counter@0.1.1
 raix:eventemitter@0.1.2
 random@1.0.3
 reactive-dict@1.1.0
@@ -97,9 +101,10 @@ session@1.1.0
 sha@1.0.3
 spacebars@1.0.6
 spacebars-compiler@1.0.6
+spiderable@1.0.7
 srp@1.0.3
 templating@1.1.1
-tmeasday:publish-counts@0.3.7
+tmeasday:publish-counts@0.3.9
 tracker@1.0.7
 ui@1.0.6
 underscore@1.0.3

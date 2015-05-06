@@ -3,8 +3,8 @@ Template.acpEditAV.onCreated(function () {
   var self = this;
   self.autorun(function () {
     var customerId = Session.get('customerId');
-    self.subscribe('acp_av_getSingleCustomer', customerId);
-    self.subscribe('getSingleAvData', customerId);     
+    self.subscribe('acp_getSingleAVCustomer', customerId);
+    self.subscribe('acp_getSingleAVData', customerId);     
   });
 });
 
@@ -20,7 +20,7 @@ Template.acpEditAV.onRendered(function () {
 //-- template helpers                            
 Template.acpEditAV.helpers({
   getCustomerData: function(){
-    return AvCustomers.findOne();  
+    return Customers.findOne();  
   }
 });
 
@@ -93,7 +93,7 @@ Template.acpEditAV.events({
   'change input[type=file]': function(e, tpl){
     e.preventDefault();
     var avDataId = this._id;
-    var customerId = Session.get('customerId');
+    var customerId = this._id;
     var assignedObject = e.currentTarget.id;
     var target = e.currentTarget.classList[1];
     var gallery = e.currentTarget.classList[2];
@@ -129,7 +129,7 @@ Template.acpEditAV.events({
     }
     Meteor.call('setAvPackages', pack, avDataId, settings, function(error, result){
       if(error)
-        toastr.warning(error);
+        toastr.error('Portaleinstellung konnte nicht geändert werden');
       if(result)
         toastr.success('Portaleinstellung erfolgreich geändert');
     });

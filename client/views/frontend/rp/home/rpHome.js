@@ -1,24 +1,27 @@
-//since v0.1.1
+//-- template onCreated functions
+Template.rpHome.onCreated(function () {
+  var self = this;
+  self.autorun(function () {
+    self.subscribe('rp_getFeaturedTours');
+    self.subscribe('rp_getFeaturedRentings');     
+  });
+});
 
-//-- template created functions
-Template.rpHome.created = function(){
-};
+//-- template onDestroyed functions
+Template.rpHome.onDestroyed(function () {
+});
 
-//-- template destroyed functions
-Template.rpHome.destroyed = function(){
-};
-
-//-- template rendered functions
-Template.rpHome.rendered = function(){
-};
+//-- template onRendered functions
+Template.rpHome.onRendered(function () {
+});
 
 //-- template helpers                            
 Template.rpHome.helpers({
-  getRentings: function() {
-    return RpRentings.find({});
+  getTours: function() {
+    return RpTours.find().fetch();
   },
-  getTours: function(){
-    return Tours.find({},{ fields: { toursName: 1, toursSiteUrl: 1, toursDefaultImage: 1} });
+  getRentings: function() {
+    return RpRentings.find().fetch();
   }
 });
 

@@ -1,18 +1,23 @@
 Meteor.methods({
   //Set Customer Data
   uploadNewCustomers: function(data){
-    var adressId = Number(data.idAdresse);
-    var customerId = data.idAdresse;  
+    var customerId = incrementCounter('counters', 'customerId', 1);
+    var logId = incrementCounter('counters', 'logId', 1);
+    var logs = Logs.insert({logId: logId, user: Meteor.user().profile.nickname, submitted: new Date().getTime()}); // START LOGGING
+    var adressIdNumber = Number(data.idAdresse);
+    var adressId = data.idAdresse;  
     var customerName = data.tName;
     var checkOne = Customers.find({customerId: customerId}).count();
     var checkTwo = CustomersPending.find({customerId: customerId}).count();
     if(checkOne > 0 || checkTwo > 0) {
       console.log('Kunde ' + customerId + ' / ' + customerName + ' schon vorhanden'); // Server Console
+      Logs.update({_id: logs}, {$addToSet: {logDetails: {logStatus: 'warning', logMsg: 'Kunde ' + customerId + '/' + adressId + ' - ' + customerName + ' schon vorhanden', logShowDebug: true, record: none}}}); // LOGGING
     } else {      
       var customerSiteUrl = customerName.replace(/\./g, "").replace(/ /g, "_").replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/Ä/g,"Ae").replace(/Ö/g,"Oe").replace(/Ü/g,"Ue").replace(/ß/g,"ss") + '_' + _.uniqueId();
       customerSiteUrl = customerSiteUrl.toLowerCase();    
       var customersPendingData = {
         customerId: customerId,
+        customerIdNumber: Number(customerId),
         customerName: customerName,
         customerLongName: data.tName2 + ' ' + data.tRechtsform,
         customerDepartment: data.tZusatz,
@@ -36,13 +41,13 @@ Meteor.methods({
         customerHasAv:  false,
         customerHasRP:  false,
         customerHasKG:  false,
-        customerChanges: [{date: new Date().getTime(), content: 'Kunde importiert', user: 'Skeltoras'}],
+        customerChanges: [{date: new Date().getTime(), content: 'Kunde importiert', user: Meteor.user().profile.nickname}],
         customerSubmitted: new Date().getTime(),
         customerUpdatedAt: new Date().getTime()
       }; 
-      console.log('Kunde ' + customerId + ' angelegt'); // Server Console
-      CustomersPending.insert(customersPendingData);
-      
+      var id = CustomersPending.insert(customersPendingData);
+      Logs.update({_id: logs}, {$addToSet: {logDetails: {logStatus: 'info', logMsg: 'Kunde ' + customerId + '/' + adressId + ' - ' + customerName + ' angelegt', logShowDebug: false, record: id}}}); // LOGGING
+    
       //booleans
       var bLehrstellen = false;
       if(data.bLehrstellen == "-1") {
@@ -86,6 +91,7 @@ Meteor.methods({
       var nAnzahlProspekte = Number(data.nAnzahlProspekte);
       var xLand = Number(data.xLand);
       var customersDetailData = {
+        _id: id,
         customerId: customerId,
         idAdresse: adressId,
         nKundennummer: data.nKundennummer,
@@ -164,8 +170,10 @@ Meteor.methods({
         avSubmitted: new Date().getTime(),
         avUpdatedAt: new Date().getTime()     
       };
-      console.log('Kundendaten ' + customerId + ' angelegt'); // Server Console
-      CustomersDetail.insert(customersDetailData);
+      var detailId = CustomersDetail.insert(customersDetailData);
+      Logs.update({_id: logs}, {$addToSet: {logDetails: {logStatus: 'info', logMsg: 'Kundendaten ' + customerId + '/' + adressId + ' - ' + customerName + ' angelegt', logShowDebug: false, record: detailId}}}); // LOGGING    
+      //if(error)
+        //Logs.update({_id: logs}, {$addToSet: {logDetails: {logStatus: 'warning', logMsg: 'Error: ' + error, logShowDebug: true, record: error}}}); // LOGGING   
     }
   },
   uploadCountries: function(data){
@@ -182,6 +190,7 @@ Meteor.methods({
         nLandnummer: data.nLandnummer,
         tKuerzel: data.tKuerzel,
         tInfo: data. tInfo,
+        changes: [{date: new Date().getTime(), content: 'Land importiert', user: 'Skeltoras'}],
         submitted: new Date().getTime(),
         updatedAt: new Date().getTime()
       }
@@ -196,10 +205,10 @@ Meteor.methods({
       });
     }
   },
-  uplAvChapters: function(data){
+  uploadCustomersChapters: function(data){
     var chapterId = data.idAdresskapitel;
     var chapterShort = data.tKuerzel;
-    var check = AvChapters.find({chapterId: chapterId}).count();    
+    var check = CustomersChapters.find({chapterId: chapterId}).count();    
     if(check > 0) {
       console.log('Kapitel ' + chapterShort + ' schon vorhanden'); // server console
     } else {
@@ -212,22 +221,84 @@ Meteor.methods({
         chapterName: data.tAdresskapitel_de,
         chapterShortName: data.tKopfzeile,
         chapterDescription: data.mEinfuehrung_de,
+        changes: [{date: new Date().getTime(), content: 'Kapitel importiert', user: 'Skeltoras'}],
         submitted: new Date().getTime(),
         updatedAt: new Date().getTime()
       } 
-      AvChapters.insert(chapterData);
+      CustomersChapters.insert(chapterData);
       console.log(chapterShort + ' eingetragen'); // server console
     } 
   },
-  uplAvChaptersSections: function(data){
+  uploadChaptersSections: function(data){
     var chapterIndex = data.idAdressbereich;
     var name = data.tName_de;
-    var setData = AvChapters.find({chapterIndex: chapterIndex});   
+    var setData = CustomersChapters.find({chapterIndex: chapterIndex});   
     setData.forEach(function(section){
-      AvChapters.update(section._id, {$set: {chapterSection: name}});
+      CustomersChapters.update(section._id, {$set: {chapterSection: name}});
       console.log(name + ' bei ' + section.chapterShort + ' eingetragen'); // server console    
     })
   },
+  uploadCustomersLock: function(data) {    
+    var lockId = data.id;
+    var lockShortName = data.Kuerzel;
+    var check = CustomersLock.find({lockId: lockId}).count();   
+    if(check > 0) {
+      console.log('Sperre ' + lockShortName + ' schon vorhanden'); // server console
+    } else {
+      var lockName = data.Bezeichnung;
+      var CustomersLockData = [];
+      CustomersLockData = {
+        lockId: lockId,
+        lockShortName: lockShortName,
+        lockName: lockName,
+        changes: [{date: new Date().getTime(), content: 'Sperre importiert', user: 'Skeltoras'}],
+        submitted: new Date().getTime(),
+        updatedAt: new Date().getTime()  
+      }
+      CustomersLock.insert(CustomersLockData);
+      console.log(lockShortName + ' eingetragen'); // server console
+    }
+  },
+  //Zuordnungen
+  uploadCustomersChaptersAssign: function(data) {    
+    var chapterId = data.idAdresskapitel;
+    var customerId = data.idAdresse;
+    var checkPrimary = data.Haupteintrag;
+    var getChapter = CustomersChapters.findOne({chapterId: chapterId});
+    var isPrimary = false;
+    var customersData = [];
+    if(checkPrimary == 1){
+      isPrimary = true;  
+    }    
+    customersData = {
+      id: chapterId,
+      shortname: getChapter.chapterShort,
+      name: getChapter.chapterName,
+      isPrimary: isPrimary  
+    }
+    var setData = CustomersDetail.find({customerId: customerId});    
+    setData.forEach(function(customer){
+      CustomersDetail.update(customer._id, {$addToSet: {addressChapters: customersData}});
+      console.log(getChapter.chapterShort + ' bei ' + customer.customerName + ' eingetragen');    
+    });
+  },
+  uploadCustomersLockAssign: function(data) {    
+    var lockId = data.idSperre;
+    var customerId = data.idAdresse;
+    var getLocks = CustomersLock.findOne({lockId: lockId});
+    var customersData = [];
+    customersData = {
+      shortname: getLocks.lockShortName,
+      name: getLocks.lockName
+    }
+    var setData = CustomersDetail.find({customerId: customerId});    
+    setData.forEach(function(customer){
+      CustomersDetail.update(customer._id, {$addToSet: {locks: customersData}});
+      console.log(getLocks.lockShortName + ' bei ' + customer.customerName + ' eingetragen');    
+    });
+  }
+  
+  /*
   uplAvAssociations: function(data) {    
     var associationId = data.idVerband;
     var associationShort = data.Kuerzel;
@@ -248,48 +319,22 @@ Meteor.methods({
       console.log(associationShort + ' eingetragen'); // server console
     }
   },
-  uplAvBlockIndicators: function(data) {    
-    var blocksId = data.id;
-    var blocksShort = data.Kuerzel;
-    var check = AvBlockIndicators.find({blocksId: blocksId}).count();   
-    if(check > 0) {
-      console.log('Sperre ' + blocksShort + ' schon vorhanden'); // server console
-    } else {
-      var blocksName = data.Bezeichnung;
-      var avAssoctiationsData = [];
-      avBlockIndicatorsData = {
-        blocksId: blocksId,
-        blocksShort: blocksShort,
-        blocksName: blocksName,
-        submitted: new Date().getTime(),
-        updatedAt: new Date().getTime()  
-      }
-      AvBlockIndicators.insert(avBlockIndicatorsData);
-      console.log(blocksShort + ' eingetragen'); // server console
+  uplAvAssociationsAssign: function(data) {    
+    var associationId = data.idVerband;
+    var customerId = data.idAdresse;
+    var getAssociation = AvAssociations.findOne({associationId: associationId});
+    var avCustomersData = [];
+    avAssociationsData = {
+      id: associationId,
+      short: getAssociation.associationShort,
+      name: getAssociation.associationName, 
     }
-  },
-  //Zuordnungen
-  uplAvChaptersAssign: function(data) {    
-    var chapterId = data.idAdresskapitel;
-    var avCustomerId = data.idAdresse;
-    var checkPrimary = data.Haupteintrag;
-    var getChapter = AvChapters.findOne({chapterId: chapterId});
-    var isPrimary = false;
-    var customersData = [];
-    if(checkPrimary == 1){
-      isPrimary = true;  
-    }    
-    customersData = {
-      id: chapterId,
-      shortname: getChapter.chapterShort,
-      name: getChapter.chapterName,
-      isPrimary: isPrimary  
-    }
-    var setData = CustomersDetail.find({customerId: avCustomerId});    
+    var setData = CustomersDetail.find({customerId: customerId});    
     setData.forEach(function(customer){
-      CustomersDetail.update(customer._id, {$addToSet: {avAddressChapters: customersData}});
-      console.log(getChapter.chapterShort + ' bei ' + customer.customerName + ' eingetragen');    
+      CustomersDetail.update(customer._id, {$addToSet: {avAssociations: avAssociationsData}});
+      console.log(getAssociation.associationShort + ' bei ' + customer.customerName + ' eingetragen');    
     });
   },
-   
+    
+  */ 
 });

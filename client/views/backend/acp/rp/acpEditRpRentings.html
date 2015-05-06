@@ -1,0 +1,939 @@
+<template name="acpEditRpRentings">
+{{#if Template.subscriptionsReady}}
+  <div class="container acp">
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-3">
+        {{#with getCustomerData}}
+          <div class="panel panel-default panel-rp-detail">
+            <div class="panel-heading"><h3>{{customerName}} <small>(Vorschau)</small></h3></div>
+            <div class="panel-body">
+              <p>
+                {{customerInfo}}
+              </p>
+              <h3>Adresse</h3>
+              <p>
+                {{#if customerLongName}}{{customerLongName}}<br>{{/if}}
+                {{#if customerDepartment}}{{customerDepartment}}<br>{{/if}}
+                {{#if customerPostAddition}}{{customerPostAddition}}<br>{{/if}}
+                {{#if customerStreet}}{{customerStreet}}<br>{{/if}}
+                {{#if customerPlz}}{{customerPlz}}{{/if}} {{#if customerCity}}{{customerCity}}<br>{{/if}}     
+                {{#if customerCountry}}{{customerCountry}}{{/if}}
+              </p>
+              <h3>Kontakt</h3>
+              <p>
+                {{#if customerTelephoneFormal}}<i class="fa fa-phone"></i> {{customerTelephoneFormal}}<br>{{/if}}
+                {{#if customerTelefax}}<i class="fa fa-fax"></i> {{customerTelefax}}<br>{{/if}}
+                {{#if customerMailFormal}}<i class="fa fa-envelope"></i> {{customerMailFormal}}<br>{{/if}}
+              </p>          
+            </div>
+          </div>
+        {{/with}}
+        <div class="panel panel-default panel-rp-detail">
+          <div class="panel-heading"><h3>Notizen</h3></div>
+          <div class="panel-body">
+            {{{rentingsNotes}}}         
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <form class="form form-horizontal">
+          <div class="row">    
+            <div class="col-sm-12">
+              <fieldset>
+                <div class="control-group">            
+                  <div class="controls">              
+                    <input type="submit" class="btn btn-default" value="Speichern"/>              
+                  </div>          
+                </div>
+              </fieldset>          
+            </div>
+          </div>      
+          <div class="spacer-20"></div>
+          {{> acpEditRpRentingsOptions}}
+          <div class="spacer-20"></div>
+          {{> acpEditRpRentingsData}}
+          <div class="spacer-20"></div>
+          <div class="row">    
+            <div class="col-sm-12">
+              <fieldset>
+                <div class="control-group">            
+                  <div class="controls">              
+                    <input type="submit" class="btn btn-default" value="Speichern"/>              
+                  </div>          
+                </div>
+              </fieldset>          
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>
+
+<template name="acpEditRpRentingsOptions">
+          <div class="row">
+            <legend>Optionen</legend>
+            <div class="col-sm-4">        
+              <fieldset>
+                <!-- rentingsHasPackageS -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasPackageS}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageS" name="rentingsHasPackageS" checked="checked" data-toggle="collapse" data-target="#packageS" aria-expanded="true" aria-controls="packageS">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageS" name="rentingsHasPackageS" data-toggle="collapse" data-target="#packageS" aria-expanded="false" aria-controls="packageS">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasPackageS" class="col-sm-10">Paket S</label>                                                             
+                </div>
+                <!-- rentingsHasPackageM -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasPackageM}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageM" name="rentingsHasPackageM" checked="checked" data-toggle="collapse" data-target="#packageM" aria-expanded="true" aria-controls="packageM">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageM" name="rentingsHasPackageM" data-toggle="collapse" data-target="#packageM" aria-expanded="false" aria-controls="packageM">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasPackageM" class="col-sm-10">Paket M</label>                                                             
+                </div>          
+                <!-- rentingsHasPackageL -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasPackageL}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageL" name="rentingsHasPackageL" checked="checked" data-toggle="collapse" data-target="#packageL" aria-expanded="true" aria-controls="packageL">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageL" name="rentingsHasPackageL" data-toggle="collapse" data-target="#packageL" aria-expanded="false" aria-controls="packageL">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasPackageL" class="col-sm-10">Paket L</label>                                                             
+                </div>          
+                <!-- rentingsHasPackageXL -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasPackageXL}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageXL" name="rentingsHasPackageXL" checked="checked" data-toggle="collapse" data-target="#packageXL" aria-expanded="true" aria-controls="packageXL">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasPackageXL" name="rentingsHasPackageXL" data-toggle="collapse" data-target="#packageXL" aria-expanded="false" aria-controls="packageXL">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasPackageXL" class="col-sm-10">Paket XL</label>                                                             
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-4">
+              <fieldset>          
+                <!-- rentingsHasAddTextOne -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasAddTextOne}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasAddTextOne" name="rentingsHasAddTextOne" checked="checked" data-toggle="collapse" data-target="#addTextOne" aria-expanded="true" aria-controls="addTextOne">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasAddTextOne" name="rentingsHasAddTextOne" data-toggle="collapse" data-target="#addTextOne" aria-expanded="false" aria-controls="addTextOne">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasAddTextOne" class="col-sm-10">Zusatztext 1</label>                                                             
+                </div> 
+                <!-- rentingsHasAddTextTwo -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasAddTextTwo}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasAddTextTwo" name="rentingsHasAddTextTwo" checked="checked" data-toggle="collapse" data-target="#addTextTwo" aria-expanded="true" aria-controls="addTextTwo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasAddTextTwo" name="rentingsHasAddTextTwo" data-toggle="collapse" data-target="#addTextTwo" aria-expanded="false" aria-controls="addTextTwo">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasAddTextTwo" class="col-sm-10">Zusatztext 2</label>                                                             
+                </div>
+                <!-- rentingsHasGalleryS -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasGalleryS}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasGalleryS" name="rentingsHasGalleryS" checked="checked" data-toggle="collapse" data-target="#addGalleryS" aria-expanded="true" aria-controls="addGalleryS">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasGalleryS" name="rentingsHasGalleryS" data-toggle="collapse" data-target="#addGalleryS" aria-expanded="false" aria-controls="addGalleryS">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasGalleryS" class="col-sm-10">kleine Galerie</label>                                                             
+                </div>        
+                <!-- rentingsHasGalleryM -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasGalleryM}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasGalleryM" name="rentingsHasGalleryM" checked="checked" data-toggle="collapse" data-target="#addGalleryM" aria-expanded="true" aria-controls="addGalleryM">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasGalleryM" name="rentingsHasGalleryM" data-toggle="collapse" data-target="#addGalleryM" aria-expanded="false" aria-controls="addGalleryM">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasGalleryM" class="col-sm-10">große Galerie</label>                                                             
+                </div>         
+              </fieldset>
+            </div>
+            <div class="col-sm-4">
+              <fieldset>          
+                <!-- rentingsHasHeaderImg -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasHeaderImg}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasHeaderImg" name="rentingsHasHeaderImg" checked="checked" data-toggle="collapse" data-target="#addHeaderImage" aria-expanded="true" aria-controls="addHeaderImage">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasHeaderImg" name="rentingsHasHeaderImg" data-toggle="collapse" data-target="#addHeaderImage" aria-expanded="false" aria-controls="addHeaderImage">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasHeaderImg" class="col-sm-10">Eigenes Headerbild</label>                                                             
+                </div> 
+                <!-- rentingsHasVideo -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasVideo}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasVideo" name="rentingsHasVideo" checked="checked" data-toggle="collapse" data-target="#addVideo" aria-expanded="true" aria-controls="addVideo">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasVideo" name="rentingsHasVideo" data-toggle="collapse" data-target="#addVideo" aria-expanded="false" aria-controls="addVideo">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasVideo" class="col-sm-10">Video</label>                                                             
+                </div>
+                <!-- rentingsHasSocialMedia -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasSocialMedia}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasSocialMedia" name="rentingsHasSocialMedia" checked="checked" data-toggle="collapse" data-target="#addSocialMedia" aria-expanded="true" aria-controls="addSocialMedia">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasSocialMedia" name="rentingsHasSocialMedia" data-toggle="collapse" data-target="#addSocialMedia" aria-expanded="false" aria-controls="addSocialMedia">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasSocialMedia" class="col-sm-10">Social Media</label>                                                             
+                </div>
+                <!-- rentingsHasHighlights -->
+                <div class="form-group">                   
+                  <div class="col-sm-2">
+                    {{#if rentingsHasHighlights}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasHighlights" name="rentingsHasHighlights" checked="checked" data-toggle="collapse" data-target="#addHighlights" aria-expanded="true" aria-controls="addHighlights">
+                    {{else}}
+                      <input type="checkbox" class="checkbox acp" id="rentingsHasHighlights" name="rentingsHasHighlights" data-toggle="collapse" data-target="#addHighlights" aria-expanded="false" aria-controls="addHighlights">
+                    {{/if}}
+                  </div>
+                  <label for="rentingsHasHighlights" class="col-sm-10">Highlight-Box</label>                                                             
+                </div>         
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <fieldset>
+                <!-- rentingsCountImages -->                
+                <div class="form-group">                         
+                  <div class="col-sm-4">                       
+                    <input type="number" class="form-control form-control-sm" id="rentingsCountImages" name="rentingsCountImages" value="{{rentingsCountImages}}">                   
+                  </div>
+                  <label for="rentingsCountImages" class="col-sm-8">Gebuchte Bilder im Textteil</label>               
+                </div>
+                <div class="spacer-20"></div>
+              </fieldset>  
+            </div>
+          </div>
+</template>
+
+<template name="acpEditRpRentingsData">
+          <div class="row">
+            <legend>Daten</legend>
+            <div class="col-sm-6"> 
+              <!-- rentingsSiteUrl -->                
+              <fieldset>      
+                <div class="form-group form-group-sm">                   
+                  <label for="rentingsSiteUrl" class="col-sm-4 control-label">Permalink</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsSiteUrl" name="rentingsSiteUrl" value="{{rentingsSiteUrl}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsName -->                
+              <fieldset>      
+                <div class="form-group form-group-sm is-public">                   
+                  <label for="rentingsName" class="col-sm-4 control-label">Objektname</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsName" name="rentingsName" value="{{rentingsName}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- countryData -->
+              <fieldset>
+                <div class="form-group">                   
+                  <label for="countryData" class="col-sm-4 control-label">Länder</label>                   
+                  <div class="col-sm-8">                       
+                    {{> editCountriesS2MTours}}
+                  </div>               
+                </div>                
+              </fieldset>
+              <!-- rentingsUrl -->                
+              <fieldset>      
+                <div class="form-group form-group-sm is-public">                   
+                  <label for="rentingsUrl" class="col-sm-4 control-label">Objekt-Website</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsUrl" name="rentingsUrl" value="{{rentingsUrl}}" placeholder="Ohne http://">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsPeople -->                
+              <fieldset>      
+                <div class="form-group  form-group-sm is-public">                   
+                  <label for="rentingsPeople" class="col-sm-4 control-label">Max. Personen</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsPeople" name="rentingsPeople" value="{{rentingsPeople}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsCategory -->                
+              <fieldset>      
+                <div class="form-group form-group-sm is-public">                   
+                  <label for="rentingsCategory" class="col-sm-4 control-label">Kategorie</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsCategory" name="rentingsCategory" value="{{rentingsCategory}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsCustom -->                
+              <fieldset>      
+                <div class="form-group form-group-sm is-public">                   
+                  <label for="rentingsCustom" class="col-sm-4 control-label">Besonderes</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsCustom" name="rentingsCustom" value="{{rentingsCustom}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-6">
+              <!-- rentingsVisible -->                
+              <fieldset>      
+                <div class="form-group form-group-sm">                   
+                  <label for="rentingsVisibleBegin" class="col-sm-4 control-label">Sichtbar von</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="date" class="form-control" id="rentingsVisibleBegin" name="rentingsVisibleBegin" value="{{formatDateInput rentingsVisibleBegin}}" placeholder="">                   
+                  </div>               
+                </div>
+                <div class="form-group form-group-sm">                   
+                  <label for="rentingsVisibleEnd" class="col-sm-4 control-label">... bis</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="date" class="form-control" id="rentingsVisibleEnd" name="rentingsVisibleEnd" value="{{formatDateInput rentingsVisibleEnd}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsDuration -->                
+              <fieldset>      
+                <div class="form-group form-group-sm is-public">                   
+                  <label for="rentingsBegin" class="col-sm-4 control-label">Zeitraum von</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="date" class="form-control" id="rentingsBegin" name="rentingsBegin" value="{{formatDateInput rentingsBegin}}" placeholder="">                   
+                  </div>               
+                </div>
+                <div class="form-group form-group-sm is-public">                   
+                  <label for="rentingsEnd" class="col-sm-4 control-label">... bis</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="date" class="form-control" id="rentingsEnd" name="rentingsEnd" value="{{formatDateInput rentingsEnd}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsHighlightOne -->                
+              <fieldset>      
+                <div class="form-group  form-group-sm is-public">                   
+                  <label for="rentingsHighlightOne" class="col-sm-4 control-label">Highlight 1</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsHighlightOne" name="rentingsHighlightOne" value="{{rentingsHighlightOne}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsHighlightTwo -->                
+              <fieldset>      
+                <div class="form-group  form-group-sm is-public">                   
+                  <label for="rentingsHighlightTwo" class="col-sm-4 control-label">Highlight 2</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsHighlightTwo" name="rentingsHighlightTwo" value="{{rentingsHighlightTwo}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+              <!-- rentingsHighlightThree -->                
+              <fieldset>      
+                <div class="form-group  form-group-sm is-public">                   
+                  <label for="rentingsHighlightThree" class="col-sm-4 control-label">Highlight 3</label>                   
+                  <div class="col-sm-8">                       
+                    <input type="text" class="form-control" id="rentingsHighlightThree" name="rentingsHighlightThree" value="{{rentingsHighlightThree}}" placeholder="">                   
+                  </div>               
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- rentingsDefaultImage -->
+              <fieldset>
+                <h4>Beitragsbild</h4>
+                <div class="thumbnailBox defaultImage">
+                  {{#if getDefaultImage}}
+                    {{#with getDefaultImage}}
+                      <div class="thumb show defaultImage">
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgDefaultImageThumb'}}" alt="rpImgDefaultImageThumb" /></a>
+                      </div>
+                      <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                    {{/with}}
+                  {{else}}
+                    <div class="thumb upload defaultImage">
+                      <input type="file" class="upload defaultImage" id="rentingsDefaultImage" name="rentingsDefaultImage">
+                      <i class="fa fa-upload"></i>
+                    </div>
+                  {{/if}}
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-6">
+              <!-- rentingsLogo -->
+              <fieldset>
+                <h4>Logo</h4>
+                <div class="thumbnailBox logo">
+                  {{#if getLogo}}
+                    {{#with getLogo}}
+                      <div class="thumb show logo">
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgLogoThumb'}}" alt="rpImgLogoThumb" /></a>
+                      </div>
+                      <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                    {{/with}}
+                  {{else}}
+                    <div class="thumb upload logo">
+                      <input type="file" class="upload logo" id="rentingsLogo" name="rentingsLogo">
+                      <i class="fa fa-upload"></i>
+                    </div>
+                  {{/if}}
+                </div>
+              </fieldset>
+            </div>  
+          </div>
+          <div class="spacer-20"></div>
+          <div class="row">
+            <div class="col-sm-12">  
+              <fieldset>
+                <div class="collapse {{#if rentingsHasPackageS}}in{{/if}}" id="packageS">
+                  <h4>Paket S</h4>
+                  <!-- rentingsTabOneS -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabOneS" class="col-sm-4 control-label">rentingsTabOneS</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabOneS" name="rentingsTabOneS" value="{{rentingsTabOneS}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextOneS -->
+                  <textarea class="editableFroala" id="rentingsTextOneS" name="rentingsTextOneS">{{{rentingsTextOneS}}}</textarea>
+                  <div class="spacer-20"></div>
+                </div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="collapse {{#if rentingsHasPackageM}}in{{/if}}" id="packageM">
+                  <h4>Paket M</h4>
+                  <!-- rentingsTabOneM -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabOneM" class="col-sm-4 control-label">rentingsTabOneM</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabOneM" name="rentingsTabOneM" value="{{rentingsTabOneM}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextOneM -->
+                  <textarea class="editableFroala" id="rentingsTextOneM" name="rentingsTextOneM">{{{rentingsTextOneM}}}</textarea>
+                  <div class="spacer-20"></div>
+                  <!-- rentingsTabTwoM -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabTwoM" class="col-sm-4 control-label">rentingsTabTwoM</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabTwoM" name="rentingsTabTwoM" value="{{rentingsTabTwoM}}" placeholder="Unterkunft">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextTwoM -->
+                  <textarea class="editableFroala" id="rentingsTextTwoM" name="rentingsTextTwoM">{{{rentingsTextTwoM}}}</textarea>
+                  <div class="spacer-20"></div>
+                </div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="collapse {{#if rentingsHasPackageL}}in{{/if}}" id="packageL">
+                  <h4>Paket L</h4>
+                  <!-- rentingsTabOneL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabOneL" class="col-sm-4 control-label">rentingsTabOneL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabOneL" name="rentingsTabOneL" value="{{rentingsTabOneL}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextOneL -->
+                  <textarea class="editableFroala" id="rentingsTextOneL" name="rentingsTextOneL">{{{rentingsTextOneL}}}</textarea>
+                  <div class="spacer-20"></div>
+                  <!-- rentingsTabTwoL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabTwoL" class="col-sm-4 control-label">rentingsTabTwoL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabTwoL" name="rentingsTabTwoL" value="{{rentingsTabTwoL}}" placeholder="Unterkunft">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextTwoL -->
+                  <textarea class="editableFroala" id="rentingsTextTwoL" name="rentingsTextTwoL">{{{rentingsTextTwoL}}}</textarea>
+                  <div class="spacer-20"></div>
+                  <!-- rentingsTabThreeL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabThreeL" class="col-sm-4 control-label">rentingsTabThreeL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabThreeL" name="rentingsTabThreeL" value="{{rentingsTabThreeL}}">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextThreeL -->
+                  <textarea class="editableFroala" id="rentingsTextThreeL" name="rentingsTextThreeL">{{{rentingsTextThreeL}}}</textarea>
+                  <div class="spacer-20"></div>            
+                </div>
+              </fieldset>
+              
+              <fieldset>
+                <div class="collapse {{#if rentingsHasPackageXL}}in{{/if}}" id="packageXL">
+                  <h4>Paket XL</h4>
+                  <!-- rentingsTabOneXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabOneXL" class="col-sm-4 control-label">rentingsTabOneXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabOneXL" name="rentingsTabOneXL" value="{{rentingsTabOneXL}}" placeholder="Übersicht">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextOneXL -->
+                  <textarea class="editableFroala" id="rentingsTextOneXL" name="rentingsTextOneXL">{{{rentingsTextOneXL}}}</textarea>
+                  <div class="spacer-20"></div>
+                  <!-- rentingsTabTwoXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabTwoXL" class="col-sm-4 control-label">rentingsTabTwoXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabTwoXL" name="rentingsTabTwoXL" value="{{rentingsTabTwoXL}}" placeholder="Unterkunft">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextTwoXL -->
+                  <textarea class="editableFroala" id="rentingsTextTwoXL" name="rentingsTextTwoXL">{{{rentingsTextTwoXL}}}</textarea>
+                  <div class="spacer-20"></div>
+                  <!-- rentingsTabThreeXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabThreeXL" class="col-sm-4 control-label">rentingsTabThreeXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabThreeXL" name="rentingsTabThreeXL" value="{{rentingsTabThreeXL}}">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextThreeXL -->
+                  <textarea class="editableFroala" id="rentingsTextThreeXL" name="rentingsTextThreeXL">{{{rentingsTextThreeXL}}}</textarea>
+                  <div class="spacer-20"></div>
+                  <!-- rentingsTabFourXL -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTabFourXL" class="col-sm-4 control-label">rentingsTabFourXL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTabFourXL" name="rentingsTabFourXL" value="{{rentingsTabFourXL}}">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTextFourXL -->
+                  <textarea class="editableFroala" id="rentingsTextFourXL" name="rentingsTextFourXL">{{{rentingsTextFourXL}}}</textarea>
+                  <div class="spacer-20"></div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <div class="collapse {{#if rentingsHasAddTextOne}}in{{/if}}" id="addTextOne">
+                  <h4>Zusatztext 1</h4>
+                  <!-- rentingsAddTextTabOne -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsAddTextTabOne" class="col-sm-4 control-label">rentingsAddTextTabOne</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsAddTextTabOne" name="rentingsAddTextTabOne" value="{{rentingsAddTextTabOne}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsAddTextOne -->
+                  <textarea class="editableFroala" id="rentingsAddTextOne" name="rentingsAddTextOne">{{{rentingsAddTextOne}}}</textarea>
+                  <div class="spacer-20"></div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <div class="collapse {{#if rentingsHasAddTextTwo}}in{{/if}}" id="addTextTwo">
+                  <h4>Zusatztext 2</h4>
+                  <!-- rentingsAddTextTabTwo -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsAddTextTabTwo" class="col-sm-4 control-label">rentingsAddTextTabTwo</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsAddTextTabTwo" name="rentingsAddTextTabTwo" value="{{rentingsAddTextTabTwo}}" placeholder="">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsAddTextTwo -->
+                  <textarea class="editableFroala" id="rentingsAddTextTwo" name="rentingsAddTextTwo">{{{rentingsAddTextTwo}}}</textarea>
+                  <div class="spacer-20"></div>
+                </div>
+              </fieldset>
+              
+              <!-- rentingsGalleryS -->
+              <div class="collapse {{#if rentingsHasGalleryS}}in{{/if}}" id="addGalleryS">
+                <fieldset>
+                  <h4>kleine Galerie</h4>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS1}}
+                      {{#with getGS1}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="rentingsGS1" name="rentingsGS1">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS2}}
+                      {{#with getGS2}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="rentingsGS2" name="rentingsGS2">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS3}}
+                      {{#with getGS3}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="rentingsGS3" name="rentingsGS3">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS4}}
+                      {{#with getGS4}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="rentingsGS4" name="rentingsGS4">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS5}}
+                      {{#with getGS5}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="rentingsGS5" name="rentingsGS5">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGS6}}
+                      {{#with getGS6}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryS" id="rentingsGS6" name="rentingsGS6">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                                  
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- rentingsGalleryM -->
+              <div class="collapse {{#if rentingsHasGalleryM}}in{{/if}}" id="addGalleryM">
+                <fieldset>
+                  <h4>große Galerie</h4>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM1}}
+                      {{#with getGM1}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM1" name="rentingsGM1">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM2}}
+                      {{#with getGM2}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM2" name="rentingsGM2">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM3}}
+                      {{#with getGM3}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM3" name="rentingsGM3">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM4}}
+                      {{#with getGM4}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM4" name="rentingsGM4">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM5}}
+                      {{#with getGM5}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM5" name="rentingsGM5">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM6}}
+                      {{#with getGM6}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM6" name="rentingsGM6">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM7}}
+                      {{#with getGM7}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM7" name="rentingsGM7">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM8}}
+                      {{#with getGM8}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM8" name="rentingsGM8">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM9}}
+                      {{#with getGM9}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM9" name="rentingsGM9">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM10}}
+                      {{#with getGM10}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM10" name="rentingsGM10">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM11}}
+                      {{#with getGM11}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM11" name="rentingsGM11">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>
+                  <div class="thumbnailBox galleryImg">
+                    {{#if getGM12}}
+                      {{#with getGM12}}
+                        <div class="thumb show galleryImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload galleryImg">
+                        <input type="file" class="upload galleryImg galleryM" id="rentingsGM12" name="rentingsGM12">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                                  
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>             
+
+              <!-- rentingsHeaderImg -->
+              <div class="collapse {{#if rentingsHasHeaderImg}}in{{/if}}" id="addHeaderImage">
+                <fieldset>
+                  <h4>Header-Bild</h4>
+                  <div class="thumbnailBox headerImg">
+                    {{#if getHeaderImg}}
+                      {{#with getHeaderImg}}
+                        <div class="thumb show headerImg">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgHeaderThumb'}}" alt="rpImgHeaderThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload headerImg">
+                        <input type="file" class="upload headerImg" id="rentingsHeaderImg" name="rentingsHeaderImg">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                                  
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- rentingsVideoUrl -->                
+              <div class="collapse {{#if rentingsHasVideo}}in{{/if}}" id="addVideo">                      
+                <fieldset>
+                  <h4>Video</h4>
+                  <div class="form-group is-public">                   
+                    <label for="rentingsUrl" class="col-sm-4 control-label">rentingsVideoUrl</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsVideoUrl" name="rentingsVideoUrl" value="{{rentingsVideoUrl}}">                   
+                    </div>               
+                  </div>
+                </fieldset>
+                <div class="spacer-20"></div>
+              </div>
+              
+              <!-- rentingsSocialMedia --> 
+              <div class="collapse {{#if rentingsHasSocialMedia}}in{{/if}}" id="addSocialMedia">
+                <fieldset>
+                  <h4>Social Media</h4>
+                  <!-- rentingsFacebookData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsFacebookData" class="col-sm-4 control-label">rentingsFacebookData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsFacebookData" name="rentingsFacebookData" value="{{rentingsFacebookData}}">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsTwitterData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsTwitterData" class="col-sm-4 control-label">rentingsTwitterData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsTwitterData" name="rentingsTwitterData" value="{{rentingsTwitterData}}">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsGplusData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsGplusData" class="col-sm-4 control-label">rentingsGplusData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsGplusData" name="rentingsGplusData" value="{{rentingsGplusData}}">                   
+                    </div>               
+                  </div>
+                  <!-- rentingsYoutubeData -->                
+                  <div class="form-group is-public">                   
+                    <label for="rentingsYoutubeData" class="col-sm-4 control-label">rentingsYoutubeData</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="rentingsYoutubeData" name="rentingsYoutubeData" value="{{rentingsYoutubeData}}">                   
+                    </div>               
+                  </div>
+                </fieldset>    
+                <div class="spacer-20"></div>
+              </div> 
+              
+              <fieldset>
+                <h4>Notizen</h4>
+                <!-- rentingsNotes -->
+                <textarea class="editableFroala" id="rentingsNotes" name="rentingsNotes">{{{rentingsNotes}}}</textarea>
+                <div class="spacer-20"></div>
+              </fieldset>                         
+            </div>
+          </div>
+</template>

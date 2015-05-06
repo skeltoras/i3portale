@@ -108,10 +108,44 @@ Router.route('/acp/av/edit/:_id', function (){
   this.render('acpEditAV', {
     data: function() {
       Session.set('customerId', this.params._id);
-      return AvData.findOne({customerId: this.params._id});
+      return AvData.findOne({_id: this.params._id});
     }
   });
 }, {
   name: 'acp.av.edit',
+  controller: 'AcpController'
+});
+
+/** RP-PORTAL **/
+Router.route('/acp/rp/list', function (){ 
+  this.render('acpListRP');
+}, {
+  name: 'acp.rp.list',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/rp/tours/:customerId/:_id', function (){ 
+  this.render('acpEditRPTours', {
+    data: function() {
+      Session.set('customerId', this.params.customerId);
+      Session.set('toursId', this.params._id);
+      return RpTours.findOne({_id: this.params._id});
+    }
+  });
+}, {
+  name: 'acp.rp.tours.edit',
+  controller: 'AcpController'
+});
+
+Router.route('/acp/rp/rent/:customerId/:_id', function (){ 
+  this.render('acpEditRpRentings', {
+    data: function() {
+      Session.set('customerId', this.params.customerId);
+      Session.set('rentingsId', this.params._id);
+      return RpRentings.findOne({_id: this.params._id});
+    }
+  });
+}, {
+  name: 'acp.rp.rent.edit',
   controller: 'AcpController'
 });

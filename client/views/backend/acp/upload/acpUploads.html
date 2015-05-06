@@ -7,76 +7,37 @@
     </div>
     <div class="spacer-20"></div>
     <div class="row">
-      <!-- uplAvCustomers -->
+      <!-- uploadNewCustomers -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload AV-Kunden <small>Datensätze: {{getPublishedCount 'cnt_allCustomers'}}</small></h3></div>
+          <div class="panel-heading"><h3>Kundendaten <small>Datensätze: {{getPublishedCount 'cnt_allCustomers'}}</small></h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvCustomers">
-              <input type="file" id="fileUplAvCustomers" name="fileUplAvCustomers">
+            <form role="form" id="uploadNewCustomers">
+              <input type="file" id="fileUploadNewCustomers" name="fileUploadNewCustomers">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>
         </div>
       </div>
-      <!-- uplAvCountries -->
+      <!-- uploadCountries -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Länder <small>Datensätze: {{getPublishedCount 'cnt_allCountries'}}</small></h3></div>
+          <div class="panel-heading"><h3>Länder <small>Datensätze: {{getPublishedCount 'cnt_allCountries'}}</small></h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvCountries">
-              <input type="file" id="fileUplAvCountries" name="fileUplAvCountries">
+            <form role="form" id="uploadCountries">
+              <input type="file" id="fileUploadCountries" name="fileUploadCountries">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>
         </div>
       </div>
-      <!-- uplAvChapters -->
+      <!-- uploadCustomersChapters -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Adresskapitel <small>Datensätze: {{getPublishedCount 'cnt_allAvChapters'}}</small></h3></div>
+          <div class="panel-heading"><h3>Adresskapitel <small>Datensätze: {{getPublishedCount 'cnt_allChapters'}}</small></h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvChapters">
-              <input type="file" id="fileUplAvChapters" name="fileUplAvChapters">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <!-- uplAvChaptersSections -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Adressbereiche</h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvChaptersSections">
-              <input type="file" id="fileUplAvChaptersSections" name="fileUplAvChaptersSections">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- uplAvAssociations -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Verbände <small>Datensätze: {{getPublishedCount 'cnt_allAvAssociations'}}</small></h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvAssociations">
-              <input type="file" id="fileUplAvAssociations" name="fileUplAvAssociations">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- uplAvBlockIndicators -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Sperren <small>Datensätze: {{getPublishedCount 'cnt_allAvBlockIndicators'}}</small></h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvBlockIndicators">
-              <input type="file" id="fileUplAvBlockIndicators" name="fileUplAvBlockIndicators">
+            <form role="form" id="uploadCustomersChapters">
+              <input type="file" id="fileUploadCustomersChapters" name="fileUploadCustomersChapters">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>
@@ -85,37 +46,25 @@
     </div>
     
     <div class="row">
-      <!-- uplAvCustomersLog -->
+      <!-- uploadChaptersSections -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Änderungslogs</h3></div>
+          <div class="panel-heading"><h3>Adressbereiche</h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvCustomersLog">
-              <input type="file" id="fileUplAvCustomersLog" name="fileUplAvCustomersLog">
+            <form role="form" id="uploadChaptersSections">
+              <input type="file" id="fileUploadChaptersSections" name="fileUploadChaptersSections">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>
         </div>
       </div>
-      <!-- uplAvCampaigns -->
+      <!-- uploadCustomersLock -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Aktionen <small>Datensätze: {{uplAvCampaignsCount}}</small></h3></div>
+          <div class="panel-heading"><h3>Sperren <small>Datensätze: {{getPublishedCount 'cnt_allLocks'}}</small></h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvCampaigns">
-              <input type="file" id="fileUplAvCampaigns" name="fileUplAvCampaigns">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- uplAvEducations -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Ausbildungen <small>Datensätze: {{uplAvEducationsCount}}</small></h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvEducations">
-              <input type="file" id="fileUplAvEducations" name="fileUplAvEducations">
+            <form role="form" id="uploadCustomersLock">
+              <input type="file" id="fileUploadCustomersLock" name="fileUploadCustomersLock">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>
@@ -124,64 +73,25 @@
     </div>
     
     <div class="row">
-      <!-- uplAvChaptersAssign -->
+      <!-- uploadCustomersChaptersAssign -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Zuordnung Kapitel</h3></div>
+          <div class="panel-heading"><h3>Zuordnung Kapitel / Kunde</h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvChaptersAssign">
-              <input type="file" id="fileUplAvChaptersAssign" name="fileUplAvChaptersAssign">
+            <form role="form" id="uploadCustomersChaptersAssign">
+              <input type="file" id="fileUploadCustomersChaptersAssign" name="fileUploadCustomersChaptersAssign">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>
         </div>
       </div>
-      <!-- uplAvAssociationsAssign -->
+      <!-- uploadCustomersLockAssign -->
       <div class="col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Zuordnung Verbände</h3></div>
+          <div class="panel-heading"><h3>Zuordnung Sperren / Kunde</h3></div>
           <div class="panel-body">
-            <form role="form" id="uplAvAssociationsAssign">
-              <input type="file" id="fileUplAvAssociationsAssign" name="fileUplAvAssociationsAssign">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- uplAvBlockIndicatorsAssign -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Zuordnung Sperren</h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvBlockIndicatorsAssign">
-              <input type="file" id="fileUplAvBlockIndicatorsAssign" name="fileUplAvBlockIndicatorsAssign">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <!-- uplAvCampaignsAssign -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Zuordnung Aktionen</h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvCampaignsAssign">
-              <input type="file" id="fileUplAvCampaignsAssign" name="fileUplAvCampaignsAssign">
-              <button type="submit" class="btn btn-default">Hochladen</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- uplAvEducationsAssign -->
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Upload Zuordnung Ausbildungen</h3></div>
-          <div class="panel-body">
-            <form role="form" id="uplAvEducationsAssign">
-              <input type="file" id="fileUplAvEducationsAssign" name="fileUplAvEducationsAssign">
+            <form role="form" id="uploadCustomersLockAssign">
+              <input type="file" id="fileUploadCustomersLockAssign" name="fileUploadCustomersLockAssign">
               <button type="submit" class="btn btn-default">Hochladen</button>
             </form>
           </div>

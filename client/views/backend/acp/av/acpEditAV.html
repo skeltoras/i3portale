@@ -6,24 +6,25 @@
       <div class="col-sm-4">
         {{#with getCustomerData}}
           <div class="panel panel-default panel-av-detail">
-            <div class="panel-heading"><h3>{{avCustomerName}} <small>(Vorschau)</small></h3></div>
+            <div class="panel-heading"><h3>{{customerName}} <small>(Vorschau)</small></h3></div>
             <div class="panel-body">
               <p>
-                {{avShortinfo}}
+                {{customerInfo}}
               </p>
               <h3>Adresse</h3>
               <p>
-                {{#if avDepartment}}{{avDepartment}}<br>{{/if}}
-                {{#if avPostAddition}}{{avPostAddition}}<br>{{/if}}
-                {{#if avStreet}}{{avStreet}}<br>{{/if}}
-                {{#if avPlz}}{{avPlz}}{{/if}} {{#if avCity}}{{avCity}}<br>{{/if}}     
-                {{#if avCountry}}{{avCountry}}{{/if}}
+                {{#if customerLongName}}{{customerLongName}}<br>{{/if}}
+                {{#if customerDepartment}}{{customerDepartment}}<br>{{/if}}
+                {{#if customerPostAddition}}{{customerPostAddition}}<br>{{/if}}
+                {{#if customerStreet}}{{customerStreet}}<br>{{/if}}
+                {{#if customerPlz}}{{customerPlz}}{{/if}} {{#if customerCity}}{{customerCity}}<br>{{/if}}     
+                {{#if customerCountry}}{{customerCountry}}{{/if}}
               </p>
               <h3>Kontakt</h3>
               <p>
-                {{#if avTelephoneFormal}}<i class="fa fa-phone"></i> {{avTelephoneFormal}}<br>{{/if}}
-                {{#if avTelefax}}<i class="fa fa-fax"></i> {{avTelefax}}<br>{{/if}}
-                {{#if avMailFormal}}<i class="fa fa-envelope"></i> {{avMailFormal}}<br>{{/if}}
+                {{#if customerTelephoneFormal}}<i class="fa fa-phone"></i> {{customerTelephoneFormal}}<br>{{/if}}
+                {{#if customerTelefax}}<i class="fa fa-fax"></i> {{customerTelefax}}<br>{{/if}}
+                {{#if customerMailFormal}}<i class="fa fa-envelope"></i> {{customerMailFormal}}<br>{{/if}}
               </p>          
             </div>
           </div>
@@ -222,7 +223,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <fieldset>
                 <!-- avDataCountImages -->                
                 <div class="form-group">                         

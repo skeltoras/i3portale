@@ -3,7 +3,7 @@
   <div class="container acp">
     <div class="row">
       <div class="col-sm-12">
-        <h1>Multi-Edit Kunden <small><strong>{{getPublishedCount 'cnt_allSelectedCustomers'}}</strong> Adressen selektiert</small></h1>
+        <h1>Multi-Edit Kunden <small><strong>{{getPublishedCount 'cnt_allSelectedCustomers'}}</strong> Adressen aus dem Bereich {{#if getChapter}}{{getChapter}}{{else}}---{{/if}} selektiert</small></h1>
       </div>
     </div>
     {{> acpCustomerMultiEditSelection}}    
@@ -37,6 +37,18 @@
                            
 <template name="acpCustomerMultiEditEdit">
   <form class="form form-horizontal" id="editCustomerData" role="form">
+    <div class="row">
+      <div class="col-sm-12">
+        <fieldset>
+          <div class="control-group">            
+            <div class="controls">              
+              <input type="submit" class="btn btn-default" id="save" value="Datensatz freigeben"/>              
+            </div>          
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-6">
         <legend>Kundendaten</legend>
@@ -103,7 +115,7 @@
           <div class="form-group is-public">                   
             <label for="countryData" class="col-sm-4 control-label">Land</label>                   
             <div class="col-sm-8">                       
-              {{> editCountriesSelection}}                   
+              {{> editAllCountries}}                   
             </div>               
           </div>
           <!-- customerTelephoneFormal -->                
@@ -199,6 +211,10 @@
           </thead>
           <tbody>
             <tr> 
+              <td>ID (debug)</td>
+              <td>{{_id}}</td>
+            </tr>
+            <tr> 
               <td>Kunden-Nr. MS-Adam</td>
               <td>{{nKundennummer}}</td>
             </tr>
@@ -212,7 +228,7 @@
             </tr>
             <tr> 
               <td>Alter Name</td>
-              <td>{{tName}} {{tName2}} {{tRechtsform}}</td>
+              <td>{{tName}} {{tName2}} {{#if tRechtsform}}| {{tRechtsform}}{{/if}}</td>
             </tr>
             <tr> 
               <td>Fragen an Kunden</td>
@@ -240,14 +256,49 @@
             </tr>
             <tr> 
               <td>Adresskapitel</td>
-              <td>{{#each avAddressChapters}} {{shortname}} | {{/each}}</td>
+              <td>{{#each addressChapters}} {{shortname}} | {{/each}}</td>
+            </tr>
+            <tr> 
+              <td>Sperren</td>
+              <td><strong>{{#each locks}} {{shortname}} | {{/each}} - {{tSperrgrund}}</strong></td>
+            </tr>
+            <tr> 
+              <td>Änderungslog</td>
+              <td><ul>{{#each customerChanges}}<li>{{formatDate date}}: {{content}} ({{user}})</li>{{/each}}</ul></td>
             </tr>
             <tr> 
               <td>Importiert</td>
               <td>{{formatDate avSubmitted}}</td>
             </tr>
-          </tbody>
-        </table>  
+          </tbody>      
+        </table>
+        <div class="spacer-20"></div>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" id="delete" name="delete">Datensatz löschen</button>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="padding: 15px;">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p>Datensatz wirklich löschen?</p>
+                  <button type="button" class="btn btn-danger" id="deleteOK" name="deleteOK">Löschen</button>
+                  <button type="button" class="btn btn-default pull-right" id="deleteAbort" name="deleteAbort">Abbrechen</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-12">
+        <fieldset>
+          <div class="control-group">            
+            <div class="controls">              
+              <input type="submit" class="btn btn-default" id="save" value="Datensatz freigeben"/>              
+            </div>          
+          </div>
+        </fieldset>
       </div>
     </div>
   </form>

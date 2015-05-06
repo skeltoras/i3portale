@@ -2,9 +2,9 @@
 Template.acpHome.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('acp_countAvCustomers');   
-    self.subscribe('acp_getNewestAvCustomers');
-    self.subscribe('acp_getLastEditedAvCustomers');
+    self.subscribe('acp_countAllCustomersHome');   
+    self.subscribe('acp_getNewestCustomerHome');
+    self.subscribe('acp_getLastEditedCustomerHome');
     //self.subscribe('acp_AllAvCustomers');    
   });
 });
@@ -19,11 +19,23 @@ Template.acpHome.onRendered(function () {
 
 //-- template helpers                            
 Template.acpHome.helpers({
+  getAllCustomers: function() {
+    var cntCustomers = Counts.get('cnt_CustomersHome');
+    var cntCustomersPending = Counts.get('cnt_CustomersPendingHome');
+    var cntSum = cntCustomers + cntCustomersPending;
+    return cntSum;  
+  },
+  getNotMailCustomers: function() {
+    var cntCustomers = Counts.get('cnt_CustomersNotMailHome');
+    var cntCustomersPending = Counts.get('cnt_CustomersPendingNotMailHome');
+    var cntSum = cntCustomers + cntCustomersPending;
+    return cntSum;
+  },
   getLastCustomer: function(){
-    return AvCustomers.findOne({}, {sort: {avSubmitted: -1}});
+    return Customers.findOne({}, {sort: {customerSubmitted: -1}});
   },
   getLastEditedCustomer: function(){
-    return AvCustomers.findOne({}, {sort: {avUpdatedAt: -1}});
+    return Customers.findOne({}, {sort: {customerUpdatedAt: -1}});
   }
 });
 

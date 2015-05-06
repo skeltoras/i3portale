@@ -4,17 +4,23 @@ Template.acpCustomerEdit.onCreated(function () {
   self.autorun(function () {
     self.subscribe('acp_getCustomerSingle', Session.get('customerId'));
     self.subscribe('acp_getCustomerPendingSingle', Session.get('customerId'));
-    self.subscribe('getAllAvCountries');
+    self.subscribe('acp_getCustomerDetailSingle', Session.get('customerId'));
+    self.subscribe('acp_getAllCountries');
   });
   Session.set('editMode', false);
+  Session.set('detailMode', false);
+  $('.detailModeContainer').hide();
+  $('.editModeContainer').show();    
 });
 
 //-- template onDestroyed functions
 Template.acpCustomerEdit.onDestroyed(function () {
+  $('.detailModeContainer').hide();
 });
 
 //-- template onRendered functions
 Template.acpCustomerEdit.onRendered(function () {
+  $('.detailModeContainer').fadeOut(100);
 });
 
 //-- template helpers
@@ -22,13 +28,19 @@ Template.acpCustomerEdit.helpers({
   editMode: function() {
     return Session.get('editMode');
   },
-  getData: function() {
+  detailMode: function() {
+    return Session.get('detailMode');
+  },
+  getCustomer: function() {
     var checkPending = CustomersPending.find().count();
     if(checkPending > 0) {
       return CustomersPending.findOne();
     } else {
       return Customers.findOne();
     } 
+  },
+  getCustomerDetails: function() {
+    return CustomersDetail.findOne();
   }
 });
 
@@ -46,7 +58,41 @@ Template.acpCustomerEdit.events({
       Session.set('editMode', false);
     }
   },
-  'click #avIsApproved': function(e) {
+  'click #changeDetailMode': function(e, tpl) {
+    e.preventDefault();
+    if(e.currentTarget.className == "btn btn-default pull-right out"){
+      e.currentTarget.className = 'btn btn-default pull-right in';
+      e.currentTarget.innerText = 'Detailmodus ist an';
+      $('.editModeContainer')
+        .fadeOut(400)
+        .animate({"left":"-155px"}, "slow")  
+        .animate({"left":"-165px"}, "slow");
+        //.delay(5000)
+        //.fadeOut(1000);       
+      $('.detailModeContainer')
+        .delay(400)
+        .fadeIn(400)
+        .animate({"left":"-155px"}, "slow")  
+        .animate({"left":"-165px"}, "slow");
+      Session.set('detailMode', true);
+    } else if(e.currentTarget.className == "btn btn-default pull-right in"){
+      e.currentTarget.className = 'btn btn-default pull-right out';
+      e.currentTarget.innerText = 'Detailmodus ist aus';
+      $('.detailModeContainer')
+        .fadeOut(400)
+        .animate({"left":"-155px"}, "slow")  
+        .animate({"left":"-165px"}, "slow");
+        //.delay(5000)
+        //.fadeOut(1000);       
+      $('.editModeContainer')
+        .delay(400)
+        .fadeIn(400)
+        .animate({"left":"-155px"}, "slow")  
+        .animate({"left":"-165px"}, "slow");
+      Session.set('detailMode', false);
+    }
+  },
+  'click #customerIsApproved': function(e) {
     //e.preventDefault();
     var settings = false;
     var customerId = this._id;
@@ -55,14 +101,14 @@ Template.acpCustomerEdit.events({
     } else {
       settings = false;
     }
-    Meteor.call('setAvCustomersApproved', customerId, settings, function(error, result){
-      //if(error)
-        //console.log(error); //debug
-      //if(result)
-        //console.log(result); //debug
+    Meteor.call('setCustomersApproved', customerId, settings, function(error, result){
+      if(error)
+        toastr.error('Einstellung konnte nicht geändert werden');
+      if(result)
+        toastr.success('Einstellung erfolgreich geändert');
     });
   },
-  'click #avHasAV': function(e) {
+  'click #customerHasAv': function(e) {
     //e.preventDefault();
     var settings = false;
     var customerId = this._id;
@@ -71,14 +117,14 @@ Template.acpCustomerEdit.events({
     } else {
       settings = false;
     }
-    Meteor.call('setAvCustomersPortalsAV', customerId, settings, function(error, result){
+    Meteor.call('setCustomersPortalsAV', customerId, settings, function(error, result){
       if(error)
-        toastr.warning(error);
+        toastr.error('Einstellung konnte nicht geändert werden');
       if(result)
-        toastr.success('Portaleinstellung erfolgreich geändert');
+        toastr.success('Einstellung erfolgreich geändert');
     });
   },
-  'click #avHasRP': function(e) {
+  'click #customerHasRP': function(e) {
     //e.preventDefault();
     var settings = false;
     var customerId = this._id;
@@ -87,14 +133,14 @@ Template.acpCustomerEdit.events({
     } else {
       settings = false;
     }
-    Meteor.call('setAvCustomersPortalsRP', customerId, settings, function(error, result){
+    Meteor.call('setCustomersPortalsRP', customerId, settings, function(error, result){
       if(error)
-        toastr.warning(error);
+        toastr.error('Einstellung konnte nicht geändert werden');
       if(result)
-        toastr.success('Portaleinstellung erfolgreich geändert');
+        toastr.success('Einstellung erfolgreich geändert');
     });
   },
-  'click #avHasKG': function(e) {
+  'click #customerHasKG': function(e) {
     //e.preventDefault();
     var settings = false;
     var customerId = this._id;
@@ -103,132 +149,51 @@ Template.acpCustomerEdit.events({
     } else {
       settings = false;
     }
-    Meteor.call('setAvCustomersPortalsKG', customerId, settings, function(error, result){
+    Meteor.call('setCustomersPortalsKG', customerId, settings, function(error, result){
       if(error)
-        toastr.warning(error);
+        toastr.error('Einstellung konnte nicht geändert werden');
       if(result)
-        toastr.success('Portaleinstellung erfolgreich geändert');
+        toastr.success('Einstellung erfolgreich geändert');
     });
   },
   'submit #editCustomerData': function(e) {
     e.preventDefault();
-    var customerName = $(e.target).find('[name=avCustomerName]').val();
+    var customerName = $(e.target).find('[name=customerName]').val();
     
     // check required field
     if(!customerName) {
       toastr.warning('Es muss mindestens ein Name eingegeben werden, um den Datensatz zu speichern!');
-    } else {    
-      var customerId = this._id;
+    } else {
       var customerData = [];
-           
-      var countryData = [];
-      $('#countryData :selected').each(function(i, selected){
-        countryData[i] = {
-          avCountryOldId: $(selected).val(),
-          avCountry: $(selected).text()
-        };
-      });
-      if(_.isEmpty(countryData)){
-        countryData[0] = {
-          avCountryOldId: '56',
-          avCountry: 'Deutschland'
-        };
-      }
-      
-      var avIsApproved = false;
-      var avIsFeatured = false;
-      var avHasAV = false;
-      var avHasRP = false;
-      var avHasKG = false;
-      if($(e.target).find('[name=avIsApproved]').is(':checked')) {
-        avIsApproved = true;   
-      }      
-      if($(e.target).find('[name=avIsFeatured]').is(':checked')) {
-        avIsFeatured = true;   
-      }
-      if($(e.target).find('[name=avHasAV]').is(':checked')) {
-        avHasAV = true;   
-      }
-      if($(e.target).find('[name=avHasRP]').is(':checked')) {
-        avHasRP = true;   
-      }
-      if($(e.target).find('[name=avHasKG]').is(':checked')) {
-        avHasKG = true;   
-      }
-      
-      
+      var id = this._id;
       customerData = {
-        // old fields
-        //avIdOld: '',
-        avKDNr: $(e.target).find('[name=avKDNr]').val(),
-        avRandomSort: $(e.target).find('[name=avRandomSort]').val(),
-        avName1Old: $(e.target).find('[name=avName1Old]').val(),
-        avName2Old: $(e.target).find('[name=avName2Old]').val(),
-        avRegisterNameOld: $(e.target).find('[name=avName2Old]').val(),
-        avAlpha1Old: $(e.target).find('[name=avAlpha1Old]').val(),
-        avAlpha2Old: $(e.target).find('[name=avAlpha2Old]').val(),
-        avAlpha3Old: $(e.target).find('[name=avAlpha3Old]').val(),
-        avLegalForm: $(e.target).find('[name=avLegalForm]').val(),
-        avCityPartOld: $(e.target).find('[name=avCityPartOld]').val(),
-        avKantonOld: $(e.target).find('[name=avKantonOld]').val(),
-        avCountryOldId: countryData[0].avCountryOldId,
-        avQuestionToCustomerOld: $(e.target).find('[name=avQuestionToCustomerOld]').val(),
-        avAnswerFromCustomerOld: $(e.target).find('[name=avAnswerFromCustomerOld]').val(),
-        //avbMultiplikatorOld: '',
-        //avbProbeaboOld: '',
-        //avbInteresseAnzeigenOld: '',
-        //avbInteressePrintausgabeOld: '',
-        //avbKeinBelegexemplarOld: '',
-        avmNotizenOld: $(e.target).find('[name=avmNotizenOld]').val(),
-        avbProbeaboOld: $(e.target).find('[name=avbProbeaboOld]').val(),
-        avShortinfo2Old: $(e.target).find('[name=avShortinfo2Old]').val(),
-        avSelfinfoOld: $(e.target).find('[name=avSelfinfoOld]').val(),
-        avCountEmployeesOld: $(e.target).find('[name=avCountEmployees]').val(),      
-        // official fields
-        //avId: '',
-        avCustomerName: $(e.target).find('[name=avCustomerName]').val(),
-        avDepartment: $(e.target).find('[name=avDepartment]').val(),
-        avPostAddition: $(e.target).find('[name=avPostAddition]').val(),
-        avStreet: $(e.target).find('[name=avStreet]').val(),
-        avPlz: $(e.target).find('[name=avPlz]').val(),
-        avCity: $(e.target).find('[name=avCity]').val(),     
-        avCountry: countryData[0].avCountry, 
-        avTelephoneFormal: $(e.target).find('[name=avTelephoneFormal]').val(),
-        avTelefax: $(e.target).find('[name=avTelefax]').val(),
-        avMailFormal: $(e.target).find('[name=avMailFormal]').val(),
-        avUrl: $(e.target).find('[name=avUrl]').val(),
-        avShortinfo: $(e.target).find('[name=avShortinfo]').val(),
-        // inofficial fields
-        avRegion: $(e.target).find('[name=avRegion]').val(),
-        avTelephoneInternal: $(e.target).find('[name=avTelephoneInternal]').val(),
-        avMobil: $(e.target).find('[name=avMobil]').val(),
-        avMailInternal: $(e.target).find('[name=avMailInternal]').val(),
-        avMailNewsletter: $(e.target).find('[name=avMailNewsletter]').val(),
-        avMailContact: $(e.target).find('[name=avMailContact]').val(),
-        avContactPerson: $(e.target).find('[name=avContactPerson]').val(),
-        avSiteUrl: $(e.target).find('[name=avSiteUrl]').val(),
-        avNotes: $(e.target).find('[name=avNotes]').val(),
-        //avIsApproved: avIsApproved,
-        //avIsFeatured: avIsFeatured,
-        //avHasAV: avHasAV,
-        //avHasRP: avHasRP,
-        //avHasKG: avHasKG,
-        //avPortalsCheck: [],
-        //avAddressChapters: [],
-        //avAssociations: [],
-        //avBlockIndicators: [],
-        //avCampaigns: [],
-        //avEducations: [],
-        //avChanges: [],
-        avUpdatedAt: new Date().getTime()
+        customerName: customerName,
+        customerLongName: $(e.target).find('[name=customerLongName]').val(),
+        customerDepartment: $(e.target).find('[name=customerDepartment]').val(),
+        customerPostAddition: $(e.target).find('[name=customerPostAddition]').val(),
+        customerStreet: $(e.target).find('[name=customerStreet]').val(),
+        customerPlz: $(e.target).find('[name=customerPlz]').val(),
+        customerCity: $(e.target).find('[name=customerCity]').val(),
+        customerCountry: $(e.target).find('[name=countryData] :selected').text(),
+        customerTelephoneFormal: $(e.target).find('[name=customerTelephoneFormal]').val(),
+        customerTelefax: $(e.target).find('[name=customerTelefax]').val(),
+        customerMailFormal: $(e.target).find('[name=customerMailFormal]').val(),
+        customerUrl: $(e.target).find('[name=customerUrl]').val(),
+        customerInfo: $(e.target).find('[name=customerInfo]').val(),
+        customerContact: $(e.target).find('[name=customerContact]').val(),
+        customerTelephoneInternal: $(e.target).find('[name=customerTelephoneInternal]').val(),
+        customerMobil: $(e.target).find('[name=customerMobil]').val(),
+        customerMailInternal: $(e.target).find('[name=customerMailInternal]').val(),
+        customerNotes: $(e.target).find('[name=customerNotes]').val(),
+        customerChanges: [{date: new Date().getTime(), content: 'Kunde aktualisiert', user: Meteor.user().profile.nickname}],
+        customerUpdatedAt: new Date().getTime()
       }
-      
-      //console.log(customerData);
-      Meteor.call('updateAvCustomers', customerId, customerData, function(error, result){
+      Meteor.call('updateCustomer', id, customerData, function(error, result){
         if(error)
-          toastr.warning(error);
+          toastr.error('Fehler: ' + error);
         if(result)
           toastr.success('Kunde ' + customerName + ' erfolgreich geändert');
+          //Router.go('acp.home');
       });
     }
   } 

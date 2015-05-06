@@ -61,41 +61,27 @@ Router.route('/rp/mediadaten', function (){
   controller: 'RPController'
 });
 
-
-Router.route('/rp/1/:rpRentingsSiteUrl', function (){ 
-  this.render('rentingsSingle', {
-    waitOn: function() {
-      return Meteor.subscribe('getSingleRpRentings');
-    },
-    data: function () {
-      Meteor.subscribe('getSingleRpRentings');
-      return RpRentings.findOne({rpRentingsSiteUrl: this.params.rpRentingsSiteUrl});
-    },
-    action: function() {
-      if (this.ready())
-        this.render();
-    }
-  });
-}, {
-  name: 'rentings.single',
-  controller: 'RPController'
-});
-
 Router.route('/rp/2/:toursSiteUrl', function (){ 
   this.render('toursSingle', {
-    waitOn: function() {
-      return Meteor.subscribe('tours');
-    },
     data: function () {
-      Meteor.subscribe('tours');
-      return Tours.findOne({toursSiteUrl: this.params.toursSiteUrl});
-    },
-    action: function() {
-      if (this.ready())
-        this.render();
+      Session.set('toursSiteUrl', this.params.toursSiteUrl);
+      //Meteor.subscribe('tours');
+      return RpTours.findOne({toursSiteUrl: this.params.toursSiteUrl});
     }
   });
 }, {
   name: 'tours.single',
+  controller: 'RPController'
+});
+
+Router.route('/rp/1/:rentingsSiteUrl', function (){ 
+  this.render('rentingsSingle', {
+    data: function () {
+      Session.set('rentingsSiteUrl', this.params.rentingsSiteUrl);
+      return RpRentings.findOne({rentingsSiteUrl: this.params.rentingsSiteUrl});
+    }
+  });
+}, {
+  name: 'rentings.single',
   controller: 'RPController'
 });

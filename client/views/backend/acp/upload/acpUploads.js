@@ -20,9 +20,9 @@ Template.acpUploads.helpers({
 
 //-- template events
 Template.acpUploads.events({
-  'submit #uplAvCustomers': function(e, tpl){
+  'submit #uploadNewCustomers': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvCustomers]').files;
+    var input = tpl.find('input[name=fileUploadNewCustomers]').files;
     var file = input[0];
     console.log(file);
     var reader = new FileReader();
@@ -33,17 +33,13 @@ Template.acpUploads.events({
       //for (var i = 0; i < 1000; ++i) {
       for (var i = 0; i < data.length; ++i) {  
         Meteor.call('uploadNewCustomers', data[i], function(error, result){
-          //if(error)
-          //  console.log(error);
-          //if(result)
-          //  console.log(result);
         });
       }
     }
   },
-  'submit #uplAvCountries': function(e, tpl){
+  'submit #uploadCountries': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvCountries]').files;
+    var input = tpl.find('input[name=fileUploadCountries]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -52,17 +48,13 @@ Template.acpUploads.events({
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {  
         Meteor.call('uploadCountries', data[i], function(error, result){
-          //if(error)
-          //  console.log(error);
-          //if(result)
-          //  console.log(result);
         });
       }
     }
   },
-  'submit #uplAvChapters': function(e, tpl){
+  'submit #uploadCustomersChapters': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvChapters]').files;
+    var input = tpl.find('input[name=fileUploadCustomersChapters]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -70,18 +62,14 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvChapters', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadCustomersChapters', data[i], function(error, result){
         });
       }
     }
   }, 
-  'submit #uplAvChaptersSections': function(e, tpl){
+  'submit #uploadChaptersSections': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvChaptersSections]').files;
+    var input = tpl.find('input[name=fileUploadChaptersSections]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -89,18 +77,14 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvChaptersSections', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadChaptersSections', data[i], function(error, result){
         });
       }
     }
   },
-  'submit #uplAvAssociations': function(e, tpl){
+  'submit #uploadCustomersLock': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvAssociations]').files;
+    var input = tpl.find('input[name=fileUploadCustomersLock]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -108,18 +92,14 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvAssociations', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadCustomersLock', data[i], function(error, result){
         });
       }
     }
   },
-  'submit #uplAvBlockIndicators': function(e, tpl){
+  'submit #uploadCustomersChaptersAssign': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvBlockIndicators]').files;
+    var input = tpl.find('input[name=fileUploadCustomersChaptersAssign]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -127,18 +107,14 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvBlockIndicators', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadCustomersChaptersAssign', data[i], function(error, result){
         });
       }
     }
   },
-  'submit #uplAvCustomersLog': function(e, tpl){
+  'submit #uploadCustomersLockAssign': function(e, tpl){
     e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvCustomersLog]').files;
+    var input = tpl.find('input[name=fileUploadCustomersLockAssign]').files;
     var file = input[0];
     var reader = new FileReader();
     reader.readAsText(file);
@@ -146,144 +122,7 @@ Template.acpUploads.events({
       var csv = e.target.result;
       var data = $.csv.toObjects(csv);
       for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvCustomersLog', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvCampaigns': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvCampaigns]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvCampaigns', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvEducations': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvEducations]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvEducations', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvChaptersAssign': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvChaptersAssign]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvChaptersAssign', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvAssociationsAssign': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvAssociationsAssign]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvAssociationsAssign', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvBlockIndicatorsAssign': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvBlockIndicatorsAssign]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvBlockIndicatorsAssign', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvCampaignsAssign': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvCampaignsAssign]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvCampaignsAssign', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
-        });
-      }
-    }
-  },
-  'submit #uplAvEducationsAssign': function(e, tpl){
-    e.preventDefault();    
-    var input = tpl.find('input[name=fileUplAvEducationsAssign]').files;
-    var file = input[0];
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function(e){
-      var csv = e.target.result;
-      var data = $.csv.toObjects(csv);
-      for (var i = 0; i < data.length; ++i) {
-        Meteor.call('uplAvEducationsAssign', data[i], function(error, result){
-          if(error)
-            console.log(error);
-          if(result)
-            console.log(result);
+        Meteor.call('uploadCustomersLockAssign', data[i], function(error, result){
         });
       }
     }

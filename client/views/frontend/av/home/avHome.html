@@ -17,17 +17,17 @@
       {{#each getFeaturedCustomer}}
         <div class="col-sm-4">
           <div class="panel panel-default panel-av">
-            <div class="panel-heading">{{avCustomerName}}</div>
+            <div class="panel-heading">{{customerName}}</div>
             <div class="panel-body">
               <p>
-                {{avStreet}}<br>
-                {{avPlz}} {{avCity}}<br>
-                {{avCountry}}
+                {{customerStreet}}<br>
+                {{customerPlz}} {{customerCity}}<br>
+                {{customerCountry}}
               </p>
               <p>
-                {{avShortinfo}}
+                {{customerInfo}}
               </p>
-              <a class="btn btn-default btn-panel" href="/av/kd/{{avSiteUrl}}"><i class="fa fa-angle-double-right"></i> Details</a>          
+              <a class="btn btn-default btn-panel" href="/av/kd/{{customerSiteUrl}}"><i class="fa fa-angle-double-right"></i> Details</a>          
             </div>
           </div>
         </div>

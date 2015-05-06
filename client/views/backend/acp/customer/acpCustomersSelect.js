@@ -2,9 +2,10 @@
 Template.acpCustomersSelect.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('acp_getSelectionAvChapters'); 
+    self.subscribe('acp_getAllCustomersChapters'); 
     self.subscribe('acp_getSelectedCustomers');
     self.subscribe('acp_countCustomersSelection');
+    self.subscribe('acp_customersSettings');
   });
 });
 
@@ -19,8 +20,9 @@ Template.acpCustomersSelect.onRendered(function () {
 //-- template helpers                            
 Template.acpCustomersSelect.helpers({
   getChapter: function(){
-    chapterDesc = 'Keine Kategorie';
-    return chapterDesc;
+    if(Settings.findOne({chapterNameSelektion: {$exists: true}})){
+      return Settings.findOne({chapterNameSelektion: {$exists: true}}).chapterNameSelektion;
+    }
   }
 });
 
@@ -38,10 +40,10 @@ Template.acpCustomersSelect.events({
     });
     //console.log(chapterData);
     Meteor.call('setCustomerSelection', chapterData, function(error, result){
-        if(error)
-          toastr.warning('Selektion konnte nicht erstellt werden');
-        if(result)
-          toastr.success('Selektion wurde erstellt');
+      if(error)
+        toastr.warning('Selektion konnte nicht erstellt werden');
+      if(result)
+        toastr.success('Selektion wurde erstellt');
     });  
   },
   'reset form': function(e) {

@@ -1,5 +1,6 @@
 <template name="acpCountryList">
   <div class="container acp">
+    <h2>Länder</h2>
     <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-6">
@@ -7,7 +8,8 @@
           <thead>
             <tr>
               <th class="col-sm-3">Kürzel</th>
-              <th class="col-sm-9">Bezeichnung</th>
+              <th class="col-sm-6">Bezeichnung</th>
+              <th class="col-sm-3"></th>
             </tr>
           </thead>
           <tbody>
@@ -15,10 +17,51 @@
               <tr>
                 <td>{{countryShortName}}</td>
                 <td>{{countryName}}</td>
+                <td><a href=""><i class="fa fa-pencil-square-o edit pull-right" id="{{_id}}"></i></a></td>
               </tr>
             {{/each}}
           </tbody>
         </table>
+      </div>
+      <div class="col-sm-6 hidden" id="editCountry">
+        {{#with getSingleCountry}}
+          <form class="form form-horizontal" id="editCountry">
+            <fieldset>
+              <!-- countryShortName -->
+              <div class="form-group form-group-sm">                   
+                <label for="countryShortName" class="col-sm-4 control-label">ISO</label>                   
+                <div class="col-sm-8">                       
+                  <input type="text" class="form-control" id="countryShortName" name="countryShortName" value="{{countryShortName}}" placeholder="">                   
+                </div>               
+              </div>
+              <!-- countryName -->
+              <div class="form-group form-group-sm">                   
+                <label for="countryName" class="col-sm-4 control-label">Name</label>                   
+                <div class="col-sm-8">                       
+                  <input type="text" class="form-control" id="countryName" name="countryName" value="{{countryName}}" placeholder="">                   
+                </div>               
+              </div>              
+            </fieldset>
+            <fieldset>
+              <h4>Headerbild</h4>
+              <div class="thumbnailBox headerImage">
+                {{#if globalImgHeaderL}}
+                  {{#with globalImgHeaderL}}
+                    <div class="thumb show headerImage">
+                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='globalImgHeaderThumb'}}" alt="globalImgHeaderThumb" /></a>
+                    </div>
+                    <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                  {{/with}}
+                {{else}}
+                  <div class="thumb upload headerImage">
+                    <input type="file" class="upload headerImage" id="countryHeaderImage" name="countryHeaderImage">
+                    <i class="fa fa-upload"></i>
+                  </div>
+                {{/if}}
+              </div>
+            </fieldset>
+          </form>
+        {{/with}}  
       </div>
     </div>
   </div> 

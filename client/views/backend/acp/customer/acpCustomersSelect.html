@@ -12,7 +12,7 @@
         <form class="form form-horizontal" id="editCustomerData" role="form">
           <legend>Selektionsbereich auswählen</legend>
           <fieldset>
-            {{> listChapters}}
+            {{> listAllChapters}}
           </fieldset>
           <div class="spacer-20"></div>
           <fieldset>
@@ -26,7 +26,7 @@
         </form>
       </div>
       <div class="col-sm-8">
-        Aktuell sind <strong>{{getPublishedCount 'cnt_allSelectedCustomers'}}</strong> Adressen aus dem Bereich <strong>{{getChapter}}</strong> ausgewählt.
+        Aktuell sind <strong>{{getPublishedCount 'cnt_allSelectedCustomers'}}</strong> Adressen aus dem Bereich <strong>{{#if getChapter}}{{getChapter}}{{else}}---{{/if}}</strong> ausgewählt.
       </div>  
     </div>
   </div>

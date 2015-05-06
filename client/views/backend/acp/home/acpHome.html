@@ -9,17 +9,17 @@
     <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-12">
-        <p>Es sind zur Zeit <strong>{{getPublishedCount 'cnt_allAvCustomers'}}</strong> Kunden im System, davon sind <strong>{{getPublishedCount 'cnt_approvedAvCustomers'}}</strong> freigegeben.</p>
-        <p>Kunden ohne Mailadresse: <strong>{{getPublishedCount 'cnt_withoutEmailAvCustomers'}}</strong></p>
-        <p>Änderungen ohne Bestätigung: (noch nicht eingebaut)</p>
-        <p>Neuester Kunde: {{#with getLastCustomer}}<u><a href="/acp/kd/edit/{{_id}}">{{#if avCustomerName}}{{avCustomerName}}{{else}}{{avName1Old}}{{/if}}</a></u>{{/with}}</p>
-        <p>Letzte Änderung: {{#with getLastEditedCustomer}}<u><a href="/acp/kd/edit/{{_id}}">{{#if avCustomerName}}{{avCustomerName}}{{else}}{{avName1Old}}{{/if}}</a></u>{{/with}}</p>
+        <p>Es sind zur Zeit <strong>{{getAllCustomers}}</strong> Kunden im System, davon sind <strong>{{getPublishedCount 'cnt_CustomersActiveHome'}}</strong> freigegeben.</p>
+        <p>Kunden ohne Mailadresse: <strong>{{getNotMailCustomers}}</strong></p>
+        <p>Änderungen ohne Bestätigung: <strong>{{getPublishedCount 'cnt_CustomersPendingHome'}}</strong></p>
+        <p>Neuester Kunde: {{#with getLastCustomer}}<u><a href="/acp/kd/edit/{{_id}}">{{customerName}}</a></u>{{/with}}</p>
+        <p>Letzte Änderung: {{#with getLastEditedCustomer}}<u><a href="/acp/kd/edit/{{_id}}">{{customerName}}</a></u>{{/with}}</p>
         <hr>
-        <h3>AV-Portal</h3>
-        <p>Aktive Kunden: <strong>{{getPublishedCount 'cnt_AV_AvCustomers'}}</strong></p>
+        <h3>AV-Portal</h3>                    
+        <p>Aktive Kunden: <strong>{{getPublishedCount 'cnt_AvDataHome'}}</strong></p>
         <h3>Reiseportal</h3>
-        <p>Aktive Vermietungen:</p>
-        <p>Aktive Reisen:</p>
+        <p>Aktive Vermietungen: <strong>PLATZHALTER</strong></p>
+        <p>Aktive Reisen: <strong>PLATZHALTER</strong></p>
       </div>
     </div>
   </div>

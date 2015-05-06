@@ -174,7 +174,7 @@ h2 {
 
 h3 {
   font-family: 'Amaranth', sans-serif;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 h3.no-spacer {
@@ -183,7 +183,7 @@ h3.no-spacer {
 
 h4 {
   font-family: 'Amaranth', sans-serif;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 p {
@@ -283,6 +283,13 @@ footer.av a {
   color: rgba(90, 25, 100, 1);
 }
 
+#links img {
+  margin: 5px;
+}
+
+i.hlrp {
+  color: rgba(0,255,0,1);
+}
 
 /*** ACP ***/
 .topnav.acp {
@@ -342,20 +349,9 @@ footer.av a {
 
 .acpBox {
   background: rgba(245,245,245,0.5);
-  border-radius: 15px;
-  -mox-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  box-shadow: 3px 6px 3px rgba(80,80,80,0.6);
-  -mox-box-shadow: 3px 6px 3px rgba(80,80,80,0.6);
-  -webkit-box-shadow: 3px 6px 3px rgba(80,80,80,0.6);
-}
-
-.acpBox.red {
-  border: 2px solid #f00;
-}
-
-.acpBox.green {
-  border: 2px solid #0f0;
+  border-radius: 3px;
+  -mox-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 
 .is-public .help-block, .is-public .control-label, .is-public .radio, .is-public .checkbox, .is-public .radio-inline, .is-public .checkbox-inline, .is-public.radio label, .is-public.checkbox label, .is-public.radio-inline label, .is-public.checkbox-inline label {
@@ -422,6 +418,31 @@ footer.acp a {
 }
 
 .thumbnailBox.logo i.fa.fa-times {
+  color: rgba(255,0,0,0.8);
+  z-index: 6;
+  position: relative;
+  left: 0;
+  top: -120px;
+}
+
+.thumbnailBox.defaultImage {
+  border: 1px solid rgba(221,221,221,0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 130px;
+  width: 310px;
+  padding: 5px;
+}
+
+.thumbnailBox.defaultImage i.fa.fa-upload {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+}
+
+.thumbnailBox.defaultImage i.fa.fa-times {
   color: rgba(255,0,0,0.8);
   z-index: 6;
   position: relative;

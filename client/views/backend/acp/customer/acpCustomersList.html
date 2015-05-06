@@ -3,44 +3,42 @@
   <div class="container acp">
     <div class="row">
       <div class="col-sm-12">
-        <h2>Kundensuche</h2>
+        <h2>Kundensuche <button type="button" class="btn btn-default btn-sm pull-right" id="resetSearch">Suche zurücksetzen</button></h2>
       </div>
     </div>
     <div class="spacer-20"></div>
     <div class="row">
-      <div class="col-sm-6">
-        Suche in freigegebenen Kundendaten: {{> esInput index="customers" id="customersId" placeholder="KundenNr od. Name" }}
-      </div>
-      <div class="col-sm-6">
-        Suche in nicht freigegebenen Kundendaten: {{> esInput index="customersPending" id="customersPendingId" placeholder="KundenNr od. Name" }}
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="acpCustomersSearch" name="acpCustomersSearch" placeholder="Suche in Kunden-Nr, Name, Kontakperson" value="{{getSessionSearch}}">
       </div>
     </div>
     <div class="spacer-20"></div>
     <div class="row">
       <div class="col-sm-6">
         <table class="table table-striped table-condensed">
+          <caption>Freigegebene Kunden</caption>
           <thead>
             <tr>
-              <th>AV-Nr</th>
-              <th>Name</th>
+              <th class="col-sm-4">Kunden-Nr</th>
+              <th class="col-sm-8">Name</th>
             </tr>
           </thead>
           <tbody>            
-              {{#ifEsInputIsEmpty index="customers" id="customersId"}}
+              {{#ifEsInputIsEmpty index="searchCustomers"}}
                 <div><h3><small>Kein Ergebnis. Es muss erst ein Suchbegriff eingegeben werden.</small></h3></div>
               {{/ifEsInputIsEmpty}}
           
-              {{#esEach index="customers" id="customersId"}}
+              {{#esEach index="searchCustomers"}}
                 {{> acpCustomersListFound}}
               {{/esEach}}
               
-              {{> esLoadMoreButton index="customers" id="customersId"}}
+              {{> esLoadMoreButton index="searchCustomers"}}
               
-              {{#ifEsHasNoResults index="customers" id="customersId"}}
+              {{#ifEsHasNoResults index="searchCustomers"}}
                 <div class="no-results"><h3><small>Keine Kunden gefunden. Bitte erneut suchen.</small></h3></div>
               {{/ifEsHasNoResults}}
               
-              {{#ifEsIsSearching index="customers" id="customersId"}}
+              {{#ifEsIsSearching index="searchCustomers"}}
                 <div><h3><small>Es wird gesucht...</small></h3></div>
               {{/ifEsIsSearching}}     
           </tbody>
@@ -48,28 +46,29 @@
       </div>
       <div class="col-sm-6">
         <table class="table table-striped table-condensed">
+          <caption>Kunden ohne Freigabe</caption>
           <thead>
             <tr>
-              <th>AV-Nr</th>
-              <th>Name</th>
+              <th class="col-sm-4">Kunden-Nr</th>
+              <th class="col-sm-8">Name</th>
             </tr>
           </thead>
           <tbody>            
-              {{#ifEsInputIsEmpty index="customersPending" id="customersPendingId" }}
+              {{#ifEsInputIsEmpty index="searchCustomersPending" }}
                 <div><h3><small>Kein Ergebnis. Es muss erst ein Suchbegriff eingegeben werden.</small></h3></div>
               {{/ifEsInputIsEmpty}}
           
-              {{#esEach index="customersPending" id="customersPendingId" }}
+              {{#esEach index="searchCustomersPending" }}
                 {{> acpCustomersPendingListFound}}
               {{/esEach}}
               
-              {{> esLoadMoreButton index="customersPending" id="customersPendingId" }}
+              {{> esLoadMoreButton index="searchCustomersPending" }}
               
-              {{#ifEsHasNoResults index="customersPending" id="customersPendingId" }}
+              {{#ifEsHasNoResults index="searchCustomersPending" }}
                 <div class="no-results"><h3><small>Keine Kunden gefunden. Bitte erneut suchen.</small></h3></div>
               {{/ifEsHasNoResults}}
               
-              {{#ifEsIsSearching index="customersPending" id="customersPendingId" }}
+              {{#ifEsIsSearching index="searchCustomersPending" }}
                 <div><h3><small>Es wird gesucht...</small></h3></div>
               {{/ifEsIsSearching}}     
           </tbody>

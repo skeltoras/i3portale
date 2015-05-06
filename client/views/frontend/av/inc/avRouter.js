@@ -8,11 +8,11 @@ AVController = RouteController.extend({
 Router.route('/', function (){ 
   this.render('avHome', {
     waitOn: function() {
-      return Meteor.subscribe('getHomeAvCustomers');
+    //  return Meteor.subscribe('getHomeAvCustomers');
     },
     data: function () {
       //Meteor.subscribe('rentings');
-      return Meteor.subscribe('getHomeAvCustomers');
+      //return Meteor.subscribe('getHomeAvCustomers');
     }
   });
 }, {
@@ -23,11 +23,11 @@ Router.route('/', function (){
 Router.route('/av', function (){ 
   this.render('avHome', {
     waitOn: function() {
-      return Meteor.subscribe('getHomeAvCustomers');
+      //return Meteor.subscribe('getHomeAvCustomers');
     },
     data: function () {
       //Meteor.subscribe('rentings');
-      return Meteor.subscribe('getHomeAvCustomers');
+      //return Meteor.subscribe('getHomeAvCustomers');
     }
   });
 }, {
@@ -79,13 +79,13 @@ Router.route('/av/cl/:chapterIndex', function (){
 });
 
 
-Router.route('/av/kd/:avSiteUrl', function (){ 
+Router.route('/av/kd/:customerSiteUrl', function (){ 
   this.render('kdSingle', {
     data: function () {
-      Session.set('avSiteUrl', this.params.avSiteUrl);
+      Session.set('avSiteUrl', this.params.customerSiteUrl);
       //Meteor.subscribe('getSingleAvCustomers', this.params.avSiteUrl);
       //return {avSiteUrl: this.params.avSiteUrl};
-      return AvCustomers.findOne({avSiteUrl: this.params.avSiteUrl});
+      return Customers.findOne({customerSiteUrl: this.params.customerSiteUrl});
     }
   });
 }, {
