@@ -14,8 +14,8 @@
     <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
       <h3>{{toursName}}</h3>
       <p>
-        Bereich: <a href="/rp">Reise</a><br>
-        Länder: {{#each toursCountries}}<a href="">{{name}}</a> {{/each}}<br>
+        Bereich: <a href="/rp/ts">Reise</a><br>
+        Land: {{#each toursCountries}}<a href="/rp/3/{{id}}">{{name}}</a> {{/each}}<br>
       </p>
       <h3>Kontakt Veranstalter</h3>
       <p>
@@ -77,10 +77,10 @@
       {{#if toursHasVideo}}
         <h3>Video</h3>
         <p>
-          <iframe src="{{avDataVideoUrl}}" width="300" height="169" frameborder="0" allowfullscreen></iframe>                     
+          <iframe src="{{toursVideoUrl}}" width="300" height="169" frameborder="0" allowfullscreen></iframe>                     
         </p>  
       {{/if}}
-      <a class="btn btn-default btn-panel pull-right back"><i class="fa fa-angle-double-left"></i> Zurück</a>
+      <a class="btn btn-default btn-panel back"><i class="fa fa-angle-double-left"></i> Zurück</a>
     </div>  
     <div class="col-sm-12 col-md-9 col-lg-9 hidden-xs">
       <!-- toursPackages -->
@@ -171,10 +171,12 @@
               {{#if toursHighlightTwo}}<i class="fa fa-check hlrp"></i> {{toursHighlightTwo}}<br>{{/if}}
               {{#if toursHighlightThree}}<i class="fa fa-check hlrp"></i> {{toursHighlightThree}}{{/if}}
             </p>
-            <h3>Termin</h3>
-            <p>
-              {{formatDate toursBegin}} bis {{formatDate toursEnd}}
-            </p>
+            {{#if toursDuration}}
+              <h3>Termin</h3>
+              <p>
+                {{toursDuration}}
+              </p>
+            {{/if}}
             {{#if toursCategory}}
               <h3>Reiseart</h3>
               <p>
@@ -184,13 +186,13 @@
             {{#if toursDeadline}}
               <h3>Letzter Buchungstag</h3>
               <p>
-                {{formatDate toursDeadline}}
+                {{toursDeadline}}
               </p>
             {{/if}}
             {{#if toursCustom}}
               <h3>Sonstiges</h3>
               <p>
-                {{toursCustom}}
+                {{{toursCustom}}}
               </p>
             {{/if}}
           </div>

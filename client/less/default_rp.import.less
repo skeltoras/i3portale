@@ -1,0 +1,150 @@
+/**
+ * Less file for all sizes / standard
+ * for RP - Sites 
+ * @since 1.1.11
+ */
+ 
+/** rpHeader.html **/
+.header.rp .siteNav a {
+  color: rgba(0,0,0,1);
+}
+
+.header.rp .siteNav a:hover, 
+.header.rp .siteNav a:focus {
+  color: rgba(200,0,0,1);
+  text-decoration: none; 
+}
+
+.header.rp .siteNav a i {
+  color: rgba(255, 102, 0, 1);
+}
+
+.topnav.rp {
+  background: rgba(255, 102, 0, 1);
+  text-transform: uppercase;
+  position: relative;
+  height: 40px;
+  left: 0px;
+  right: 0px;
+  z-index: 2;
+}
+
+.topnav.rp .navbar {
+  border: 0;
+  height: 40px;
+  min-height: 40px;
+}
+
+.topnav.rp .navbar .navbar-brand, 
+.topnav.rp .navbar-nav > li > a {
+  color: rgba(255,255,255,1);
+  padding: 10px;
+} 
+
+.topnav.rp .navbar-nav > li {
+  border-right: 1px solid rgba(255,255,255,0.4);
+}
+
+.topnav.rp .navbar-nav > li:first-child {
+  border-left: 1px solid rgba(255,255,255,0.4);
+}  
+
+.topnav.rp .navbar-nav > li > a:hover, 
+.topnav.rp .navbar-nav > li > a:focus, 
+.topnav.rp .navbar-nav > li > a:active {
+  background: rgba(200,0,0,1);
+} 
+
+.topnav.rp .navbar-collapse, 
+.topnav.rp .container-fluid {
+  padding: 0;
+  -webkit-box-shadow: 20px 20px 50px -20px rgba(133,131,133,1);
+  -moz-box-shadow: 20px 20px 50px -20px rgba(133,131,133,1);
+  box-shadow: 20px 20px 50px -20px rgba(133,131,133,1);
+}
+
+.topnav.rp form {
+  padding: 5px;  
+}
+
+.topnav.rp form i {
+  color: rgba(255, 102, 0, 1);  
+}
+/** END rpHeader.html **/
+
+.headerSlider.rp {
+  margin: 0 0 20px 0;
+  width: 100%;
+}
+
+.headerSlider.rp img {
+  width: 100%;
+}
+
+.container.rp a, 
+.footer.rp a {
+  color: rgba(255, 102, 0, 1); 
+  text-decoration: none;
+}
+
+.container.rp a:hover,
+.footer.rp a:hover, 
+.container.rp a:focus,
+.footer.rp a:focus {
+  color: rgba(200,0,0,1);
+  text-decoration: none; 
+}
+
+.container.rp h3.page-header {
+  border-bottom: 1px solid rgba(255, 102, 0, 1);
+  text-align: center;
+}
+
+/** rpHome.html **/
+.box.home,
+.box.ld {
+  background: rgba(220,220,220,1);
+  height: 126px;
+  width: 240px;
+  margin: 0 auto 20px auto;
+}
+
+@media(min-width:1101px){
+  .box.home {
+    float: left;
+    margin: 0 0 20px 0;
+  }
+  
+  .box.ld {
+    float: left;
+    margin: 0 20px 20px 0;
+  }
+  
+  .box.home:nth-child(2n+2) {
+    float: right;
+  }
+  
+  .box.ld:nth-child(4n+4) {
+    float: right;
+    margin: 0 0 20px 0;
+  }
+}
+
+.box.home img,
+.box.ld img {
+  height: 126px;
+  width: 240px;
+  z-index: 1;
+}
+
+.box.home p,
+.box.ld p {
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+  top: -50px;
+  z-index: 2;
+  padding: 5px;
+  background: rgba(60,60,60,0.4);
+  height: 50px;
+}
+

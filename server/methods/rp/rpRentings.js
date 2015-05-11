@@ -1,4 +1,27 @@
 Meteor.methods({
+  createRentings: function(rentingsId, customerId) {
+    if(RpRentings.find({_id: rentingsId}).count()==0){
+      var data = [];
+      data = {
+        _id: rentingsId,
+        customerId: customerId,
+        rentingsIsActive: false,
+        rentingsHasPackageS: false,
+        rentingsHasPackageM: false,
+        rentingsHasPackageL: false,
+        rentingsHasPackageXL: false,
+        rentingsHasAddTextOne: false,
+        rentingsHasAddTextTwo: false,
+        rentingsHasHeaderImg: false,
+        rentingsHasGalleryS: false,
+        rentingsHasGalleryM: false,
+        rentingsHasVideo: false,
+        rentingsHasSocialMedia: false,
+        rentingsHasHighlights: false        
+      }
+      return RpRentings.insert(data);
+    }
+  },
   setRpRentingsPackages: function(pack, rpRentingsId, settings) {
     if(pack=='rentingsHasPackageS') {
       RpRentings.update(rpRentingsId, {$set: {rentingsHasPackageS: settings, rentingsHasPackageM: false, rentingsHasPackageL: false, rentingsHasPackageXL: false}});  

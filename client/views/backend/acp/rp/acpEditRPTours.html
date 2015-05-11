@@ -278,24 +278,6 @@
                   </div>               
                 </div>
               </fieldset>
-              <!-- toursPeople -->                
-              <fieldset>      
-                <div class="form-group  form-group-sm is-public">                   
-                  <label for="toursPeople" class="col-sm-4 control-label">Max. Personen</label>                   
-                  <div class="col-sm-8">                       
-                    <input type="text" class="form-control" id="toursPeople" name="toursPeople" value="{{toursPeople}}" placeholder="">                   
-                  </div>               
-                </div>
-              </fieldset>
-              <!-- toursCost -->                
-              <fieldset>      
-                <div class="form-group form-group-sm is-public">                   
-                  <label for="toursCost" class="col-sm-4 control-label">Reisekosten</label>                   
-                  <div class="col-sm-8">                       
-                    <input type="text" class="form-control" id="toursCost" name="toursCost" value="{{toursCost}}" placeholder="">                   
-                  </div>               
-                </div>
-              </fieldset>
               <!-- toursCategory -->                
               <fieldset>      
                 <div class="form-group form-group-sm is-public">                   
@@ -310,7 +292,7 @@
                 <div class="form-group form-group-sm is-public">                   
                   <label for="toursCustom" class="col-sm-4 control-label">Besonderes</label>                   
                   <div class="col-sm-8">                       
-                    <input type="text" class="form-control" id="toursCustom" name="toursCustom" value="{{toursCustom}}" placeholder="">                   
+                    <textarea class="form-control" id="toursCustom" name="toursCustom">{{toursCustom}}</textarea>                   
                   </div>               
                 </div>
               </fieldset>
@@ -334,15 +316,9 @@
               <!-- toursDuration -->                
               <fieldset>      
                 <div class="form-group form-group-sm is-public">                   
-                  <label for="toursBegin" class="col-sm-4 control-label">Reise-Start</label>                   
+                  <label for="toursDuration" class="col-sm-4 control-label">Dauer</label>                   
                   <div class="col-sm-8">                       
-                    <input type="date" class="form-control" id="toursBegin" name="toursBegin" value="{{formatDateInput toursBegin}}" placeholder="">                   
-                  </div>               
-                </div>
-                <div class="form-group form-group-sm is-public">                   
-                  <label for="toursEnd" class="col-sm-4 control-label">Reise-Ende</label>                   
-                  <div class="col-sm-8">                       
-                    <input type="date" class="form-control" id="toursEnd" name="toursEnd" value="{{formatDateInput toursEnd}}" placeholder="">                   
+                    <input type="text" class="form-control" id="toursDuration" name="toursDuration" value="{{toursDuration}}" placeholder="">                   
                   </div>               
                 </div>
               </fieldset>
@@ -351,7 +327,7 @@
                 <div class="form-group form-group-sm is-public">                   
                   <label for="toursDeadline" class="col-sm-4 control-label">Anmeldeschluss</label>                   
                   <div class="col-sm-8">                       
-                    <input type="date" class="form-control" id="toursDeadline" name="toursDeadline" value="{{formatDateInput toursDeadline}}" placeholder="">                   
+                    <input type="text" class="form-control" id="toursDeadline" name="toursDeadline" value="{{toursDeadline}}" placeholder="">                   
                   </div>               
                 </div>
               </fieldset>

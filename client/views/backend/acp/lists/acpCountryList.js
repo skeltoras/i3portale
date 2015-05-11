@@ -43,6 +43,7 @@ Template.acpCountryList.events({
       newFile.metadata = {countryId: countryId, assignedObject: assignedObject, target: target, gallery: gallery};
       globalImages.insert(newFile, function (err, fileObj) {
       });
+      Countries.update(countryId, {$addToSet:{images:{id: newFile._id, assignedObject:assignedObject}}})
     });
   },
   'click i.edit': function(e) {
@@ -51,6 +52,20 @@ Template.acpCountryList.events({
     if(Session.get('countryId')){
       $("#editCountry").removeClass('hidden');  
     }
+  },
+  'reset form': function(e){
+    e.preventDefault();
+    $("#editCountry").addClass('hidden');     
+  },
+  'submit form': function(e){
+    e.preventDefault();
+    var countryId = Session.get('countryId');
+    var countryData = [];
+    countryData = {
+      countryShortName: $(e.target).find('[name=countryShortName]').val(),
+      countryName: $(e.target).find('[name=countryName]').val()
+    } 
+    Countries.update(countryId, {$set: countryData}); 
+    $("#editCountry").addClass('hidden');
   }
-  
 });

@@ -33,6 +33,13 @@ Router.route('/rp/ts', function (){
   controller: 'RPController'
 });
 
+Router.route('/rp/ld', function (){ 
+  this.render('ldHome');
+}, {
+  name: 'ld.home',
+  controller: 'RPController'
+});
+
 Router.route('/rp/impressum', function (){ 
   this.render('rpImprint');
 }, {
@@ -83,5 +90,17 @@ Router.route('/rp/1/:rentingsSiteUrl', function (){
   });
 }, {
   name: 'rentings.single',
+  controller: 'RPController'
+});
+
+Router.route('/rp/3/:countryId', function (){ 
+  this.render('ldSingle', {
+    data: function () {
+      Session.set('country', this.params.countryId);
+      return Countries.findOne({countryId: Number(this.params.countryId)});
+    }
+  });
+}, {
+  name: 'countries.single',
   controller: 'RPController'
 });

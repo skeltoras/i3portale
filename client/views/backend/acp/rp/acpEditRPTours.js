@@ -1,13 +1,14 @@
 //-- template onCreated functions
 Template.acpEditRPTours.onCreated(function () {
   var self = this;
+  var customerId = Session.get('customerId');
+  var toursId = Session.get('toursId');
   self.autorun(function () {
-    var customerId = Session.get('customerId');
-    var toursId = Session.get('toursId');
     self.subscribe('acp_getSingleRPCustomer', customerId);
     self.subscribe('acp_getSingleRPToursData', toursId); 
     self.subscribe('acp_getAllCountries');
   });
+  Meteor.call('createTours', toursId, customerId);
 });
 
 //-- template onDestroyed functions
@@ -17,22 +18,6 @@ Template.acpEditRPTours.onDestroyed(function () {
 //-- template onRendered functions
 Template.acpEditRPToursData.onRendered(function () {
   $('#countryData').select2();
-  $('.editableFroala').on('editable.beforeImageUpload', function (e, editor, images) {
-    console.log(e); //DEBUG
-    console.log('---'); //DEBUG
-    console.log(editor); //DEBUG
-    console.log('---'); //DEBUG
-    console.log(images); //DEBUG
-    console.log('======'); //DEBUG
-  });
-  $('.selector').on('editable.afterUploadPastedImage', function (e, editor, img) {
-    console.log(img); //DEBUG
-    console.log('======'); //DEBUG
-  });
-  $('.selector').on('editable.imageInserted', function (e, editor, img) {
-    console.log(img); //DEBUG
-    console.log('======'); //DEBUG
-  });
 });
 
 //-- template helpers                            
@@ -123,6 +108,8 @@ Template.acpEditRPTours.events({
       newFile.metadata = {customerId: customerId, rpToursId: rpToursId, assignedObject: assignedObject, target: target, gallery: gallery};
       rpImages.insert(newFile, function (err, fileObj) {
       });
+      console.log(newFile);
+      RpTours.update(rpToursId, {$addToSet: {images: {id: newFile._id, assignedObject: assignedObject}}});
     });
   },
   'click .editableFroala': function(e) {
@@ -159,9 +146,10 @@ Template.acpEditRPTours.events({
   },
   'click a.delImage': function(e){
     e.preventDefault();
-    var customerId = this._id;
+    var toursId = this._id;
     var imgId = e.currentTarget.id;
     rpImages.remove(imgId);
+    RpTours.update(toursId, {$pull: {images: {id: imgId}}});
   },
   'submit form': function(e) {
     e.preventDefault();
@@ -239,14 +227,8 @@ Template.acpEditRPTours.events({
       });
       var toursVisibleBegin = $(e.target).find('[name=toursVisibleBegin]').val();
       var toursVisibleEnd = $(e.target).find('[name=toursVisibleEnd]').val();
-      var toursBegin = $(e.target).find('[name=toursBegin]').val();
-      var toursEnd = $(e.target).find('[name=toursEnd]').val();
-      var toursDeadline = $(e.target).find('[name=toursDeadline]').val();
       toursVisibleBegin = new Date(toursVisibleBegin).getTime();
       toursVisibleEnd = new Date(toursVisibleEnd).getTime();
-      toursBegin = new Date(toursBegin).getTime();
-      toursEnd = new Date(toursEnd).getTime();
-      toursDeadline = new Date(toursDeadline).getTime();
       
       rpTours = {
         _id: rpToursId,
@@ -257,9 +239,8 @@ Template.acpEditRPTours.events({
         toursSiteUrl: toursSiteUrl,
         toursVisibleBegin: toursVisibleBegin,
         toursVisibleEnd: toursVisibleEnd,
-        toursBegin: toursBegin,
-        toursEnd: toursEnd,
-        toursDeadline: toursDeadline,
+        toursDuration: $(e.target).find('[name=toursDuration]').val(),
+        toursDeadline: $(e.target).find('[name=toursDeadline]').val(),
         toursUrl: $(e.target).find('[name=toursUrl]').val(),
         toursHighlightOne: $(e.target).find('[name=toursHighlightOne]').val(),
         toursHighlightTwo: $(e.target).find('[name=toursHighlightTwo]').val(),

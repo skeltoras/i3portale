@@ -1,5 +1,5 @@
 //-- template onCreated functions
-Template.rpHome.onCreated(function () {
+Template.rpSearch.onCreated(function () {
   var self = this;
   self.autorun(function () {
     self.subscribe('rp_getFeaturedTours');
@@ -8,15 +8,15 @@ Template.rpHome.onCreated(function () {
 });
 
 //-- template onDestroyed functions
-Template.rpHome.onDestroyed(function () {
+Template.rpSearch.onDestroyed(function () {
 });
 
 //-- template onRendered functions
-Template.rpHome.onRendered(function () {
+Template.rpSearch.onRendered(function () {
 });
 
 //-- template helpers                            
-Template.rpHome.helpers({
+Template.rpSearch.helpers({
   getTours: function() {
     return RpTours.find().fetch();
   },
@@ -36,5 +36,5 @@ Template.rpHome.helpers({
 });
 
 //-- template events
-Template.rpHome.events({ 
+Template.rpSearch.events({ 
 });

@@ -43,23 +43,35 @@
               </div>              
             </fieldset>
             <fieldset>
-              <h4>Headerbild</h4>
-              <div class="thumbnailBox headerImage">
-                {{#if globalImgHeaderL}}
-                  {{#with globalImgHeaderL}}
-                    <div class="thumb show headerImage">
-                      <a href="{{this.url}}" target="_blank"><img src="{{this.url store='globalImgHeaderThumb'}}" alt="globalImgHeaderThumb" /></a>
-                    </div>
-                    <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                  {{/with}}
-                {{else}}
-                  <div class="thumb upload headerImage">
-                    <input type="file" class="upload headerImage" id="countryHeaderImage" name="countryHeaderImage">
-                    <i class="fa fa-upload"></i>
-                  </div>
-                {{/if}}
+              <div class="form-group form-group-sm">                   
+                <label class="col-sm-4 control-label">Headerbild</label>                   
+                <div class="col-sm-8">                       
+                  <div class="thumbnailBox headerImage">
+                    {{#if getHeaderImg}}
+                      {{#with getHeaderImg}}
+                        <div class="thumb show headerImage">
+                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='globalImgHeaderThumb'}}" alt="globalImgHeaderThumb" /></a>
+                        </div>
+                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      {{/with}}
+                    {{else}}
+                      <div class="thumb upload headerImage">
+                        <input type="file" class="upload headerImage" id="countryHeaderImage" name="countryHeaderImage">
+                        <i class="fa fa-upload"></i>
+                      </div>
+                    {{/if}}
+                  </div>                   
+                </div>               
               </div>
             </fieldset>
+            <fieldset>
+              <div class="control-group">            
+                <div class="controls">              
+                  <input type="submit" class="btn btn-default" value="Änderung speichern"/>
+                  <input type="reset" class="btn btn-default" value="Abbrechen"/>              
+                </div>          
+              </div>
+            </fieldset>          
           </form>
         {{/with}}  
       </div>

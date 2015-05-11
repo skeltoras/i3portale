@@ -1,13 +1,14 @@
 //-- template onCreated functions
 Template.acpEditRpRentings.onCreated(function () {
   var self = this;
+  var customerId = Session.get('customerId');
+  var rentingsId = Session.get('rentingsId');
   self.autorun(function () {
-    var customerId = Session.get('customerId');
-    var rentingsId = Session.get('rentingsId');
     self.subscribe('acp_getSingleRPCustomer', customerId);
     self.subscribe('acp_getSingleRpRentingsData', rentingsId); 
     self.subscribe('acp_getAllCountries');
   });
+  Meteor.call('createRentings', rentingsId, customerId);
 });
 
 //-- template onDestroyed functions
@@ -107,6 +108,7 @@ Template.acpEditRpRentings.events({
       newFile.metadata = {customerId: customerId, rpRentingsId: rpRentingsId, assignedObject: assignedObject, target: target, gallery: gallery};
       rpImages.insert(newFile, function (err, fileObj) {
       });
+      RpRentings.update(rpRentingsId, {$addToSet: {images: {id: newFile._id, assignedObject: assignedObject}}});
     });
   },
   'click .editableFroala': function(e) {
@@ -118,6 +120,8 @@ Template.acpEditRpRentings.events({
         inlineMode: false,
         language: 'de',
         minHeight: 100,
+        defaultImageWidth: 500,
+        imageResize: false,
         key: 'yD2D1gB-7sB-22lpiE-11nkH-8mC7eg=='
       });
     }
@@ -141,9 +145,10 @@ Template.acpEditRpRentings.events({
   },
   'click a.delImage': function(e){
     e.preventDefault();
-    var customerId = this._id;
+    var rentingsId = this._id;
     var imgId = e.currentTarget.id;
     rpImages.remove(imgId);
+    RpRentings.update(rentingsId, {$pull: {images: {id: imgId}}});
   },
   'submit form': function(e) {
     e.preventDefault();
@@ -221,16 +226,10 @@ Template.acpEditRpRentings.events({
       });
       var rentingsVisibleBegin = $(e.target).find('[name=rentingsVisibleBegin]').val();
       var rentingsVisibleEnd = $(e.target).find('[name=rentingsVisibleEnd]').val();
-      var rentingsBegin = $(e.target).find('[name=rentingsBegin]').val();
-      var rentingsEnd = $(e.target).find('[name=rentingsEnd]').val();
       if(rentingsVisibleBegin)
         rentingsVisibleBegin = new Date(rentingsVisibleBegin).getTime();
       if(rentingsVisibleEnd)
         rentingsVisibleEnd = new Date(rentingsVisibleEnd).getTime();
-      if(rentingsBegin)
-        rentingsBegin = new Date(rentingsBegin).getTime();
-      if(rentingsEnd)
-        rentingsEnd = new Date(rentingsEnd).getTime();
       
       rpRentings = {
         _id: rpRentingsId,
@@ -241,8 +240,7 @@ Template.acpEditRpRentings.events({
         rentingsSiteUrl: rentingsSiteUrl,
         rentingsVisibleBegin: rentingsVisibleBegin,
         rentingsVisibleEnd: rentingsVisibleEnd,
-        rentingsBegin: rentingsBegin,
-        rentingsEnd: rentingsEnd,
+        rentingsDuration: $(e.target).find('[name=rentingsDuration]').val(),
         rentingsUrl: $(e.target).find('[name=rentingsUrl]').val(),
         rentingsHighlightOne: $(e.target).find('[name=rentingsHighlightOne]').val(),
         rentingsHighlightTwo: $(e.target).find('[name=rentingsHighlightTwo]').val(),

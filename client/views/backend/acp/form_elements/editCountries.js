@@ -79,3 +79,48 @@ Template.editCountriesS2MTours.helpers({
     return listItem;
   }
 });
+
+Template.editCountriesS2MRentings.helpers({
+  listCountries: function(){
+    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItem = [];
+    if(RpRentings.findOne({_id: this._id})) {
+      var getRentingsData = RpRentings.findOne({_id: this._id}).rentingsCountries;
+      var getRentingsCountry = [];
+      if(getRentingsData){
+        listItems.forEach(function(country){
+          var countryId = country.countryId;
+          var countryName = country.countryName;
+          var testFor = false;
+          
+          for (var i in getRentingsData) { 
+            if (getRentingsData.hasOwnProperty(i)) {
+              getRentingsCountry = getRentingsData[i].name;
+              if(countryName == getRentingsCountry){
+                listItem += ['<option value="' + countryId + '" selected>' + countryName + '</option>'];
+                testFor = true;
+                break;
+              }
+            }
+          }      
+          if(!testFor) {
+            listItem += ['<option value="' + countryId + '">' + countryName + '</option>'];  
+          }
+        });
+      } else {
+        listItems.forEach(function(country){
+          var countryId = country.countryId;
+          var countryName = country.countryName;
+          listItem += ['<option value="' + countryId + '">' + countryName + '</option>']; 
+        });
+      }
+    } else {
+      listItems.forEach(function(country){
+        var countryId = country.countryId;
+        var countryName = country.countryName;
+        listItem += ['<option value="' + countryId + '">' + countryName + '</option>']; 
+      });
+    }
+    return listItem;
+  }
+});

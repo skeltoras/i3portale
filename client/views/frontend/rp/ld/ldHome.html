@@ -1,4 +1,4 @@
-<template name="rpHome">
+<template name="ldHome">
 {{#if Template.subscriptionsReady}}
   <div class="headerSlider rp home hidden-xs">
     {{> rpSlider}}
@@ -16,25 +16,16 @@
     </div>
     <div class="spacer-20"></div>
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6">
-        <h3 class="page-header">Vermietung</h3>
-        <div class="boxes home">
-          {{#each getRentings}}    
-            <div class="box home">
-              <a href="/rp/1/{{rentingsSiteUrl}}">{{#with getImageRentings}}<img src="{{this.url store='rpImgDefaultImage'}}">{{/with}}</a>
-              <p><strong>{{rentingsName}}</strong><br>{{#each rentingsCountries}}{{name}} {{/each}}</p>
+      <div class="col-sm-12">
+        <h3 class="page-header">Länder</h3>
+        <div class="boxes ld">
+          {{#each getCountries}}    
+            <div class="box ld">
+              <a href="/rp/3/{{countryId}}">{{#with getImageCountries}}<img src="{{this.url store='globalImgDefaultImage'}}">{{/with}}</a>
+              <p><strong>{{countryName}}</strong></p>
             </div>
           {{/each}}
         </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6">
-        <h3 class="page-header">Reisen</h3>
-        {{#each getTours}}
-          <div class="box home">
-            <a href="/rp/2/{{toursSiteUrl}}">{{#with getImageTours}}<img src="{{this.url store='rpImgDefaultImage'}}" />{{/with}}</a>
-            <p><strong>{{toursName}}</strong><br>{{#each toursCountries}}{{name}} {{/each}}</p>       
-          </div>
-        {{/each}}
       </div>
     </div>
   </div>

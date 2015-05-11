@@ -1,0 +1,31 @@
+<template name="ldSingle">
+  {{#with getHeaderImg}}<img src="{{this.url store=globalImgHeaderL}}" style="width: 100%"/>{{/with}}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>{{countryName}}</h2>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="page-header text-center">Vermietung</h3>
+        {{#each getRentings}}    
+          <div class="boxRP">
+            <a href="/rp/1/{{rentingsSiteUrl}}">{{#with getImageRentings}}<img src="{{this.url store='rpImgDefaultImage'}}">{{/with}}</a>
+            <p><strong>{{rentingsName}}</strong><br>{{#each rentingsCountries}}{{name}} {{/each}}</p>
+          </div>
+        {{/each}}
+      </div>
+      <div class="col-sm-6">
+        <h3 class="page-header text-center">Reisen</h3>
+        {{#each getTours}}
+          <div class="boxRP">
+            <a href="/rp/2/{{toursSiteUrl}}">{{#with getImageTours}}<img src="{{this.url store='rpImgDefaultImage'}}" />{{/with}}</a>
+            <p><strong>{{toursName}}</strong><br>{{#each toursCountries}}{{name}} {{/each}}</p>       
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

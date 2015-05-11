@@ -1,22 +1,29 @@
 //-- template onCreated functions
-Template.rpHome.onCreated(function () {
+Template.ldSingle.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('rp_getFeaturedTours');
-    self.subscribe('rp_getFeaturedRentings');     
+    var countryNo = Session.get('country');
+    self.subscribe('rp_getSingleCountry', countryNo);
+    self.subscribe('rp_getCountryRentings', countryNo);
+    self.subscribe('rp_getCountryTours', countryNo);
   });
 });
 
 //-- template onDestroyed functions
-Template.rpHome.onDestroyed(function () {
+Template.ldSingle.onDestroyed(function () {
 });
 
 //-- template onRendered functions
-Template.rpHome.onRendered(function () {
+Template.ldSingle.onRendered(function () {
 });
 
+
 //-- template helpers                            
-Template.rpHome.helpers({
+Template.ldSingle.helpers({
+  getHeaderImg: function(){
+    var countryId = this._id;
+    return globalImages.findOne({'metadata.countryId': this._id, 'metadata.assignedObject': 'countryHeaderImage'})
+  },
   getTours: function() {
     return RpTours.find().fetch();
   },
@@ -36,5 +43,5 @@ Template.rpHome.helpers({
 });
 
 //-- template events
-Template.rpHome.events({ 
+Template.ldSingle.events({ 
 });

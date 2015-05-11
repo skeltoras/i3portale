@@ -3,3 +3,4 @@ Meteor.subscribe('getAllRpRegions');
 Meteor.subscribe('getAllRpRentings');
 Meteor.subscribe('avImages');
 Meteor.subscribe('rpImages');
+Meteor.subscribe('globalImages');

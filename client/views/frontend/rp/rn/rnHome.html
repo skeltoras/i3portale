@@ -1,0 +1,34 @@
+<template name="rnHome">
+{{#if Template.subscriptionsReady}}
+  <img src="/img/rp/test1.jpg" style="width: 100%"/>
+  <div class="container rp">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>Vermietung</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 text-justify">
+      </div>
+      <div class="col-sm-6 text-justify">
+        <p>Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines Morgens verhaftet. »Wie ein Hund!« sagte er, es war, als sollte die Scham ihn überleben. Als Gregor Samsa eines Morgens aus unruhigen Träumen erwachte, fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.</p>
+      </div>
+      <div class="col-sm-3 text-justify">
+      </div>
+    </div>
+  </div>
+  <div class="spacer-20"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      {{#each getRentings}}    
+        <div class="boxRP">
+          <a href="/rp/1/{{rentingsSiteUrl}}">{{#with getImageRentings}}<img src="{{this.url store='rpImgDefaultImage'}}">{{/with}}</a>
+          <p><strong>{{rentingsName}}</strong><br>{{#each rentingsCountries}}{{name}} {{/each}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

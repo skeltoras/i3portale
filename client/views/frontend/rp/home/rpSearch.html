@@ -1,0 +1,18 @@
+<template name="rpSearch">
+{{#if Template.subscriptionsReady}}
+  <img src="/img/rp/test1.jpg" style="width: 100%"/>
+  <div class="container rp">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2>Suchergebnisse</h2>
+      </div>
+    </div>
+    <div class="spacer-20"></div>
+    <div class="row">
+      Todo...
+    </div>
+  </div>
+{{else}}
+  {{> loading}}
+{{/if}}
+</template>

@@ -1,4 +1,27 @@
 Meteor.methods({
+  createTours: function(toursId, customerId) {
+    if(RpTours.find({_id: toursId}).count()==0){
+      var data = [];
+      data = {
+        _id: toursId,
+        customerId: customerId,
+        toursIsActive: false,
+        toursHasPackageS: false,
+        toursHasPackageM: false,
+        toursHasPackageL: false,
+        toursHasPackageXL: false,
+        toursHasAddTextOne: false,
+        toursHasAddTextTwo: false,
+        toursHasHeaderImg: false,
+        toursHasGalleryS: false,
+        toursHasGalleryM: false,
+        toursHasVideo: false,
+        toursHasSocialMedia: false,
+        toursHasHighlights: false        
+      }
+      return RpTours.insert(data);
+    }
+  },
   setRPToursPackages: function(pack, rpToursId, settings) {
     if(pack=='toursHasPackageS') {
       RpTours.update(rpToursId, {$set: {toursHasPackageS: settings, toursHasPackageM: false, toursHasPackageL: false, toursHasPackageXL: false}});  
