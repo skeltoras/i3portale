@@ -32,16 +32,11 @@ Template.acpCustomersSelect.events({
     e.preventDefault();
     var chapterData = [];
     
-    $('#chapterData :selected').each(function(i, selected){
-      chapterData[i] = {
-        chapterId: $(selected).val(),
-        chapterName: $(selected).text()
-      };
-    });
-    //console.log(chapterData);
-    Meteor.call('setCustomerSelection', chapterData, function(error, result){
+    var chapter = $(e.target).find('[name=chapterData] :selected').text();
+    console.log(chapter);
+    Meteor.call('setCustomerSelection', chapter, function(error, result){
       if(error)
-        toastr.warning('Selektion konnte nicht erstellt werden');
+        toastr.warning('Selektion konnte nicht erstellt werden: ' + error.reason);
       if(result)
         toastr.success('Selektion wurde erstellt');
     });  

@@ -1,0 +1,188 @@
+/*** ACP ***/
+.topnav.acp {
+  background: rgba(145, 145, 145, 1);
+}
+
+.topnav.acp .navbar-nav > li > a:hover, .topnav.acp .navbar-nav > li > a:focus, .topnav.acp .navbar-nav > li > a:active {
+  background: rgba(68, 68, 68, 1);
+}
+
+.topnav.acp form i {
+  color: rgba(200, 0, 20, 1); 
+}
+
+.acp a {
+  /*color: rgba(200, 0, 20, 1);*/
+  color: rgba(30, 100, 220, 1);
+}
+
+/*** custom checkboxes ***/
+
+.checkbox.acp { 
+  min-height: 0px;
+  height: 0px;
+  line-height: 2em;
+} /* to hide the checkbox itself */
+.checkbox.acp:after {
+  color: #f00;
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  content: "\f147"; 
+  letter-spacing: 10px; 
+}
+.checkbox.acp.blocks:after {
+  color: #000;
+  font-family: FontAwesome;
+  display: inline-block;                                      
+  font-size: 1.5em;
+  content: "\f096"; 
+  letter-spacing: 10px; 
+}
+.checkbox.acp:checked:after { 
+  color: #0f0;
+  content: "\f046"; 
+  letter-spacing: 5px; 
+}
+.checkbox.acp.blocks:checked:after { 
+  color: #f00;
+  content: "\f0c8"; 
+  letter-spacing: 5px; 
+}
+
+.featured {
+  color: rgba(0,255,0,1);
+}
+
+.acpBox {
+  background: rgba(245,245,245,0.5);
+  border-radius: 3px;
+  -mox-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.is-public .help-block, .is-public .control-label, .is-public .radio, .is-public .checkbox, .is-public .radio-inline, .is-public .checkbox-inline, .is-public.radio label, .is-public.checkbox label, .is-public.radio-inline label, .is-public.checkbox-inline label {
+  color: rgba(51, 138, 214, 1);
+}
+
+.is-public .form-control {
+  border-color: rgba(51, 138, 214, 1);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+footer.acp a {
+  color: rgba(200, 0, 20, 1);
+}
+
+.thumbnailBox {
+  border: 1px solid rgba(221,221,221,0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 5px;
+  height: 120%;
+}
+
+.thumbnailBox .thumb.upload {
+  background: rgba(221, 221, 221, 1);
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailBox .thumb.show {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  z-index: 12;
+}
+
+.thumbnailBox i.fa.fa-upload {
+  color: rgba(180, 180, 180, 0.8);
+  font-size: 2em;
+  z-index: 2;
+}
+
+.thumbnailBox input[type=file] {
+  outline:none;
+  position: relative;
+  text-align: right;
+  -moz-opacity:0;
+  filter: ~"alpha(opacity:" 0 ~")";
+  opacity: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailBox input[type=text] {
+  border: 1px solid rgba(200,0,0,1);
+  z-index: 6;
+  position: relative;
+  left: 0;
+  bottom: 50px;
+}
+
+.thumbnailBox.logo,
+.thumbnailBox.defaultImage,
+.thumbnailBox.headerImg {
+  height: 160px;
+  width: 160px;
+}
+
+.thumbnailBox.textImages,
+.thumbnailBox.galleryImg {
+  height: 110px;
+  width: 110px;  
+}
+
+.thumbnailBox.logo i.fa.fa-upload,
+.thumbnailBox.defaultImage i.fa.fa-upload,
+.thumbnailBox.headerImg i.fa.fa-upload {
+  position: absolute;
+  top: 95px;
+  left: 85px;
+}
+
+.thumbnailBox.textImages i.fa.fa-upload {
+  position: absolute;
+  top: 65px;
+  left: 55px;
+}
+
+.thumbnailBox.galleryImg i.fa.fa-upload {
+  position: absolute;
+  top: 40px;
+  left: 55px;
+}
+
+.thumbnailBox.logo i.fa.fa-times,
+.thumbnailBox.defaultImage i.fa.fa-times,
+.thumbnailBox.headerImg i.fa.fa-times {
+  color: rgba(255,0,0,0.8);
+  z-index: 6;
+  position: relative;
+  left: 0;
+  top: -150px;
+}
+
+.thumbnailBox.textImages i.fa.fa-times,
+.thumbnailBox.galleryImg i.fa.fa-times {
+  color: rgba(255,0,0,0.8);
+  z-index: 6;
+  position: relative;
+  left: 0;
+  top: -100px;
+}
+
+.editableFroala {
+  border: 1px solid rgba(221,221,221,0.8);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  min-height: 100px;
+  padding: 5px;  
+}

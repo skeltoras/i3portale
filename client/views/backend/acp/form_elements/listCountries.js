@@ -1,6 +1,6 @@
 Template.listAllCountries.helpers({
   listCountries: function(){
-    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItems = Countries.find({}, {sort: {countryPriority: 1}});
     var listItem = [];
     
     listItems.forEach(function(country){

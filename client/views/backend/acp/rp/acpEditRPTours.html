@@ -296,6 +296,50 @@
                   </div>               
                 </div>
               </fieldset>
+              <!-- toursVideoUrl -->                
+              <div class="collapse {{#if toursHasVideo}}in{{/if}}" id="addVideo">                      
+                <fieldset>
+                  <div class="form-group is-public">                   
+                    <label for="toursUrl" class="col-sm-4 control-label">Video URL</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="toursVideoUrl" name="toursVideoUrl" value="{{toursVideoUrl}}">                   
+                    </div>               
+                  </div>
+                </fieldset>
+              </div>             
+              <!-- toursSocialMedia --> 
+              <div class="collapse {{#if toursHasSocialMedia}}in{{/if}}" id="addSocialMedia">
+                <fieldset>
+                  <!-- toursFacebookData -->                
+                  <div class="form-group is-public">                   
+                    <label for="toursFacebookData" class="col-sm-4 control-label">Facebook-Profil</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="toursFacebookData" name="toursFacebookData" value="{{toursFacebookData}}">                   
+                    </div>               
+                  </div>
+                  <!-- toursTwitterData -->                
+                  <div class="form-group is-public">                   
+                    <label for="toursTwitterData" class="col-sm-4 control-label">Twitter-Daten</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="toursTwitterData" name="toursTwitterData" value="{{toursTwitterData}}">                   
+                    </div>               
+                  </div>
+                  <!-- toursGplusData -->                
+                  <div class="form-group is-public">                   
+                    <label for="toursGplusData" class="col-sm-4 control-label">G+-Daten</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="toursGplusData" name="toursGplusData" value="{{toursGplusData}}">                   
+                    </div>               
+                  </div>
+                  <!-- toursYoutubeData -->                
+                  <div class="form-group is-public">                   
+                    <label for="toursYoutubeData" class="col-sm-4 control-label">Youtube-Kanal</label>                   
+                    <div class="col-sm-8">                       
+                      <input type="text" class="form-control" id="toursYoutubeData" name="toursYoutubeData" value="{{toursYoutubeData}}">                   
+                    </div>               
+                  </div>
+                </fieldset>
+              </div>
             </div>
             <div class="col-sm-6">
               <!-- toursVisible -->                
@@ -331,6 +375,7 @@
                   </div>               
                 </div>
               </fieldset>
+              {{#if toursHasHighlights}}
               <!-- toursHighlightOne -->                
               <fieldset>      
                 <div class="form-group  form-group-sm is-public">                   
@@ -358,20 +403,31 @@
                   </div>               
                 </div>
               </fieldset>
+              {{/if}}
+              <fieldset>
+                <div class="form-group  form-group-sm">                   
+                  <label for="toursNotes" class="col-sm-4 control-label">Notizen</label>                   
+                  <div class="col-sm-8">                       
+                    <textarea class="editableFroala" id="toursNotes" name="toursNotes">{{{toursNotes}}}</textarea>
+                  </div>               
+                </div>
+              </fieldset>
             </div>
           </div>
+          <hr>
           <div class="row">
-            <div class="col-sm-6">
-              <!-- toursDefaultImage -->
+            <!-- toursDefaultImage -->
+            <div class="col-sm-4">              
               <fieldset>
                 <h4>Beitragsbild</h4>
                 <div class="thumbnailBox defaultImage">
                   {{#if getDefaultImage}}
                     {{#with getDefaultImage}}
                       <div class="thumb show defaultImage">
-                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgDefaultImageThumb'}}" alt="rpImgDefaultImageThumb" /></a>
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumb'}}" alt="rpImgACPThumb" /></a>
                       </div>
                       <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      <input type="text" class="form-control caption" id="{{this._id}}" name="defaultImageCaption" value="{{this.metadata.caption}}" placeholder="Bildzuschrift">                                     
                     {{/with}}
                   {{else}}
                     <div class="thumb upload defaultImage">
@@ -382,17 +438,18 @@
                 </div>
               </fieldset>
             </div>
-            <div class="col-sm-6">
-              <!-- toursLogo -->
+            <!-- toursLogo -->
+            <div class="col-sm-4">              
               <fieldset>
                 <h4>Logo</h4>
                 <div class="thumbnailBox logo">
                   {{#if getLogo}}
                     {{#with getLogo}}
                       <div class="thumb show logo">
-                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgLogoThumb'}}" alt="rpImgLogoThumb" /></a>
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumb'}}" alt="rpImgACPThumb" /></a>
                       </div>
                       <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      <input type="text" class="form-control caption" id="{{this._id}}" name="logoCaption" value="{{logoCaption}}" placeholder="Bildzuschrift">                                                         
                     {{/with}}
                   {{else}}
                     <div class="thumb upload logo">
@@ -402,532 +459,1443 @@
                   {{/if}}
                 </div>
               </fieldset>
-            </div>  
+            </div>
+            <!-- toursHeaderImg -->
+            <div class="collapse {{#if toursHasHeaderImg}}in{{/if}} col-sm-4" id="addHeaderImage">
+              <fieldset>
+                <h4>Header-Bild</h4>
+                <div class="thumbnailBox headerImg">
+                  {{#if getHeaderImg}}
+                    {{#with getHeaderImg}}
+                      <div class="thumb show headerImg">
+                        <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumb'}}" alt="rpImgACPThumb" /></a>
+                      </div>
+                      <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                      <input type="text" class="form-control caption" id="{{this._id}}" name="headerImgCaption" value="{{headerImgCaption}}" placeholder="Bildzuschrift">                                                         
+                    {{/with}}
+                  {{else}}
+                    <div class="thumb upload headerImg">
+                      <input type="file" class="upload headerImg" id="toursHeaderImg" name="toursHeaderImg">
+                      <i class="fa fa-upload"></i>
+                    </div>
+                  {{/if}}
+                </div>                                  
+              </fieldset>
+            </div>            
           </div>
           <div class="spacer-20"></div>
           <div class="row">
             <div class="col-sm-12">  
-              <fieldset>
-                <div class="collapse {{#if toursHasPackageS}}in{{/if}}" id="packageS">
-                  <h4>Paket S</h4>
-                  <!-- toursTabOneS -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabOneS" class="col-sm-4 control-label">toursTabOneS</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabOneS" name="toursTabOneS" value="{{toursTabOneS}}" placeholder="Übersicht">                   
-                    </div>               
+              <legend>Paketdaten</legend>
+              <!-- PACKAGE S -->
+              <div class="collapse {{#if toursHasPackageS}}in{{/if}}" id="packageS">
+                <fieldset>                
+                  <h4>Tab #1</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneSImgTop}}
+                          {{#with textOneSImgTop}}
+                            <div class="thumb show textOneSImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneSImgTop">
+                            <input type="file" class="upload textOneSImgTop" id="toursTextOneSImgTop" name="toursTextOneSImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneSImgMid}}
+                          {{#with textOneSImgMid}}
+                            <div class="thumb show textOneSImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneSImgMid">
+                            <input type="file" class="upload textOneSImgMid" id="toursTextOneSImgMid" name="toursTextOneSImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneSImgBot}}
+                          {{#with textOneSImgBot}}
+                            <div class="thumb show textOneSImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneSImgBot">
+                            <input type="file" class="upload textOneSImgBot" id="toursTextOneSImgBot" name="toursTextOneSImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
                   </div>
-                  <!-- toursTextOneS -->
-                  <textarea class="editableFroala" id="toursTextOneS" name="toursTextOneS">{{{toursTextOneS}}}</textarea>
                   <div class="spacer-20"></div>
-                </div>
-              </fieldset>
-              
-              <fieldset>
-                <div class="collapse {{#if toursHasPackageM}}in{{/if}}" id="packageM">
-                  <h4>Paket M</h4>
-                  <!-- toursTabOneM -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabOneM" class="col-sm-4 control-label">toursTabOneM</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabOneM" name="toursTabOneM" value="{{toursTabOneM}}" placeholder="Übersicht">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabOneS -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabOneS" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabOneS" name="toursTabOneS" value="{{toursTabOneS}}">                   
+                        </div>               
+                      </div>
+                    </div>
                   </div>
-                  <!-- toursTextOneM -->
-                  <textarea class="editableFroala" id="toursTextOneM" name="toursTextOneM">{{{toursTextOneM}}}</textarea>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextOneSa -->
+                      <label for="toursTextOneSa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneSa" name="toursTextOneSa">{{{toursTextOneSa}}}</textarea>
+                    </div>
+                  </div>
                   <div class="spacer-20"></div>
-                  <!-- toursTabTwoM -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabTwoM" class="col-sm-4 control-label">toursTabTwoM</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabTwoM" name="toursTabTwoM" value="{{toursTabTwoM}}" placeholder="Unterkunft">                   
-                    </div>               
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextOneSb -->
+                      <label for="toursTextOneSb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneSb" name="toursTextOneSb">{{{toursTextOneSb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+              </div>
+              <div class="spacer-20"></div>
+              <!-- PACKAGE M -->
+              <div class="collapse {{#if toursHasPackageM}}in{{/if}}" id="packageM">
+                <fieldset>                
+                  <h4>Tab #1</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneMImgTop}}
+                          {{#with textOneMImgTop}}
+                            <div class="thumb show textOneMImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneMImgTop">
+                            <input type="file" class="upload textOneMImgTop" id="toursTextOneMImgTop" name="toursTextOneMImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneMImgMid}}
+                          {{#with textOneMImgMid}}
+                            <div class="thumb show textOneMImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneMImgMid">
+                            <input type="file" class="upload textOneMImgMid" id="toursTextOneMImgMid" name="toursTextOneMImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneMImgBot}}
+                          {{#with textOneMImgBot}}
+                            <div class="thumb show textOneMImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneMImgBot">
+                            <input type="file" class="upload textOneSImgBot" id="toursTextOneMImgBot" name="toursTextOneMImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
                   </div>
-                  <!-- toursTextTwoM -->
-                  <textarea class="editableFroala" id="toursTextTwoM" name="toursTextTwoM">{{{toursTextTwoM}}}</textarea>
                   <div class="spacer-20"></div>
-                </div>
-              </fieldset>
-              
-              <fieldset>
-                <div class="collapse {{#if toursHasPackageL}}in{{/if}}" id="packageL">
-                  <h4>Paket L</h4>
-                  <!-- toursTabOneL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabOneL" class="col-sm-4 control-label">toursTabOneL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabOneL" name="toursTabOneL" value="{{toursTabOneL}}" placeholder="Übersicht">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabOneM -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabOneM" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabOneM" name="toursTabOneM" value="{{toursTabOneM}}">                   
+                        </div>               
+                      </div>
+                    </div>
                   </div>
-                  <!-- toursTextOneL -->
-                  <textarea class="editableFroala" id="toursTextOneL" name="toursTextOneL">{{{toursTextOneL}}}</textarea>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextOneMa -->
+                      <label for="toursTextOneMa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneMa" name="toursTextOneMa">{{{toursTextOneMa}}}</textarea>
+                    </div>
+                  </div>
                   <div class="spacer-20"></div>
-                  <!-- toursTabTwoL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabTwoL" class="col-sm-4 control-label">toursTabTwoL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabTwoL" name="toursTabTwoL" value="{{toursTabTwoL}}" placeholder="Unterkunft">                   
-                    </div>               
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextOneMb -->
+                      <label for="toursTextOneMb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneMb" name="toursTextOneMb">{{{toursTextOneMb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+                <hr>
+                <fieldset>                
+                  <h4>Tab #2</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoMImgTop}}
+                          {{#with textTwoMImgTop}}
+                            <div class="thumb show textTwoMImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoMImgTop">
+                            <input type="file" class="upload textTwoMImgTop" id="toursTextTwoMImgTop" name="toursTextTwoMImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoMImgMid}}
+                          {{#with textTwoMImgMid}}
+                            <div class="thumb show textTwoMImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoMImgMid">
+                            <input type="file" class="upload textTwoMImgMid" id="toursTextTwoMImgMid" name="toursTextTwoMImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoMImgBot}}
+                          {{#with textTwoMImgBot}}
+                            <div class="thumb show textTwoMImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoMImgBot">
+                            <input type="file" class="upload textTwoMImgBot" id="toursTextTwoMImgBot" name="toursTextTwoMImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
                   </div>
-                  <!-- toursTextTwoL -->
-                  <textarea class="editableFroala" id="toursTextTwoL" name="toursTextTwoL">{{{toursTextTwoL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- toursTabThreeL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabThreeL" class="col-sm-4 control-label">toursTabThreeL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabThreeL" name="toursTabThreeL" value="{{toursTabThreeL}}">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabTwoM -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabTwoM" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabTwoM" name="toursTabTwoM" value="{{toursTabTwoM}}">                   
+                        </div>               
+                      </div>
+                    </div>
                   </div>
-                  <!-- toursTextThreeL -->
-                  <textarea class="editableFroala" id="toursTextThreeL" name="toursTextThreeL">{{{toursTextThreeL}}}</textarea>
-                  <div class="spacer-20"></div>            
-                </div>
-              </fieldset>
-              
-              <fieldset>
-                <div class="collapse {{#if toursHasPackageXL}}in{{/if}}" id="packageXL">
-                  <h4>Paket XL</h4>
-                  <!-- toursTabOneXL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabOneXL" class="col-sm-4 control-label">toursTabOneXL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabOneXL" name="toursTabOneXL" value="{{toursTabOneXL}}" placeholder="Übersicht">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextTwoMa -->
+                      <label for="toursTextTwoMa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextTwoMa" name="toursTextTwoMa">{{{toursTextTwoMa}}}</textarea>
+                    </div>
                   </div>
-                  <!-- toursTextOneXL -->
-                  <textarea class="editableFroala" id="toursTextOneXL" name="toursTextOneXL">{{{toursTextOneXL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- toursTabTwoXL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabTwoXL" class="col-sm-4 control-label">toursTabTwoXL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabTwoXL" name="toursTabTwoXL" value="{{toursTabTwoXL}}" placeholder="Unterkunft">                   
-                    </div>               
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextTwoMb -->
+                      <label for="toursTextTwoMb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextTwoMb" name="toursTextTwoMb">{{{toursTextTwoMb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>                
+              </div>
+              <div class="spacer-20"></div>
+              <!-- PACKAGE L -->
+              <div class="collapse {{#if toursHasPackageL}}in{{/if}}" id="packageL">
+                <fieldset>                
+                  <h4>Tab #1</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneLImgTop}}
+                          {{#with textOneLImgTop}}
+                            <div class="thumb show textOneLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneLImgTop">
+                            <input type="file" class="upload textOneLImgTop" id="toursTextOneLImgTop" name="toursTextOneLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneLImgMid}}
+                          {{#with textOneLImgMid}}
+                            <div class="thumb show textOneLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneLImgMid">
+                            <input type="file" class="upload textOneLImgMid" id="toursTextOneLImgMid" name="toursTextOneLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneLImgBot}}
+                          {{#with textOneLImgBot}}
+                            <div class="thumb show textOneLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneLImgBot">
+                            <input type="file" class="upload textOneLImgBot" id="toursTextOneLImgBot" name="toursTextOneLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
                   </div>
-                  <!-- toursTextTwoXL -->
-                  <textarea class="editableFroala" id="toursTextTwoXL" name="toursTextTwoXL">{{{toursTextTwoXL}}}</textarea>
                   <div class="spacer-20"></div>
-                  <!-- toursTabThreeXL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabThreeXL" class="col-sm-4 control-label">toursTabThreeXL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabThreeXL" name="toursTabThreeXL" value="{{toursTabThreeXL}}">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabOneL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabOneL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabOneL" name="toursTabOneL" value="{{toursTabOneL}}">                   
+                        </div>               
+                      </div>
+                    </div>
                   </div>
-                  <!-- toursTextThreeXL -->
-                  <textarea class="editableFroala" id="toursTextThreeXL" name="toursTextThreeXL">{{{toursTextThreeXL}}}</textarea>
-                  <div class="spacer-20"></div>
-                  <!-- toursTabFourXL -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTabFourXL" class="col-sm-4 control-label">toursTabFourXL</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTabFourXL" name="toursTabFourXL" value="{{toursTabFourXL}}">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextOneLa -->
+                      <label for="toursTextOneLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneLa" name="toursTextOneLa">{{{toursTextOneLa}}}</textarea>
+                    </div>
                   </div>
-                  <!-- toursTextFourXL -->
-                  <textarea class="editableFroala" id="toursTextFourXL" name="toursTextFourXL">{{{toursTextFourXL}}}</textarea>
                   <div class="spacer-20"></div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <div class="collapse {{#if toursHasAddTextOne}}in{{/if}}" id="addTextOne">
-                  <h4>Zusatztext 1</h4>
-                  <!-- toursAddTextTabOne -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursAddTextTabOne" class="col-sm-4 control-label">toursAddTextTabOne</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursAddTextTabOne" name="toursAddTextTabOne" value="{{toursAddTextTabOne}}" placeholder="">                   
-                    </div>               
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextOneLb -->
+                      <label for="toursTextOneLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneLb" name="toursTextOneLb">{{{toursTextOneLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+                <hr>
+                <fieldset>                
+                  <h4>Tab #2</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoLImgTop}}
+                          {{#with textTwoLImgTop}}
+                            <div class="thumb show textTwoLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoLImgTop">
+                            <input type="file" class="upload textTwoLImgTop" id="toursTextTwoLImgTop" name="toursTextTwoLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoLImgMid}}
+                          {{#with textTwoLImgMid}}
+                            <div class="thumb show textTwoLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoLImgMid">
+                            <input type="file" class="upload textTwoLImgMid" id="toursTextTwoLImgMid" name="toursTextTwoLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoLImgBot}}
+                          {{#with textTwoLImgBot}}
+                            <div class="thumb show textTwoLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoLImgBot">
+                            <input type="file" class="upload textTwoLImgBot" id="toursTextTwoLImgBot" name="toursTextTwoLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
                   </div>
-                  <!-- toursAddTextOne -->
-                  <textarea class="editableFroala" id="toursAddTextOne" name="toursAddTextOne">{{{toursAddTextOne}}}</textarea>
                   <div class="spacer-20"></div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <div class="collapse {{#if toursHasAddTextTwo}}in{{/if}}" id="addTextTwo">
-                  <h4>Zusatztext 2</h4>
-                  <!-- toursAddTextTabTwo -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursAddTextTabTwo" class="col-sm-4 control-label">toursAddTextTabTwo</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursAddTextTabTwo" name="toursAddTextTabTwo" value="{{toursAddTextTabTwo}}" placeholder="">                   
-                    </div>               
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabTwoL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabTwoL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabTwoL" name="toursTabTwoL" value="{{toursTabTwoL}}">                   
+                        </div>               
+                      </div>
+                    </div>
                   </div>
-                  <!-- toursAddTextTwo -->
-                  <textarea class="editableFroala" id="toursAddTextTwo" name="toursAddTextTwo">{{{toursAddTextTwo}}}</textarea>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextTwoLa -->
+                      <label for="toursTextTwoLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextTwoLa" name="toursTextTwoLa">{{{toursTextTwoLa}}}</textarea>
+                    </div>
+                  </div>
                   <div class="spacer-20"></div>
-                </div>
-              </fieldset>
-              
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextTwoLb -->
+                      <label for="toursTextTwoLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextTwoLb" name="toursTextTwoLb">{{{toursTextTwoLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+                <hr>
+                <fieldset>                
+                  <h4>Tab #3</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textThreeLImgTop}}
+                          {{#with textThreeLImgTop}}
+                            <div class="thumb show textThreeLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textThreeLImgTop">
+                            <input type="file" class="upload textThreeLImgTop" id="toursTextThreeLImgTop" name="toursTextThreeLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textThreeLImgMid}}
+                          {{#with textThreeLImgMid}}
+                            <div class="thumb show textThreeLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textThreeLImgMid">
+                            <input type="file" class="upload textThreeLImgMid" id="toursTextThreeLImgMid" name="toursTextThreeLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textThreeLImgBot}}
+                          {{#with textThreeLImgBot}}
+                            <div class="thumb show textThreeLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textThreeLImgBot">
+                            <input type="file" class="upload textThreeLImgBot" id="toursTextThreeLImgBot" name="toursTextThreeLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabThreeL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabThreeL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabThreeL" name="toursTabThreeL" value="{{toursTabThreeL}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextThreeLa -->
+                      <label for="toursTextThreeLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextThreeLa" name="toursTextThreeLa">{{{toursTextThreeLa}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextThreeLb -->
+                      <label for="toursTextThreeLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextThreeLb" name="toursTextThreeLb">{{{toursTextThreeLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>                                              
+              </div>
+              <div class="spacer-20"></div>
+              <!-- PACKAGE XL -->
+              <div class="collapse {{#if toursHasPackageXL}}in{{/if}}" id="packageXL">
+                <fieldset>                
+                  <h4>Tab #1</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneXLImgTop}}
+                          {{#with textOneXLImgTop}}
+                            <div class="thumb show textOneXLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneXLImgTop">
+                            <input type="file" class="upload textOneXLImgTop" id="toursTextOneXLImgTop" name="toursTextOneXLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneXLImgMid}}
+                          {{#with textOneXLImgMid}}
+                            <div class="thumb show textOneXLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneXLImgMid">
+                            <input type="file" class="upload textOneXLImgMid" id="toursTextOneXLImgMid" name="toursTextOneXLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneXLImgBot}}
+                          {{#with textOneXLImgBot}}
+                            <div class="thumb show textOneXLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textOneXLImgBot">
+                            <input type="file" class="upload textOneXLImgBot" id="toursTextOneXLImgBot" name="toursTextOneXLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabOneXL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabOneXL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabOneXL" name="toursTabOneXL" value="{{toursTabOneXL}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextOneXLa -->
+                      <label for="toursTextOneXLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneXLa" name="toursTextOneXLa">{{{toursTextOneXLa}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextOneXLb -->
+                      <label for="toursTextOneXLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextOneXLb" name="toursTextOneXLb">{{{toursTextOneXLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+                <hr>
+                <fieldset>                
+                  <h4>Tab #2</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoXLImgTop}}
+                          {{#with textTwoXLImgTop}}
+                            <div class="thumb show textTwoXLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoXLImgTop">
+                            <input type="file" class="upload textTwoXLImgTop" id="toursTextTwoXLImgTop" name="toursTextTwoXLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoXLImgMid}}
+                          {{#with textTwoXLImgMid}}
+                            <div class="thumb show textTwoXLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoXLImgMid">
+                            <input type="file" class="upload textTwoXLImgMid" id="toursTextTwoXLImgMid" name="toursTextTwoXLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoXLImgBot}}
+                          {{#with textTwoXLImgBot}}
+                            <div class="thumb show textTwoXLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textTwoXLImgBot">
+                            <input type="file" class="upload textTwoXLImgBot" id="toursTextTwoXLImgBot" name="toursTextTwoXLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabTwoXL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabTwoXL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabTwoXL" name="toursTabTwoXL" value="{{toursTabTwoXL}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextTwoXLa -->
+                      <label for="toursTextTwoXLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextTwoXLa" name="toursTextTwoXLa">{{{toursTextTwoXLa}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextTwoXLb -->
+                      <label for="toursTextTwoXLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextTwoXLb" name="toursTextTwoXLb">{{{toursTextTwoXLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+                <hr>
+                <fieldset>                
+                  <h4>Tab #3</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textThreeXLImgTop}}
+                          {{#with textThreeXLImgTop}}
+                            <div class="thumb show textThreeXLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textThreeXLImgTop">
+                            <input type="file" class="upload textThreeXLImgTop" id="toursTextThreeXLImgTop" name="toursTextThreeXLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textThreeXLImgMid}}
+                          {{#with textThreeXLImgMid}}
+                            <div class="thumb show textThreeXLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textThreeXLImgMid">
+                            <input type="file" class="upload textThreeXLImgMid" id="toursTextThreeXLImgMid" name="toursTextThreeXLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textThreeXLImgBot}}
+                          {{#with textThreeXLImgBot}}
+                            <div class="thumb show textThreeXLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textThreeXLImgBot">
+                            <input type="file" class="upload textThreeXLImgBot" id="toursTextThreeXLImgBot" name="toursTextThreeXLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabThreeXL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabThreeXL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabThreeXL" name="toursTabThreeXL" value="{{toursTabThreeXL}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextThreeXLa -->
+                      <label for="toursTextThreeXLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextThreeXLa" name="toursTextThreeXLa">{{{toursTextThreeXLa}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextThreeXLb -->
+                      <label for="toursTextThreeXLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextThreeXLb" name="toursTextThreeXLb">{{{toursTextThreeXLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+                <hr>
+                <fieldset>                
+                  <h4>Tab #4</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textFourXLImgTop}}
+                          {{#with textFourXLImgTop}}
+                            <div class="thumb show textFourXLImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textFourXLImgTop">
+                            <input type="file" class="upload textFourXLImgTop" id="toursTextFourXLImgTop" name="toursTextFourXLImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textFourXLImgMid}}
+                          {{#with textFourXLImgMid}}
+                            <div class="thumb show textFourXLImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textFourXLImgMid">
+                            <input type="file" class="upload textFourXLImgMid" id="toursTextFourXLImgMid" name="toursTextFourXLImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textFourXLImgBot}}
+                          {{#with textFourXLImgBot}}
+                            <div class="thumb show textFourXLImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textFourXLImgBot">
+                            <input type="file" class="upload textFourXLImgBot" id="toursTextFourXLImgBot" name="toursTextFourXLImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursTabFourXL -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursTabFourXL" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursTabFourXL" name="toursTabFourXL" value="{{toursTabFourXL}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursTextFourXLa -->
+                      <label for="toursTextFourXLa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextFourXLa" name="toursTextFourXLa">{{{toursTextFourXLa}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursTextFourXLb -->
+                      <label for="toursTextFourXLb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursTextFourXLb" name="toursTextFourXLb">{{{toursTextFourXLb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>                                              
+              </div>
+              <div class="spacer-20"></div>
+              <!-- AddTextOne -->
+              <div class="collapse {{#if toursHasAddTextOne}}in{{/if}}" id="addTextOne">
+                <hr>
+                <fieldset>                
+                  <h4>Zusatztab #1</h4>
+                  <div class="row">
+                    <!-- Images TextOne -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textOneSImgTop}}
+                          {{#with textOneSImgTop}}
+                            <div class="thumb show textAddOneImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textAddOneImgTop">
+                            <input type="file" class="upload textAddOneImgTop" id="toursTextAddOneImgTop" name="toursTextAddOneImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textAddOneImgMid}}
+                          {{#with textAddOneImgMid}}
+                            <div class="thumb show textAddOneImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textAddOneImgMid">
+                            <input type="file" class="upload textAddOneImgMid" id="toursTextAddOneImgMid" name="toursTextAddOneImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textAddOneImgBot}}
+                          {{#with textAddOneImgBot}}
+                            <div class="thumb show textAddOneImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textAddOneImgBot">
+                            <input type="file" class="upload textAddOneImgBot" id="toursTextAddOneImgBot" name="toursTextAddOneImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursAddTextTabOne -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursAddTextTabOne" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursAddTextTabOne" name="toursAddTextTabOne" value="{{toursAddTextTabOne}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursAddTextOnea -->
+                      <label for="toursAddTextOnea" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursAddTextOnea" name="toursAddTextOnea">{{{toursAddTextOnea}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursAddTextOneb -->
+                      <label for="toursAddTextOneb" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursAddTextOneb" name="toursAddTextOneb">{{{toursAddTextOneb}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+              </div>
+              <div class="spacer-20"></div>
+              <!-- AddTextTwo -->
+              <div class="collapse {{#if toursHasAddTextTwo}}in{{/if}}" id="addTextTwo">
+                <hr>
+                <fieldset>                
+                  <h4>Zusatztab #2</h4>
+                  <div class="row">
+                    <!-- Images TextTwo -->
+                    <div class="col-sm-4">                      
+                      <p>Bild oben</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textTwoSImgTop}}
+                          {{#with textTwoSImgTop}}
+                            <div class="thumb show textAddTwoImgTop">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textAddTwoImgTop">
+                            <input type="file" class="upload textAddTwoImgTop" id="toursTextAddTwoImgTop" name="toursTextAddTwoImgTop">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Mitte</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textAddTwoImgMid}}
+                          {{#with textAddTwoImgMid}}
+                            <div class="thumb show textAddTwoImgMid">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textAddTwoImgMid">
+                            <input type="file" class="upload textAddTwoImgMid" id="toursTextAddTwoImgMid" name="toursTextAddTwoImgMid">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <p>Bild Unten</p>
+                      <div class="thumbnailBox textImages">
+                        {{#if textAddTwoImgBot}}
+                          {{#with textAddTwoImgBot}}
+                            <div class="thumb show textAddTwoImgBot">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgACPThumbS'}}" alt="rpImgACPThumbS" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload textAddTwoImgBot">
+                            <input type="file" class="upload textAddTwoImgBot" id="toursTextAddTwoImgBot" name="toursTextAddTwoImgBot">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>                   
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- toursAddTextTabTwo -->                
+                      <div class="form-group is-public">                   
+                        <label for="toursAddTextTabTwo" class="col-sm-4 control-label">Tab-Bezeichnung</label>                   
+                        <div class="col-sm-8">                       
+                          <input type="text" class="form-control" id="toursAddTextTabTwo" name="toursAddTextTabTwo" value="{{toursAddTextTabTwo}}">                   
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- toursAddTextTwoa -->
+                      <label for="toursAddTextTwoa" class="col-sm-2 control-label">Textabschnitt 1</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursAddTextTwoa" name="toursAddTextTwoa">{{{toursAddTextTwoa}}}</textarea>
+                    </div>
+                  </div>
+                  <div class="spacer-20"></div>
+                  <div class="row"> 
+                    <div class="col-sm-12">
+                      <!-- toursAddTextTwob -->
+                      <label for="toursAddTextTwob" class="col-sm-2 control-label">Textabschnitt 2</label>                   
+                      <textarea class="editableFroala col-sm-10" id="toursAddTextTwob" name="toursAddTextTwob">{{{toursAddTextTwob}}}</textarea>
+                    </div>                   
+                  </div>                               
+                </fieldset>
+              </div>              
+              <div class="spacer-20"></div>              
               <!-- toursGalleryS -->
               <div class="collapse {{#if toursHasGalleryS}}in{{/if}}" id="addGalleryS">
                 <fieldset>
                   <h4>kleine Galerie</h4>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGS1}}
-                      {{#with getGS1}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryS" id="toursGS1" name="toursGS1">
-                        <i class="fa fa-upload"></i>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGS1}}
+                          {{#with getGS1}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryS" id="toursGS1" name="toursGS1">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGS2}}
-                      {{#with getGS2}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryS" id="toursGS2" name="toursGS2">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGS2}}
+                          {{#with getGS2}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryS" id="toursGS2" name="toursGS2">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGS3}}
-                      {{#with getGS3}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryS" id="toursGS3" name="toursGS3">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGS3}}
+                          {{#with getGS3}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryS" id="toursGS3" name="toursGS3">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGS4}}
-                      {{#with getGS4}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryS" id="toursGS4" name="toursGS4">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGS4}}
+                          {{#with getGS4}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryS" id="toursGS4" name="toursGS4">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGS5}}
-                      {{#with getGS5}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryS" id="toursGS5" name="toursGS5">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGS5}}
+                          {{#with getGS5}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryS" id="toursGS5" name="toursGS5">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGS6}}
-                      {{#with getGS6}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryS" id="toursGS6" name="toursGS6">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGS6}}
+                          {{#with getGS6}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryS" id="toursGS6" name="toursGS6">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
+                    </div>
                   </div>                                  
-                </fieldset>
-                <div class="spacer-20"></div>
+                </fieldset>               
               </div>
-              
+              <div class="spacer-20"></div>
               <!-- toursGalleryM -->
               <div class="collapse {{#if toursHasGalleryM}}in{{/if}}" id="addGalleryM">
                 <fieldset>
                   <h4>große Galerie</h4>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM1}}
-                      {{#with getGM1}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM1" name="toursGM1">
-                        <i class="fa fa-upload"></i>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM1}}
+                          {{#with getGM1}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM1" name="toursGM1">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM2}}
+                          {{#with getGM2}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM2" name="toursGM2">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM3}}
+                          {{#with getGM3}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM3" name="toursGM3">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM4}}
+                          {{#with getGM4}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM4" name="toursGM4">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM5}}
+                          {{#with getGM5}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM5" name="toursGM5">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM6}}
+                          {{#with getGM6}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM6" name="toursGM6">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
                   </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM2}}
-                      {{#with getGM2}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM2" name="toursGM2">
-                        <i class="fa fa-upload"></i>
+                  <div class="spacer-20"></div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM7}}
+                          {{#with getGM7}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM7" name="toursGM7">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM3}}
-                      {{#with getGM3}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM3" name="toursGM3">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM8}}
+                          {{#with getGM8}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM8" name="toursGM8">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM4}}
-                      {{#with getGM4}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM4" name="toursGM4">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM9}}
+                          {{#with getGM9}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM9" name="toursGM9">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM5}}
-                      {{#with getGM5}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM5" name="toursGM5">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM10}}
+                          {{#with getGM10}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM10" name="toursGM10">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM6}}
-                      {{#with getGM6}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM6" name="toursGM6">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM11}}
+                          {{#with getGM11}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM11" name="toursGM11">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM7}}
-                      {{#with getGM7}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM7" name="toursGM7">
-                        <i class="fa fa-upload"></i>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="thumbnailBox galleryImg">
+                        {{#if getGM12}}
+                          {{#with getGM12}}
+                            <div class="thumb show galleryImg">
+                              <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
+                            </div>
+                            <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
+                          {{/with}}
+                        {{else}}
+                          <div class="thumb upload galleryImg">
+                            <input type="file" class="upload galleryImg galleryM" id="toursGM12" name="toursGM12">
+                            <i class="fa fa-upload"></i>
+                          </div>
+                        {{/if}}
                       </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM8}}
-                      {{#with getGM8}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM8" name="toursGM8">
-                        <i class="fa fa-upload"></i>
-                      </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM9}}
-                      {{#with getGM9}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM9" name="toursGM9">
-                        <i class="fa fa-upload"></i>
-                      </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM10}}
-                      {{#with getGM10}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM10" name="toursGM10">
-                        <i class="fa fa-upload"></i>
-                      </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM11}}
-                      {{#with getGM11}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM11" name="toursGM11">
-                        <i class="fa fa-upload"></i>
-                      </div>
-                    {{/if}}
-                  </div>
-                  <div class="thumbnailBox galleryImg">
-                    {{#if getGM12}}
-                      {{#with getGM12}}
-                        <div class="thumb show galleryImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgGalleryThumb'}}" alt="rpImgGalleryThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload galleryImg">
-                        <input type="file" class="upload galleryImg galleryM" id="toursGM12" name="toursGM12">
-                        <i class="fa fa-upload"></i>
-                      </div>
-                    {{/if}}
+                    </div>
                   </div>                                  
                 </fieldset>
                 <div class="spacer-20"></div>
               </div>             
 
-              <!-- toursHeaderImg -->
-              <div class="collapse {{#if toursHasHeaderImg}}in{{/if}}" id="addHeaderImage">
-                <fieldset>
-                  <h4>Header-Bild</h4>
-                  <div class="thumbnailBox headerImg">
-                    {{#if getHeaderImg}}
-                      {{#with getHeaderImg}}
-                        <div class="thumb show headerImg">
-                          <a href="{{this.url}}" target="_blank"><img src="{{this.url store='rpImgHeaderThumb'}}" alt="rpImgHeaderThumb" /></a>
-                        </div>
-                        <a href="" class="delImage" id="{{this._id}}"><i class="fa fa-times"></i></a>
-                      {{/with}}
-                    {{else}}
-                      <div class="thumb upload headerImg">
-                        <input type="file" class="upload headerImg" id="toursHeaderImg" name="toursHeaderImg">
-                        <i class="fa fa-upload"></i>
-                      </div>
-                    {{/if}}
-                  </div>                                  
-                </fieldset>
-                <div class="spacer-20"></div>
-              </div>
               
-              <!-- toursVideoUrl -->                
-              <div class="collapse {{#if toursHasVideo}}in{{/if}}" id="addVideo">                      
-                <fieldset>
-                  <h4>Video</h4>
-                  <div class="form-group is-public">                   
-                    <label for="toursUrl" class="col-sm-4 control-label">toursVideoUrl</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursVideoUrl" name="toursVideoUrl" value="{{toursVideoUrl}}">                   
-                    </div>               
-                  </div>
-                </fieldset>
-                <div class="spacer-20"></div>
-              </div>
               
-              <!-- toursSocialMedia --> 
-              <div class="collapse {{#if toursHasSocialMedia}}in{{/if}}" id="addSocialMedia">
-                <fieldset>
-                  <h4>Social Media</h4>
-                  <!-- toursFacebookData -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursFacebookData" class="col-sm-4 control-label">toursFacebookData</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursFacebookData" name="toursFacebookData" value="{{toursFacebookData}}">                   
-                    </div>               
-                  </div>
-                  <!-- toursTwitterData -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursTwitterData" class="col-sm-4 control-label">toursTwitterData</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursTwitterData" name="toursTwitterData" value="{{toursTwitterData}}">                   
-                    </div>               
-                  </div>
-                  <!-- toursGplusData -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursGplusData" class="col-sm-4 control-label">toursGplusData</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursGplusData" name="toursGplusData" value="{{toursGplusData}}">                   
-                    </div>               
-                  </div>
-                  <!-- toursYoutubeData -->                
-                  <div class="form-group is-public">                   
-                    <label for="toursYoutubeData" class="col-sm-4 control-label">toursYoutubeData</label>                   
-                    <div class="col-sm-8">                       
-                      <input type="text" class="form-control" id="toursYoutubeData" name="toursYoutubeData" value="{{toursYoutubeData}}">                   
-                    </div>               
-                  </div>
-                </fieldset>    
-                <div class="spacer-20"></div>
-              </div> 
+               
               
-              <fieldset>
-                <h4>Notizen</h4>
-                <!-- toursNotes -->
-                <textarea class="editableFroala" id="toursNotes" name="toursNotes">{{{toursNotes}}}</textarea>
-                <div class="spacer-20"></div>
-              </fieldset>                         
+                                       
             </div>
           </div>
 </template>

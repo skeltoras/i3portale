@@ -39,9 +39,21 @@ Meteor.publish('acp_getCustomerDetailSingle', function(customerId) {
 //--> acp_getAllCountries
 
 // --- ACP select Customer ---//
+Meteor.publish('acp_getAllCustomersChapters', function() {
+  return CustomersChapters.find();
+});     
 
-//--> TODO
+Meteor.publish('acp_getSelectedCustomers', function() {
+  return CustomersSelection.find();
+});
 
+Meteor.publish('acp_countCustomersSelection', function() {
+  Counts.publish(this, 'cnt_allSelectedCustomers', CustomersSelection.find());
+});
+
+Meteor.publish('acp_customersSettings', function() {
+  return Settings.find();
+});
 // --- ACP multiedit Customer ---//
 
 //--> TODO

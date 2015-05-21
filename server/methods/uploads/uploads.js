@@ -1,4 +1,37 @@
 Meteor.methods({
+  uploadCountries: function(data){
+    var countryId = data.countryId;  
+    var countryName = data.countryName;
+    var check = Countries.find({countryId: countryId}).count();    
+    if(check > 0) {
+      console.log('Land ' + countryId + ' / ' + countryName + ' schon vorhanden'); // Server Console
+    } else {
+      var countryData = [];
+      var countryNo = Number(data.countryNo);
+      countryData = {
+        countryId: countryId,
+        countryOldId: data.countryOldId,
+        countryShortName: data.countryShortName,
+        countryName: countryName,
+        countryLongName: data.countryLongName,
+        countryNationality: data.countryNationality,
+        countryContinent: data.countryContinent,
+        countryISO2: data.countryISO2,
+        countryISO3: data.countryISO3,
+        countryDesc: '',
+        countryNo: countryNo,
+        countryPriority: data.countryPriority,
+        countryHasRP: false,
+        //images: ,
+        changes: [{date: new Date().getTime(), content: 'Land importiert', user: Meteor.user().profile.nickname}],
+        submitted: new Date().getTime(),
+        updatedAt: new Date().getTime()
+      }
+      Countries.insert(countryData);
+      console.log('Land ' + countryId + ' / ' + countryName + ' angelegt'); // Server Console  
+    }
+    console.log('[1]-----');
+  },
   //Set Customer Data
   uploadNewCustomers: function(data){
     var customerId = incrementCounter('counters', 'customerId', 1);
@@ -174,35 +207,6 @@ Meteor.methods({
       Logs.update({_id: logs}, {$addToSet: {logDetails: {logStatus: 'info', logMsg: 'Kundendaten ' + customerId + '/' + adressId + ' - ' + customerName + ' angelegt', logShowDebug: false, record: detailId}}}); // LOGGING    
       //if(error)
         //Logs.update({_id: logs}, {$addToSet: {logDetails: {logStatus: 'warning', logMsg: 'Error: ' + error, logShowDebug: true, record: error}}}); // LOGGING   
-    }
-  },
-  uploadCountries: function(data){
-    var countryId = Number(data.idLand);  
-    var countryName = data.tLand_de;    
-    var check = Countries.find({countryId: countryId}).count();
-    if(check > 0) {
-      console.log('Land ' + countryId + ' / ' + countryName + ' schon vorhanden'); // Server Console
-    } else {    
-      countryData = {
-        countryId: countryId,
-        countryShortName: data.tLandId,
-        countryName: countryName,
-        nLandnummer: data.nLandnummer,
-        tKuerzel: data.tKuerzel,
-        tInfo: data. tInfo,
-        changes: [{date: new Date().getTime(), content: 'Land importiert', user: 'Skeltoras'}],
-        submitted: new Date().getTime(),
-        updatedAt: new Date().getTime()
-      }
-      Countries.insert(countryData);
-      console.log('Land ' + countryId + ' / ' + countryName + ' angelegt'); // Server Console
-      // -- Fill Customers country-fields
-      var getCustomersDetail = CustomersDetail.find({xLand: countryId});
-      getCustomersDetail.forEach(function(customer){
-        CustomersPending.update({customerId: customer.customerId}, {$set: {customerCountry: countryName}});
-        Customers.update({customerId: customer.customerId}, {$set: {customerCountry: countryName}});
-        console.log('Land ' + countryName + ' bei ' + customer.customerId + ' eingetragen'); // Server Console 
-      });
     }
   },
   uploadCustomersChapters: function(data){

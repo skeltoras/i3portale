@@ -187,13 +187,12 @@ Meteor.methods({
     return id;
   },
 // --- TODO --- //
-  setCustomerSelection: function(chapterData) {
-    var chapterName = chapterData[0].chapterName;
+  setCustomerSelection: function(chapter) {
     var settingsData = [];
     settingsData = {
-      chapterNameSelektion: chapterName
+      chapterNameSelektion: chapter
     }
-    var getCustomerIds = CustomersDetail.find({'addressChapters.name': chapterName});
+    var getCustomerIds = CustomersDetail.find({'addressChapters.name': chapter});
     getCustomerIds.forEach(function(customer){
       var customerData = CustomersPending.findOne({customerId: customer.customerId});
       customerData = _.extend(customerData, customer) 

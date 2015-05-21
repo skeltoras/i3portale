@@ -67,7 +67,7 @@ Template.acpCustomerNew.events({
         customerStreet: $(e.target).find('[name=customerStreet]').val(),
         customerPlz: $(e.target).find('[name=customerPlz]').val(),
         customerCity: $(e.target).find('[name=customerCity]').val(),
-        customerCountry: $(e.target).find('[name=countryData]').val(),
+        customerCountry: $(e.target).find('[name=countryData] :selected').text(),
         customerTelephoneFormal: $(e.target).find('[name=customerTelephoneFormal]').val(),
         customerTelefax: $(e.target).find('[name=customerTelefax]').val(),
         customerMailFormal: $(e.target).find('[name=customerMailFormal]').val(),

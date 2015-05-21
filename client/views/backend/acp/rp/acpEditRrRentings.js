@@ -122,7 +122,7 @@ Template.acpEditRpRentings.events({
         minHeight: 100,
         defaultImageWidth: 500,
         imageResize: false,
-        key: 'yD2D1gB-7sB-22lpiE-11nkH-8mC7eg=='
+        key: 'llhagF2G5oi=='
       });
     }
   },

@@ -1,6 +1,6 @@
 Template.editAllCountries.helpers({
   listCountries: function(){
-    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItems = Countries.find({}, {sort: {countryPriority: 1}});
     var listItem = [];
     
     //Check if Selektion or Pending
@@ -37,7 +37,7 @@ Template.editAllCountries.helpers({
 
 Template.editCountriesS2MTours.helpers({
   listCountries: function(){
-    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItems = Countries.find({}, {sort: {countryPriority: 1}});
     var listItem = [];
     if(RpTours.findOne({_id: this._id})) {
       var getToursData = RpTours.findOne({_id: this._id}).toursCountries;
@@ -82,7 +82,7 @@ Template.editCountriesS2MTours.helpers({
 
 Template.editCountriesS2MRentings.helpers({
   listCountries: function(){
-    var listItems = Countries.find({}, {sort: {countryName: 1}});
+    var listItems = Countries.find({}, {sort: {countryPriority: 1}});
     var listItem = [];
     if(RpRentings.findOne({_id: this._id})) {
       var getRentingsData = RpRentings.findOne({_id: this._id}).rentingsCountries;

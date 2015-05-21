@@ -38,6 +38,114 @@ Template.acpEditRPToursData.helpers({
   getHeaderImg: function(){
     return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursHeaderImg'});
   },
+  textOneSImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneSImgTop'});
+  },
+  textOneSImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneSImgMid'});
+  },
+  textOneSImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneSImgBot'});
+  },
+  textOneMImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneMImgTop'});
+  },
+  textOneMImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneMImgMid'});
+  },
+  textOneMImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneMImgBot'});
+  },
+  textTwoMImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoMImgTop'});
+  },
+  textTwoMImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoMImgMid'});
+  },
+  textTwoMImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoMImgBot'});
+  },
+  textOneLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneLImgTop'});
+  },
+  textOneLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneLImgMid'});
+  },
+  textOneLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneLImgBot'});
+  },
+  textTwoLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoLImgTop'});
+  },
+  textTwoLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoLImgMid'});
+  },
+  textTwoLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoLImgBot'});
+  },
+  textThreeLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextThreeLImgTop'});
+  },
+  textThreeLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextThreeLImgMid'});
+  },
+  textThreeLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextThreeLImgBot'});
+  },
+  textOneXLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneXLImgTop'});
+  },
+  textOneXLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneXLImgMid'});
+  },
+  textOneXLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextOneXLImgBot'});
+  },
+  textTwoXLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoXLImgTop'});
+  },
+  textTwoXLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoXLImgMid'});
+  },
+  textTwoXLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextTwoXLImgBot'});
+  },
+  textThreeXLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextThreeXLImgTop'});
+  },
+  textThreeXLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextThreeXLImgMid'});
+  },
+  textThreeXLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextThreeXLImgBot'});
+  },
+  textFourXLImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextFourXLImgTop'});
+  },
+  textFourXLImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextFourXLImgMid'});
+  },
+  textFourXLImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextFourXLImgBot'});
+  },
+  textAddOneImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextAddOneImgTop'});
+  },
+  textAddOneImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextAddOneImgMid'});
+  },
+  textAddOneImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextAddOneImgBot'});
+  },
+  textAddTwoImgTop: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextAddTwoImgTop'});
+  },
+  textAddTwoImgMid: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextAddTwoImgMid'});
+  },
+  textAddTwoImgBot: function(){
+    return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursTextAddTwoImgBot'});
+  },
   getGS1: function(){
     return rpImages.findOne({'metadata.rpToursId': this._id, 'metadata.assignedObject': 'toursGS1'});
   },
@@ -123,7 +231,7 @@ Template.acpEditRPTours.events({
         minHeight: 100,
         defaultImageWidth: 500,
         imageResize: true,
-        key: 'yD2D1gB-7sB-22lpiE-11nkH-8mC7eg=='
+        key: 'llhagF2G5oi=='
       });
     }
   },
@@ -150,6 +258,21 @@ Template.acpEditRPTours.events({
     var imgId = e.currentTarget.id;
     rpImages.remove(imgId);
     RpTours.update(toursId, {$pull: {images: {id: imgId}}});
+  },
+  'keyup .caption': function(e){
+    e.preventDefault();
+    if (e.keyCode == 13) {
+      var toursId = this._id;
+      var imgId = e.currentTarget.id;
+      var caption = e.currentTarget.value;
+      var file = rpImages.findOne({_id: imgId});
+      newMeta = {caption: caption};
+      file.metadata = _.extend(file.metadata, newMeta);
+      //file.metadata = _.extend(destination, *sources)  {caption: caption};
+      rpImages.remove(imgId);
+      rpImages.insert(file);
+      console.log(file);
+    }
   },
   'submit form': function(e) {
     e.preventDefault();
@@ -292,65 +415,125 @@ Template.acpEditRPTours.events({
       rpTours = '';
       
       // Froala Editor
-      if ($('#toursTextOneS').data('fa.editable')) {
-        toursTextOneS = $(e.target).find('#toursTextOneS').editable('getHTML');
+      if ($('toursTextOneSa').data('fa.editable')) {
+        toursTextOneSa = $(e.target).find('toursTextOneSa').editable('getHTML');
       } else {
-        toursTextOneS = $(e.target).find('[name=toursTextOneS]').val();
+        toursTextOneSa = $(e.target).find('[name=toursTextOneSa]').val();
       }
-      if ($('#toursTextOneM').data('fa.editable')) {
-        toursTextOneM = $(e.target).find('#toursTextOneM').editable('getHTML');
+      if ($('toursTextOneSb').data('fa.editable')) {
+        toursTextOneSb = $(e.target).find('toursTextOneSb').editable('getHTML');
       } else {
-        toursTextOneM = $(e.target).find('[name=toursTextOneM]').val();
+        toursTextOneSb = $(e.target).find('[name=toursTextOneSb]').val();
       }
-      if ($('#toursTextOneL').data('fa.editable')) {
-        toursTextOneL = $(e.target).find('#toursTextOneL').editable('getHTML');
+      if ($('toursTextOneMa').data('fa.editable')) {
+        toursTextOneMa = $(e.target).find('toursTextOneMa').editable('getHTML');
       } else {
-        toursTextOneL = $(e.target).find('[name=toursTextOneL]').val();
+        toursTextOneMa = $(e.target).find('[name=toursTextOneMa]').val();
       }
-      if ($('#toursTextOneXL').data('fa.editable')) {
-        toursTextOneXL = $(e.target).find('#toursTextOneXL').editable('getHTML');
+      if ($('toursTextOneMb').data('fa.editable')) {
+        toursTextOneMb = $(e.target).find('toursTextOneMb').editable('getHTML');
       } else {
-        toursTextOneXL = $(e.target).find('[name=toursTextOneXL]').val();
+        toursTextOneMb = $(e.target).find('[name=toursTextOneMb]').val();
       }
-      if ($('#toursTextTwoM').data('fa.editable')) {
-        toursTextTwoM = $(e.target).find('#toursTextTwoM').editable('getHTML');
+      if ($('toursTextTwoMa').data('fa.editable')) {
+        toursTextTwoMa = $(e.target).find('toursTextTwoMa').editable('getHTML');
       } else {
-        toursTextTwoM = $(e.target).find('[name=toursTextTwoM]').val();
+        toursTextTwoMa = $(e.target).find('[name=toursTextTwoMa]').val();
       }
-      if ($('#toursTextTwoL').data('fa.editable')) {
-        toursTextTwoL = $(e.target).find('#toursTextTwoL').editable('getHTML');
+      if ($('toursTextTwoMb').data('fa.editable')) {
+        toursTextTwoMb = $(e.target).find('toursTextTwoMb').editable('getHTML');
       } else {
-        toursTextTwoL = $(e.target).find('[name=toursTextTwoL]').val();
+        toursTextTwoMb = $(e.target).find('[name=toursTextTwoMb]').val();
       }
-      if ($('#toursTextTwoXL').data('fa.editable')) {
-        toursTextTwoXL = $(e.target).find('#toursTextTwoXL').editable('getHTML');
+      if ($('toursTextOneLa').data('fa.editable')) {
+        toursTextOneLa = $(e.target).find('toursTextOneLa').editable('getHTML');
       } else {
-        toursTextTwoXL = $(e.target).find('[name=toursTextTwoXL]').val();
+        toursTextOneLa = $(e.target).find('[name=toursTextOneLa]').val();
       }
-      if ($('#toursTextThreeL').data('fa.editable')) {
-        toursTextThreeL = $(e.target).find('#toursTextThreeL').editable('getHTML');
+      if ($('toursTextOneLb').data('fa.editable')) {
+        toursTextOneLb = $(e.target).find('toursTextOneLb').editable('getHTML');
       } else {
-        toursTextThreeL = $(e.target).find('[name=toursTextThreeL]').val();
+        toursTextOneLb = $(e.target).find('[name=toursTextOneLb]').val();
       }
-      if ($('#toursTextThreeXL').data('fa.editable')) {
-        toursTextThreeXL = $(e.target).find('#toursTextThreeXL').editable('getHTML');
+      if ($('toursTextTwoLa').data('fa.editable')) {
+        toursTextTwoLa = $(e.target).find('toursTextTwoLa').editable('getHTML');
       } else {
-        toursTextThreeXL = $(e.target).find('[name=toursTextThreeXL]').val();
+        toursTextTwoLa = $(e.target).find('[name=toursTextTwoLa]').val();
       }
-      if ($('#toursTextFourXL').data('fa.editable')) {
-        toursTextFourXL = $(e.target).find('#toursTextFourXL').editable('getHTML');
+      if ($('toursTextTwoLb').data('fa.editable')) {
+        toursTextTwoLb = $(e.target).find('toursTextTwoLb').editable('getHTML');
       } else {
-        toursTextFourXL = $(e.target).find('[name=toursTextFourXL]').val();
+        toursTextTwoLb = $(e.target).find('[name=toursTextTwoLb]').val();
       }
-      if ($('#toursAddTextOne').data('fa.editable')) {
-        toursAddTextOne = $(e.target).find('#toursAddTextOne').editable('getHTML');
+      if ($('toursTextThreeLa').data('fa.editable')) {
+        toursTextThreeLa = $(e.target).find('toursTextThreeLa').editable('getHTML');
       } else {
-        toursAddTextOne = $(e.target).find('[name=toursAddTextOne]').val();
+        toursTextThreeLa = $(e.target).find('[name=toursTextThreeLa]').val();
       }
-      if ($('#toursAddTextTwo').data('fa.editable')) {
-        toursAddTextTwo = $(e.target).find('#toursAddTextTwo').editable('getHTML');
+      if ($('toursTextThreeLb').data('fa.editable')) {
+        toursTextThreeLb = $(e.target).find('toursTextThreeLb').editable('getHTML');
       } else {
-        toursAddTextTwo = $(e.target).find('[name=toursAddTextTwo]').val();
+        toursTextThreeLb = $(e.target).find('[name=toursTextThreeLb]').val();
+      }
+      if ($('toursTextOneXLa').data('fa.editable')) {
+        toursTextOneXLa = $(e.target).find('toursTextOneXLa').editable('getHTML');
+      } else {
+        toursTextOneXLa = $(e.target).find('[name=toursTextOneXLa]').val();
+      }
+      if ($('toursTextOneXLb').data('fa.editable')) {
+        toursTextOneXLb = $(e.target).find('toursTextOneXLb').editable('getHTML');
+      } else {
+        toursTextOneXLb = $(e.target).find('[name=toursTextOneXLb]').val();
+      }
+      if ($('toursTextTwoXLa').data('fa.editable')) {
+        toursTextTwoXLa = $(e.target).find('toursTextTwoXLa').editable('getHTML');
+      } else {
+        toursTextTwoXLa = $(e.target).find('[name=toursTextTwoXLa]').val();
+      }
+      if ($('toursTextTwoXLb').data('fa.editable')) {
+        toursTextTwoXLb = $(e.target).find('toursTextTwoXLb').editable('getHTML');
+      } else {
+        toursTextTwoXLb = $(e.target).find('[name=toursTextTwoXLb]').val();
+      }
+      if ($('toursTextThreeXLa').data('fa.editable')) {
+        toursTextThreeXLa = $(e.target).find('toursTextThreeXLa').editable('getHTML');
+      } else {
+        toursTextThreeXLa = $(e.target).find('[name=toursTextThreeXLa]').val();
+      }
+      if ($('toursTextThreeXLb').data('fa.editable')) {
+        toursTextThreeXLb = $(e.target).find('toursTextThreeXLb').editable('getHTML');
+      } else {
+        toursTextThreeXLb = $(e.target).find('[name=toursTextThreeXLb]').val();
+      }
+      if ($('toursTextFourXLa').data('fa.editable')) {
+        toursTextFourXLa = $(e.target).find('toursTextFourXLa').editable('getHTML');
+      } else {
+        toursTextFourXLa = $(e.target).find('[name=toursTextFourXLa]').val();
+      }
+      if ($('toursTextFourXLb').data('fa.editable')) {
+        toursTextFourXLb = $(e.target).find('toursTextFourXLb').editable('getHTML');
+      } else {
+        toursTextFourXLb = $(e.target).find('[name=toursTextFourXLb]').val();
+      }
+      if ($('toursAddTextOnea').data('fa.editable')) {
+        toursAddTextOnea = $(e.target).find('toursAddTextOnea').editable('getHTML');
+      } else {
+        toursAddTextOnea = $(e.target).find('[name=toursAddTextOnea]').val();
+      }
+      if ($('toursAddTextOneb').data('fa.editable')) {
+        toursAddTextOneb = $(e.target).find('toursAddTextOneb').editable('getHTML');
+      } else {
+        toursAddTextOneb = $(e.target).find('[name=toursAddTextOneb]').val();
+      }
+      if ($('toursAddTextTwoa').data('fa.editable')) {
+        toursAddTextTwoa = $(e.target).find('toursAddTextTwoa').editable('getHTML');
+      } else {
+        toursAddTextTwoa = $(e.target).find('[name=toursAddTextTwoa]').val();
+      }
+      if ($('toursAddTextTwob').data('fa.editable')) {
+        toursAddTextTwob = $(e.target).find('toursAddTextTwob').editable('getHTML');
+      } else {
+        toursAddTextTwob = $(e.target).find('[name=toursAddTextTwob]').val();
       }
       if ($('#toursNotes').data('fa.editable')) {
         toursNotes = $(e.target).find('#toursNotes').editable('getHTML');
@@ -359,18 +542,30 @@ Template.acpEditRPTours.events({
       }
       
       rpToursText = {
-        toursTextOneS: toursTextOneS,
-        toursTextOneM: toursTextOneM,
-        toursTextOneL: toursTextOneL,
-        toursTextOneXL: toursTextOneXL,
-        toursTextTwoM: toursTextTwoM,
-        toursTextTwoL: toursTextTwoL,
-        toursTextTwoXL: toursTextTwoXL,
-        toursTextThreeL: toursTextThreeL,
-        toursTextThreeXL: toursTextThreeXL,
-        toursTextFourXL: toursTextFourXL,
-        toursAddTextOne: toursAddTextOne,
-        toursAddTextTwo: toursAddTextTwo,
+        toursTextOneSa: toursTextOneSa,
+        toursTextOneSb: toursTextOneSb,
+        toursTextOneMa: toursTextOneMa,
+        toursTextOneMb: toursTextOneMb,
+        toursTextTwoMa: toursTextTwoMa,
+        toursTextTwoMb: toursTextTwoMb,
+        toursTextOneLa: toursTextOneLa,
+        toursTextOneLb: toursTextOneLb,
+        toursTextTwoLa: toursTextTwoLa,
+        toursTextTwoLb: toursTextTwoLb,
+        toursTextThreeLa: toursTextThreeLa,
+        toursTextThreeLb: toursTextThreeLb,
+        toursTextOneXLa: toursTextOneXLa,
+        toursTextOneXLb: toursTextOneXLb,
+        toursTextTwoXLa: toursTextTwoXLa,
+        toursTextTwoXLb: toursTextTwoXLb,
+        toursTextThreeXLa: toursTextThreeXLa,
+        toursTextThreeXLb: toursTextThreeXLb,
+        toursTextFourXLa: toursTextFourXLa,
+        toursTextFourXLb: toursTextFourXLb,
+        toursAddTextOnea: toursAddTextOnea,
+        toursAddTextOneb: toursAddTextOneb,
+        toursAddTextTwoa: toursAddTextTwoa,
+        toursAddTextTwob: toursAddTextTwob,
         toursNotes: toursNotes 
       };      
       Meteor.call('updateRpToursText', rpToursId, rpToursText, function(error, result){

@@ -137,12 +137,48 @@
       <div class="row">
         <div class="{{#if toursHasHighlights}}col-sm-8{{else}}col-sm-12{{/if}}">
           <div class="tab-content">
-            {{#if toursHasPackageS}}                 
-              <div role="tabpanel" class="tab-pane active" id="sA">{{{toursTextOneS}}}</div>              
+            {{#if toursHasPackageS}}                               
+              <div role="tabpanel" class="tab-pane active" id="sA">
+                {{#with textOneSImgTop}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+                  {{{toursTextOneSa}}}
+                {{#with textOneSImgMid}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+                  {{{toursTextOneSb}}}
+                {{#with textOneSImgBot}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}               
+              </div>              
             {{/if}}               
             {{#if toursHasPackageM}}                 
-              <div role="tabpanel" class="tab-pane active" id="mA">{{{toursTextOneM}}}</div>                
-              <div role="tabpanel" class="tab-pane" id="mB">{{{toursTextTwoM}}}</div>              
+              <div role="tabpanel" class="tab-pane active" id="mA">
+                {{#with textOneMImgTop}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+                  {{{toursTextOneMa}}}
+                {{#with textOneMImgMid}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+                  {{{toursTextOneMb}}}
+                {{#with textOneMImgBot}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+              </div>                
+              <div role="tabpanel" class="tab-pane" id="mB">
+                {{#with textTwoMImgTop}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+                  {{{toursTextTwoMa}}}
+                {{#with textTwoMImgMid}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+                  {{{toursTextTwoMb}}}
+                {{#with textTwoMImgBot}}
+                  <img src="{{this.url store='rpImgText'}}" alt="{{this.name}}" class="center-block textImg"/>
+                {{/with}}
+              </div>              
             {{/if}}               
             {{#if toursHasPackageL}}                 
               <div role="tabpanel" class="tab-pane active" id="lA">{{{toursTextOneL}}}</div>                
@@ -167,9 +203,9 @@
           <div class="col-sm-4">
             <h3>Auf einen Blick</h3>
             <p>
-              {{#if toursHighlightOne}}<i class="fa fa-check hlrp"></i> {{toursHighlightOne}}<br>{{/if}}
-              {{#if toursHighlightTwo}}<i class="fa fa-check hlrp"></i> {{toursHighlightTwo}}<br>{{/if}}
-              {{#if toursHighlightThree}}<i class="fa fa-check hlrp"></i> {{toursHighlightThree}}{{/if}}
+              {{#if toursHighlightOne}}<i class="fa fa-plus hlrp"></i> {{toursHighlightOne}}<br>{{/if}}
+              {{#if toursHighlightTwo}}<i class="fa fa-plus hlrp"></i> {{toursHighlightTwo}}<br>{{/if}}
+              {{#if toursHighlightThree}}<i class="fa fa-plus hlrp"></i> {{toursHighlightThree}}{{/if}}
             </p>
             {{#if toursDuration}}
               <h3>Termin</h3>
