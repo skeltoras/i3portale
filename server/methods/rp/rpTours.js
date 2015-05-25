@@ -74,5 +74,18 @@ Meteor.methods({
   },
   updateRpToursText: function(rpToursId, tours) {
     return RpTours.update(rpToursId, {$set: tours});
+  },
+  deleteImagerecord: function(toursId, imgId) {
+    rpImages.remove(imgId);
+    return RpTours.update(toursId, {$pull: {images: {id: imgId}}});
+  },
+  setImageCaption: function(toursId, imgId, caption) {
+    var getFile = rpImages.findOne({_id: imgId});
+    var newFile = new FS.File(getFile);
+    var newMeta = {caption: caption};
+    newFile.metadata = _.extend(newFile.metadata, newMeta);
+    rpImages.remove(imgId);
+    rpImages.insert(newFile, function (err, fileObj) {
+    });
   }
 })

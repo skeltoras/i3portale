@@ -9,7 +9,7 @@
       <div class="col-sm-3 col-xs-2">
       </div>
       <div class="col-sm-6 col-xs-8 text-justify">
-        <p>Jemand musste Josef K. verleumdet haben, denn ohne dass er etwas Böses getan hätte, wurde er eines Morgens verhaftet. »Wie ein Hund!« sagte er, es war, als sollte die Scham ihn überleben. Als Gregor Samsa eines Morgens aus unruhigen Träumen erwachte, fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.</p>
+        <p>Fernkurs - Bewusster Urlaub mit Genuss ist das etwas andere Reiseportal.</p>
       </div>
       <div class="col-sm-3 col-xs-2">
       </div>
@@ -21,8 +21,8 @@
         <div class="boxes home">
           {{#each getRentings}}    
             <div class="box home">
-              <a href="/rp/1/{{rentingsSiteUrl}}">{{#with getImageRentings}}<img src="{{this.url store='rpImgDefaultImage'}}">{{/with}}</a>
-              <p><strong>{{rentingsName}}</strong><br>{{#each rentingsCountries}}{{name}} {{/each}}</p>
+              <a href="/rp/1/{{rentingsSiteUrl}}">{{#with getImageRentings}}<img src="{{this.url store='rpImgDefaultImage'}}">{{/with}}
+              <p><strong>{{rentingsName}}</strong><br>{{#each rentingsCountries}}{{name}} {{/each}}</p></a>
             </div>
           {{/each}}
         </div>
@@ -31,8 +31,8 @@
         <h3 class="page-header">Reisen</h3>
         {{#each getTours}}
           <div class="box home">
-            <a href="/rp/2/{{toursSiteUrl}}">{{#with getImageTours}}<img src="{{this.url store='rpImgDefaultImage'}}" />{{/with}}</a>
-            <p><strong>{{toursName}}</strong><br>{{#each toursCountries}}{{name}} {{/each}}</p>       
+            <a href="/rp/2/{{toursSiteUrl}}">{{#with getImageTours}}<img src="{{this.url store='rpImgDefaultImage'}}" />{{/with}}
+            <p><strong>{{toursName}}</strong><br>{{#each toursCountries}}{{name}} {{/each}}</p></a>       
           </div>
         {{/each}}
       </div>

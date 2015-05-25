@@ -254,24 +254,27 @@ Template.acpEditRPTours.events({
   },
   'click a.delImage': function(e){
     e.preventDefault();
-    var toursId = this._id;
-    var imgId = e.currentTarget.id;
-    rpImages.remove(imgId);
-    RpTours.update(toursId, {$pull: {images: {id: imgId}}});
+    var toursId = Session.get('toursId');    
+    var imgId = this._id;
+    console.log('DELETEIMG|toursId: ' + toursId);
+    console.log('DELETEIMG|imgId: ' + imgId);
+    Meteor.call('deleteImagerecord', toursId, imgId, function(error, result){
+      if(error)
+        toastr.error(error.reason);
+    }); 
   },
   'keyup .caption': function(e){
     e.preventDefault();
     if (e.keyCode == 13) {
-      var toursId = this._id;
-      var imgId = e.currentTarget.id;
+      var toursId = Session.get('toursId');
+      var imgId = this._id;
+      console.log('CAPTION|toursId: ' + toursId);
+      console.log('CAPTION|imgId: ' + imgId);
       var caption = e.currentTarget.value;
-      var file = rpImages.findOne({_id: imgId});
-      newMeta = {caption: caption};
-      file.metadata = _.extend(file.metadata, newMeta);
-      //file.metadata = _.extend(destination, *sources)  {caption: caption};
-      rpImages.remove(imgId);
-      rpImages.insert(file);
-      console.log(file);
+      Meteor.call('setImageCaption', toursId, imgId, caption, function(error, result){
+        if(error)
+          toastr.error(error.reason);
+      });    
     }
   },
   'submit form': function(e) {
